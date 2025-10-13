@@ -35,7 +35,7 @@ CREATE TABLE dbo.DimArticulo(
   ArticuloNK      CHAR(20)      NOT NULL,   -- AutopartesO2025.dbo.Articulo.clave
   SKU             VARCHAR(50)   NULL,
   Descripcion     VARCHAR(100)  NOT NULL,
-  Marca           VARCHAR(100)  NULL,       -- no existe en OLTP; derivable
+  Marca           VARCHAR(100)  NULL,       -- derivable (p.ej. de Proveedor)
   GrupoClave      CHAR(20)      NULL,
   GrupoDesc       VARCHAR(100)  NULL,
   TipoClave       CHAR(20)      NULL,
@@ -133,49 +133,78 @@ IF NOT EXISTS(SELECT 1 FROM sys.indexes WHERE name='UX_DimMedioEmbarque_NK' AND 
   CREATE UNIQUE INDEX UX_DimMedioEmbarque_NK ON dbo.DimMedioEmbarque(MedioEmbarqueNK);
 GO
 
-/* 1.9 Miembros desconocidos (-1) para FKs opcionales */
+/* 1.9 Miembros “desconocidos” (-1) con texto: No espesificado */
 IF NOT EXISTS (SELECT 1 FROM dbo.DimCliente WHERE ClienteKey = -1)
 BEGIN
   SET IDENTITY_INSERT dbo.DimCliente ON;
   INSERT dbo.DimCliente(ClienteKey,ClienteNK,RazonSocial,Ciudad,Estado,Pais,Segmento,MonedaPref,CondicionPago)
-  VALUES(-1,'-1','(Sin cliente)',NULL,NULL,NULL,NULL,NULL,NULL);
+  VALUES(-1,'-1','No espesificado',NULL,NULL,NULL,NULL,NULL,NULL);
   SET IDENTITY_INSERT dbo.DimCliente OFF;
 END
+ELSE
+  UPDATE dbo.DimCliente SET RazonSocial='No espesificado' WHERE ClienteKey=-1;
+
 IF NOT EXISTS (SELECT 1 FROM dbo.DimVendedor WHERE VendedorKey = -1)
 BEGIN
   SET IDENTITY_INSERT dbo.DimVendedor ON;
   INSERT dbo.DimVendedor(VendedorKey,VendedorNK,Nombre)
-  VALUES(-1,'-1','(Sin vendedor)');
+  VALUES(-1,'-1','No espesificado');
   SET IDENTITY_INSERT dbo.DimVendedor OFF;
 END
+ELSE
+  UPDATE dbo.DimVendedor SET Nombre='No espesificado' WHERE VendedorKey=-1;
+
 IF NOT EXISTS (SELECT 1 FROM dbo.DimMoneda WHERE MonedaKey = -1)
 BEGIN
   SET IDENTITY_INSERT dbo.DimMoneda ON;
-  INSERT dbo.DimMoneda(MonedaKey,MonedaNK,Nombre) VALUES(-1,'N/A','No especificada');
+  INSERT dbo.DimMoneda(MonedaKey,MonedaNK,Nombre) VALUES(-1,'N/A','No espesificado');
   SET IDENTITY_INSERT dbo.DimMoneda OFF;
 END
+ELSE
+  UPDATE dbo.DimMoneda SET Nombre='No espesificado' WHERE MonedaKey=-1;
+
 IF NOT EXISTS (SELECT 1 FROM dbo.DimCondicionPago WHERE CondicionPagoKey = -1)
 BEGIN
   SET IDENTITY_INSERT dbo.DimCondicionPago ON;
-  INSERT dbo.DimCondicionPago(CondicionPagoKey,CondicionPagoNK,Descripcion) VALUES(-1,'N/A','No aplica / Desconocida');
+  INSERT dbo.DimCondicionPago(CondicionPagoKey,CondicionPagoNK,Descripcion) VALUES(-1,'N/A','No espesificado');
   SET IDENTITY_INSERT dbo.DimCondicionPago OFF;
 END
+ELSE
+  UPDATE dbo.DimCondicionPago SET Descripcion='No espesificado' WHERE CondicionPagoKey=-1;
+
 IF NOT EXISTS (SELECT 1 FROM dbo.DimMedioEmbarque WHERE MedioEmbarqueKey = -1)
 BEGIN
   SET IDENTITY_INSERT dbo.DimMedioEmbarque ON;
-  INSERT dbo.DimMedioEmbarque(MedioEmbarqueKey,MedioEmbarqueNK,Descripcion) VALUES(-1,'N/A','No aplica / Desconocido');
+  INSERT dbo.DimMedioEmbarque(MedioEmbarqueKey,MedioEmbarqueNK,Descripcion) VALUES(-1,'N/A','No espesificado');
   SET IDENTITY_INSERT dbo.DimMedioEmbarque OFF;
 END
+ELSE
+  UPDATE dbo.DimMedioEmbarque SET Descripcion='No espesificado' WHERE MedioEmbarqueKey=-1;
+
 IF NOT EXISTS (SELECT 1 FROM dbo.DimAlmacen WHERE AlmacenKey = -1)
 BEGIN
   SET IDENTITY_INSERT dbo.DimAlmacen ON;
-  INSERT dbo.DimAlmacen(AlmacenKey,AlmacenNK,Descripcion) VALUES(-1,'N/A','No especificado');
+  INSERT dbo.DimAlmacen(AlmacenKey,AlmacenNK,Descripcion) VALUES(-1,'N/A','No espesificado');
   SET IDENTITY_INSERT dbo.DimAlmacen OFF;
 END
-/* (Opcional) Artículo desconocido para cubrir FKs si lo requieres */
+ELSE
+  UPDATE dbo.DimAlmacen SET Descripcion='No espesificado' WHERE AlmacenKey=-1;
+
+/* Artículo “no asignado” (NK '(NA)') también con No espesificado */
 IF NOT EXISTS (SELECT 1 FROM dbo.DimArticulo WHERE ArticuloNK='(NA)' AND IsCurrent=1)
   INSERT dbo.DimArticulo(ArticuloNK,SKU,Descripcion,Marca,ValidFrom,ValidTo,IsCurrent)
-  VALUES('(NA)',NULL,'(Artículo no asignado)','(No disponible)',SYSUTCDATETIME(),'9999-12-31',1);
+  VALUES('(NA)',NULL,'No espesificado','No espesificado',SYSUTCDATETIME(),'9999-12-31',1);
+ELSE
+BEGIN
+  UPDATE dbo.DimArticulo
+    SET Descripcion='No espesificado'
+  WHERE ArticuloNK='(NA)' AND IsCurrent=1;
+
+  IF COL_LENGTH('dbo.DimArticulo','Marca') IS NOT NULL
+    UPDATE dbo.DimArticulo
+      SET Marca='No espesificado'
+    WHERE ArticuloNK='(NA)' AND IsCurrent=1;
+END
 GO
 
 /* ============================

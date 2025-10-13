@@ -1,0 +1,1 @@
+EXEC dbo.usp_Run_ETL_Autopartes;
