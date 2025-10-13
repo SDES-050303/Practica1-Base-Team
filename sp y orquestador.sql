@@ -2,18 +2,15 @@ USE Team_autopartes;
 GO
 
 /* =========================================================
-   1) Utilidades
+   0) Utilidad: asegurar miembros "No espesificado"
    =========================================================*/
-
--- 1.1 Asegurar miembros -1 y '(NA)' con texto "No espesificado"
 CREATE OR ALTER PROCEDURE dbo.usp_Ensure_Unknown_Members_NoEspesificado
 AS
 BEGIN
   SET NOCOUNT ON;
-
   DECLARE @txt NVARCHAR(50) = N'No espesificado';
 
-  -- DimCliente
+  -- Cliente -1
   IF EXISTS (SELECT 1 FROM dbo.DimCliente WHERE ClienteKey=-1)
     UPDATE dbo.DimCliente SET RazonSocial=@txt WHERE ClienteKey=-1;
   ELSE BEGIN
@@ -23,7 +20,7 @@ BEGIN
     SET IDENTITY_INSERT dbo.DimCliente OFF;
   END
 
-  -- DimVendedor
+  -- Vendedor -1
   IF EXISTS (SELECT 1 FROM dbo.DimVendedor WHERE VendedorKey=-1)
     UPDATE dbo.DimVendedor SET Nombre=@txt WHERE VendedorKey=-1;
   ELSE BEGIN
@@ -32,7 +29,7 @@ BEGIN
     SET IDENTITY_INSERT dbo.DimVendedor OFF;
   END
 
-  -- DimMoneda
+  -- Moneda -1
   IF EXISTS (SELECT 1 FROM dbo.DimMoneda WHERE MonedaKey=-1)
     UPDATE dbo.DimMoneda SET Nombre=@txt WHERE MonedaKey=-1;
   ELSE BEGIN
@@ -41,7 +38,7 @@ BEGIN
     SET IDENTITY_INSERT dbo.DimMoneda OFF;
   END
 
-  -- DimCondicionPago
+  -- CondicionPago -1
   IF EXISTS (SELECT 1 FROM dbo.DimCondicionPago WHERE CondicionPagoKey=-1)
     UPDATE dbo.DimCondicionPago SET Descripcion=@txt WHERE CondicionPagoKey=-1;
   ELSE BEGIN
@@ -50,7 +47,7 @@ BEGIN
     SET IDENTITY_INSERT dbo.DimCondicionPago OFF;
   END
 
-  -- DimMedioEmbarque
+  -- MedioEmbarque -1
   IF EXISTS (SELECT 1 FROM dbo.DimMedioEmbarque WHERE MedioEmbarqueKey=-1)
     UPDATE dbo.DimMedioEmbarque SET Descripcion=@txt WHERE MedioEmbarqueKey=-1;
   ELSE BEGIN
@@ -59,7 +56,7 @@ BEGIN
     SET IDENTITY_INSERT dbo.DimMedioEmbarque OFF;
   END
 
-  -- DimAlmacen
+  -- Almacen -1
   IF EXISTS (SELECT 1 FROM dbo.DimAlmacen WHERE AlmacenKey=-1)
     UPDATE dbo.DimAlmacen SET Descripcion=@txt WHERE AlmacenKey=-1;
   ELSE BEGIN
@@ -68,17 +65,12 @@ BEGIN
     SET IDENTITY_INSERT dbo.DimAlmacen OFF;
   END
 
-  -- DimArticulo '(NA)'
+  -- Artículo '(NA)' vigente
   IF EXISTS (SELECT 1 FROM dbo.DimArticulo WHERE ArticuloNK='(NA)' AND IsCurrent=1)
   BEGIN
-    UPDATE dbo.DimArticulo
-      SET Descripcion=@txt
-    WHERE ArticuloNK='(NA)' AND IsCurrent=1;
-
+    UPDATE dbo.DimArticulo SET Descripcion=@txt WHERE ArticuloNK='(NA)' AND IsCurrent=1;
     IF COL_LENGTH('dbo.DimArticulo','Marca') IS NOT NULL
-      UPDATE dbo.DimArticulo
-        SET Marca=@txt
-      WHERE ArticuloNK='(NA)' AND IsCurrent=1;
+      UPDATE dbo.DimArticulo SET Marca=@txt WHERE ArticuloNK='(NA)' AND IsCurrent=1;
   END
   ELSE
   BEGIN
@@ -93,7 +85,7 @@ END
 GO
 
 /* =========================================================
-   2) DimFecha por rango
+   1) DimFecha (sin recursión)
    =========================================================*/
 CREATE OR ALTER PROCEDURE dbo.usp_Load_DimFecha
   @Desde DATE,
@@ -101,45 +93,56 @@ CREATE OR ALTER PROCEDURE dbo.usp_Load_DimFecha
 AS
 BEGIN
   SET NOCOUNT ON;
+  IF @Desde IS NULL OR @Hasta IS NULL
+  BEGIN
+    RAISERROR('Debe indicar @Desde y @Hasta',16,1);
+    RETURN;
+  END
 
-  ;WITH d AS (
-    SELECT @Desde AS Fecha
-    UNION ALL
-    SELECT DATEADD(DAY,1,Fecha) FROM d WHERE Fecha < @Hasta
+  DECLARE @oldDF INT = @@DATEFIRST;
+  SET DATEFIRST 1; -- 1=lunes
+
+  ;WITH N AS (
+    SELECT TOP (DATEDIFF(DAY,@Desde,@Hasta)+1)
+           ROW_NUMBER() OVER (ORDER BY (SELECT NULL)) - 1 AS n
+    FROM sys.all_objects a CROSS JOIN sys.all_objects b
   )
-  INSERT INTO dbo.DimFecha(DateKey,Fecha,Anio,Semestre,Cuatrimestre,Trimestre,MesNumero,MesNombre,Dia,DiaSemanaNumero,DiaSemanaNombre)
+  INSERT INTO dbo.DimFecha
+    (DateKey,Fecha,Anio,Semestre,Cuatrimestre,Trimestre,MesNumero,MesNombre,Dia,DiaSemanaNumero,DiaSemanaNombre)
   SELECT
-    CONVERT(INT, CONVERT(CHAR(8), Fecha, 112)) AS DateKey,
-    Fecha,
-    YEAR(Fecha),
-    CASE WHEN MONTH(Fecha)<=6 THEN 1 ELSE 2 END AS Semestre,
-    CASE WHEN MONTH(Fecha)<=4 THEN 1 WHEN MONTH(Fecha)<=8 THEN 2 ELSE 3 END AS Cuatrimestre,
-    DATEPART(QUARTER, Fecha) AS Trimestre,
-    MONTH(Fecha) AS MesNumero,
-    DATENAME(MONTH, Fecha) AS MesNombre,
-    DAY(Fecha) AS Dia,
-    (DATEPART(WEEKDAY, Fecha) + 6) % 7 + 1 AS DiaSemanaNumero, -- 1=lunes
-    DATENAME(WEEKDAY, Fecha) AS DiaSemanaNombre
+    CONVERT(INT, CONVERT(CHAR(8), DATEADD(DAY,n,@Desde), 112)),
+    DATEADD(DAY,n,@Desde),
+    YEAR(DATEADD(DAY,n,@Desde)),
+    CASE WHEN MONTH(DATEADD(DAY,n,@Desde))<=6 THEN 1 ELSE 2 END,
+    CASE WHEN MONTH(DATEADD(DAY,n,@Desde))<=4 THEN 1 WHEN MONTH(DATEADD(DAY,n,@Desde))<=8 THEN 2 ELSE 3 END,
+    DATEPART(QUARTER, DATEADD(DAY,n,@Desde)),
+    MONTH(DATEADD(DAY,n,@Desde)),
+    DATENAME(MONTH, DATEADD(DAY,n,@Desde)),
+    DAY(DATEADD(DAY,n,@Desde)),
+    DATEPART(WEEKDAY, DATEADD(DAY,n,@Desde)),
+    DATENAME(WEEKDAY, DATEADD(DAY,n,@Desde))
+  FROM N
   WHERE NOT EXISTS (
-    SELECT 1 FROM dbo.DimFecha x WHERE x.DateKey = CONVERT(INT, CONVERT(CHAR(8), Fecha, 112))
-  )
-  OPTION (MAXRECURSION 0);
+    SELECT 1 FROM dbo.DimFecha x
+    WHERE x.DateKey = CONVERT(INT, CONVERT(CHAR(8), DATEADD(DAY,n,@Desde), 112))
+  );
+
+  SET DATEFIRST @oldDF;
 END
 GO
 
 /* =========================================================
-   3) Dimensiones de catálogo
+   2) Dimensiones de catálogo (con COLLATE)
    =========================================================*/
-
--- 3.1 Moneda
 CREATE OR ALTER PROCEDURE dbo.usp_Load_DimMoneda
 AS
 BEGIN
   SET NOCOUNT ON;
-
   MERGE dbo.DimMoneda AS tgt
   USING (
-    SELECT DISTINCT LTRIM(RTRIM(m.Clave)) AS MonedaNK, m.Descripcion AS Nombre
+    SELECT DISTINCT
+      LTRIM(RTRIM(m.Clave))               COLLATE DATABASE_DEFAULT AS MonedaNK,
+      CAST(m.Descripcion AS VARCHAR(100)) COLLATE DATABASE_DEFAULT AS Nombre
     FROM AutopartesO2025.dbo.Moneda m
     WHERE LTRIM(RTRIM(ISNULL(m.Clave,'')))<>''
   ) src
@@ -151,15 +154,15 @@ BEGIN
 END
 GO
 
--- 3.2 CondicionPago
 CREATE OR ALTER PROCEDURE dbo.usp_Load_DimCondicionPago
 AS
 BEGIN
   SET NOCOUNT ON;
-
   MERGE dbo.DimCondicionPago AS tgt
   USING (
-    SELECT DISTINCT LTRIM(RTRIM(c.Clave)) AS NK, c.Descripcion
+    SELECT DISTINCT
+      LTRIM(RTRIM(c.Clave))               COLLATE DATABASE_DEFAULT AS NK,
+      CAST(c.Descripcion AS VARCHAR(100)) COLLATE DATABASE_DEFAULT AS Descripcion
     FROM AutopartesO2025.dbo.CondicionPago c
     WHERE LTRIM(RTRIM(ISNULL(c.Clave,'')))<>''
   ) src
@@ -171,15 +174,15 @@ BEGIN
 END
 GO
 
--- 3.3 MedioEmbarque
 CREATE OR ALTER PROCEDURE dbo.usp_Load_DimMedioEmbarque
 AS
 BEGIN
   SET NOCOUNT ON;
-
   MERGE dbo.DimMedioEmbarque AS tgt
   USING (
-    SELECT DISTINCT LTRIM(RTRIM(m.Clave)) AS NK, m.Descripcion
+    SELECT DISTINCT
+      LTRIM(RTRIM(m.Clave))               COLLATE DATABASE_DEFAULT AS NK,
+      CAST(m.Descripcion AS VARCHAR(100)) COLLATE DATABASE_DEFAULT AS Descripcion
     FROM AutopartesO2025.dbo.MedioEmbarque m
     WHERE LTRIM(RTRIM(ISNULL(m.Clave,'')))<>''
   ) src
@@ -191,15 +194,15 @@ BEGIN
 END
 GO
 
--- 3.4 Vendedor
 CREATE OR ALTER PROCEDURE dbo.usp_Load_DimVendedor
 AS
 BEGIN
   SET NOCOUNT ON;
-
   MERGE dbo.DimVendedor AS tgt
   USING (
-    SELECT LTRIM(RTRIM(v.Clave)) AS NK, v.Nombre
+    SELECT
+      LTRIM(RTRIM(v.Clave))               COLLATE DATABASE_DEFAULT AS NK,
+      CAST(v.Nombre AS VARCHAR(100))      COLLATE DATABASE_DEFAULT AS Nombre
     FROM AutopartesO2025.dbo.Vendedor v
     WHERE LTRIM(RTRIM(ISNULL(v.Clave,'')))<>''
   ) src
@@ -211,23 +214,21 @@ BEGIN
 END
 GO
 
--- 3.5 Cliente (SCD1 mínima)
 CREATE OR ALTER PROCEDURE dbo.usp_Load_DimCliente
 AS
 BEGIN
   SET NOCOUNT ON;
-
   MERGE dbo.DimCliente AS tgt
   USING (
     SELECT
-      LTRIM(RTRIM(c.Clave))          AS NK,
-      c.RazonSocial,
-      c.Ciudad,
-      c.Estado,
-      c.Pais,
-      c.ClienteTipo                  AS Segmento,
-      c.Moneda                       AS MonedaPref,
-      c.CondicionPago
+      LTRIM(RTRIM(c.Clave))               COLLATE DATABASE_DEFAULT AS NK,
+      CAST(c.RazonSocial   AS VARCHAR(100)) COLLATE DATABASE_DEFAULT AS RazonSocial,
+      CAST(c.Ciudad        AS VARCHAR(100)) COLLATE DATABASE_DEFAULT AS Ciudad,
+      CAST(c.Estado        AS CHAR(20))     COLLATE DATABASE_DEFAULT AS Estado,
+      CAST(c.Pais          AS CHAR(20))     COLLATE DATABASE_DEFAULT AS Pais,
+      CAST(c.ClienteTipo   AS CHAR(20))     COLLATE DATABASE_DEFAULT AS Segmento,
+      CAST(c.Moneda        AS CHAR(20))     COLLATE DATABASE_DEFAULT AS MonedaPref,
+      CAST(c.CondicionPago AS CHAR(20))     COLLATE DATABASE_DEFAULT AS CondicionPago
     FROM AutopartesO2025.dbo.Cliente c
     WHERE LTRIM(RTRIM(ISNULL(c.Clave,'')))<>''
   ) src
@@ -255,17 +256,15 @@ BEGIN
 END
 GO
 
--- 3.6 Almacen (derivado de detalles)
 CREATE OR ALTER PROCEDURE dbo.usp_Load_DimAlmacen
 AS
 BEGIN
   SET NOCOUNT ON;
-
   WITH al AS (
-    SELECT DISTINCT LTRIM(RTRIM(Almacen)) AS Almacen
+    SELECT DISTINCT LTRIM(RTRIM(Almacen)) COLLATE DATABASE_DEFAULT AS Almacen
     FROM AutopartesO2025.dbo.EntradaDetalle WHERE LTRIM(RTRIM(ISNULL(Almacen,'')))<>''
     UNION
-    SELECT DISTINCT LTRIM(RTRIM(Almacen)) AS Almacen
+    SELECT DISTINCT LTRIM(RTRIM(Almacen)) COLLATE DATABASE_DEFAULT AS Almacen
     FROM AutopartesO2025.dbo.SalidaDetalle  WHERE LTRIM(RTRIM(ISNULL(Almacen,'')))<>''
   )
   MERGE dbo.DimAlmacen AS tgt
@@ -277,7 +276,7 @@ END
 GO
 
 /* =========================================================
-   4) DimArticulo (SCD2 light, Marca derivada por proveedor)
+   3) DimArticulo (SCD2) con COLLATE
    =========================================================*/
 CREATE OR ALTER PROCEDURE dbo.usp_Load_DimArticulo
 AS
@@ -287,35 +286,34 @@ BEGIN
   IF OBJECT_ID('tempdb..#src') IS NOT NULL DROP TABLE #src;
 
   ;WITH MarcaPrincipal AS (
-    -- Toma un proveedor "principal" por artículo (el de menor ProveedorClave, si existe)
     SELECT ap.Articulo,
            p.RazonSocial,
            ROW_NUMBER() OVER (PARTITION BY ap.Articulo ORDER BY ap.ProveedorClave) AS rn
     FROM AutopartesO2025.dbo.ArticuloProveedor ap
-    LEFT JOIN AutopartesO2025.dbo.Proveedor p
-           ON p.Clave = ap.Proveedor
+    LEFT JOIN AutopartesO2025.dbo.Proveedor p ON p.Clave = ap.Proveedor
     WHERE LTRIM(RTRIM(ISNULL(ap.Articulo,'')))<>''
   )
   SELECT
-    LTRIM(RTRIM(a.clave))          AS ArticuloNK,
-    a.Descripcion                  AS Descripcion,
-    CAST(ISNULL(NULLIF(LTRIM(RTRIM(mp.RazonSocial)),''),'No espesificado') AS VARCHAR(100)) AS Marca,
-    a.ArticuloGrupo                AS GrupoClave,
-    g.Descripcion                  AS GrupoDesc,
-    a.ArticuloTipo                 AS TipoClave,
-    t.Descripcion                  AS TipoDesc,
-    a.ArticuloClase                AS ClaseClave,
-    c.Descripcion                  AS ClaseDesc,
-    a.UMedInv                      AS UnidadMedida,
-    a.Moneda                       AS MonedaArticulo,
+    LTRIM(RTRIM(a.clave))                        COLLATE DATABASE_DEFAULT AS ArticuloNK,
+    CAST(a.Descripcion AS VARCHAR(100))          COLLATE DATABASE_DEFAULT AS Descripcion,
+    CAST(ISNULL(NULLIF(LTRIM(RTRIM(mp.RazonSocial)),''),'No espesificado') AS VARCHAR(100)) COLLATE DATABASE_DEFAULT AS Marca,
+    CAST(a.ArticuloGrupo AS CHAR(20))            COLLATE DATABASE_DEFAULT AS GrupoClave,
+    CAST(g.Descripcion   AS VARCHAR(100))        COLLATE DATABASE_DEFAULT AS GrupoDesc,
+    CAST(a.ArticuloTipo  AS CHAR(20))            COLLATE DATABASE_DEFAULT AS TipoClave,
+    CAST(t.Descripcion   AS VARCHAR(100))        COLLATE DATABASE_DEFAULT AS TipoDesc,
+    CAST(a.ArticuloClase AS CHAR(20))            COLLATE DATABASE_DEFAULT AS ClaseClave,
+    CAST(c.Descripcion   AS VARCHAR(100))        COLLATE DATABASE_DEFAULT AS ClaseDesc,
+    CAST(a.UMedInv       AS CHAR(20))            COLLATE DATABASE_DEFAULT AS UnidadMedida,
+    CAST(a.Moneda        AS CHAR(20))            COLLATE DATABASE_DEFAULT AS MonedaArticulo,
     HASHBYTES('MD5',
       CONCAT(
-        ISNULL(a.Descripcion,''),'|',
-        ISNULL(a.ArticuloGrupo,''),'|',ISNULL(g.Descripcion,''),'|',
-        ISNULL(a.ArticuloTipo,''),'|',ISNULL(t.Descripcion,''),'|',
-        ISNULL(a.ArticuloClase,''),'|',ISNULL(c.Descripcion,''),'|',
-        ISNULL(a.UMedInv,''),'|',ISNULL(a.Moneda,''),'|',
-        ISNULL(LTRIM(RTRIM(mp.RazonSocial)),'')
+        ISNULL(CAST(a.Descripcion   AS VARCHAR(100)) COLLATE DATABASE_DEFAULT,''),'|',
+        ISNULL(CAST(a.ArticuloGrupo AS CHAR(20))     COLLATE DATABASE_DEFAULT,''),'|',ISNULL(CAST(g.Descripcion AS VARCHAR(100)) COLLATE DATABASE_DEFAULT,''),'|',
+        ISNULL(CAST(a.ArticuloTipo  AS CHAR(20))     COLLATE DATABASE_DEFAULT,''),'|',ISNULL(CAST(t.Descripcion AS VARCHAR(100)) COLLATE DATABASE_DEFAULT,''),'|',
+        ISNULL(CAST(a.ArticuloClase AS CHAR(20))     COLLATE DATABASE_DEFAULT,''),'|',ISNULL(CAST(c.Descripcion AS VARCHAR(100)) COLLATE DATABASE_DEFAULT,''),'|',
+        ISNULL(CAST(a.UMedInv       AS CHAR(20))     COLLATE DATABASE_DEFAULT,''),'|',
+        ISNULL(CAST(a.Moneda        AS CHAR(20))     COLLATE DATABASE_DEFAULT,''),'|',
+        ISNULL(CAST(LTRIM(RTRIM(mp.RazonSocial)) AS VARCHAR(100)) COLLATE DATABASE_DEFAULT,'')
       )
     ) AS NewHash
   INTO #src
@@ -323,38 +321,44 @@ BEGIN
   LEFT JOIN AutopartesO2025.dbo.ArticuloGrupo g ON g.Clave = a.ArticuloGrupo
   LEFT JOIN AutopartesO2025.dbo.ArticuloTipo  t ON t.Clave = a.ArticuloTipo
   LEFT JOIN AutopartesO2025.dbo.ArticuloClase c ON c.Clave = a.ArticuloClase
-  LEFT JOIN MarcaPrincipal mp
-         ON mp.Articulo = a.clave AND mp.rn = 1;
+  LEFT JOIN MarcaPrincipal mp ON mp.Articulo = a.clave AND mp.rn = 1;
 
-  -- Inserta nuevos NK
-  INSERT INTO dbo.DimArticulo(ArticuloNK,Descripcion,Marca,GrupoClave,GrupoDesc,TipoClave,TipoDesc,ClaseClave,ClaseDesc,UnidadMedida,MonedaArticulo,ValidFrom,ValidTo,IsCurrent,HashDiff)
-  SELECT s.ArticuloNK,s.Descripcion,s.Marca,s.GrupoClave,s.GrupoDesc,s.TipoClave,s.TipoDesc,s.ClaseClave,s.ClaseDesc,s.UnidadMedida,s.MonedaArticulo,SYSUTCDATETIME(),'9999-12-31',1,s.NewHash
+  /* Nuevos NK */
+  INSERT INTO dbo.DimArticulo
+    (ArticuloNK,Descripcion,Marca,GrupoClave,GrupoDesc,TipoClave,TipoDesc,ClaseClave,ClaseDesc,UnidadMedida,MonedaArticulo,ValidFrom,ValidTo,IsCurrent,HashDiff)
+  SELECT s.ArticuloNK,s.Descripcion,s.Marca,s.GrupoClave,s.GrupoDesc,s.TipoClave,s.TipoDesc,s.ClaseClave,s.ClaseDesc,s.UnidadMedida,s.MonedaArticulo,
+         SYSUTCDATETIME(),'9999-12-31',1,s.NewHash
   FROM #src s
   LEFT JOIN dbo.DimArticulo d ON d.ArticuloNK = s.ArticuloNK AND d.IsCurrent = 1
   WHERE d.ArticuloNK IS NULL;
 
-  -- Cierra versión si cambió Hash y crea nueva
-  ;WITH chg AS (
-    SELECT s.*, d.ArticuloKey, d.HashDiff
-    FROM #src s
-    JOIN dbo.DimArticulo d ON d.ArticuloNK = s.ArticuloNK AND d.IsCurrent = 1
-    WHERE d.HashDiff <> s.NewHash
-  )
-  UPDATE d SET d.ValidTo = SYSUTCDATETIME(), d.IsCurrent = 0
-  FROM dbo.DimArticulo d
-  JOIN chg ON chg.ArticuloKey = d.ArticuloKey;
+  /* Cambios -> usar #chg */
+  IF OBJECT_ID('tempdb..#chg') IS NOT NULL DROP TABLE #chg;
+  SELECT s.*, d.ArticuloKey, d.HashDiff
+  INTO #chg
+  FROM #src s
+  JOIN dbo.DimArticulo d ON d.ArticuloNK = s.ArticuloNK AND d.IsCurrent = 1
+  WHERE d.HashDiff <> s.NewHash;
 
-  INSERT INTO dbo.DimArticulo(ArticuloNK,Descripcion,Marca,GrupoClave,GrupoDesc,TipoClave,TipoDesc,ClaseClave,ClaseDesc,UnidadMedida,MonedaArticulo,ValidFrom,ValidTo,IsCurrent,HashDiff)
-  SELECT ArticuloNK,Descripcion,Marca,GrupoClave,GrupoDesc,TipoClave,TipoDesc,ClaseClave,ClaseDesc,UnidadMedida,MonedaArticulo,SYSUTCDATETIME(),'9999-12-31',1,NewHash
-  FROM chg;
+  -- Cierra versión actual
+  UPDATE d
+    SET d.ValidTo = SYSUTCDATETIME(),
+        d.IsCurrent = 0
+  FROM dbo.DimArticulo d
+  JOIN #chg ch ON ch.ArticuloKey = d.ArticuloKey;
+
+  -- Inserta nueva versión
+  INSERT INTO dbo.DimArticulo
+    (ArticuloNK,Descripcion,Marca,GrupoClave,GrupoDesc,TipoClave,TipoDesc,ClaseClave,ClaseDesc,UnidadMedida,MonedaArticulo,ValidFrom,ValidTo,IsCurrent,HashDiff)
+  SELECT ArticuloNK,Descripcion,Marca,GrupoClave,GrupoDesc,TipoClave,TipoDesc,ClaseClave,ClaseDesc,UnidadMedida,MonedaArticulo,
+         SYSUTCDATETIME(),'9999-12-31',1,NewHash
+  FROM #chg;
 END
 GO
 
 /* =========================================================
-   5) Hechos por rango
+   4) Hechos (Entradas / Salidas)
    =========================================================*/
-
--- 5.1 Entradas
 CREATE OR ALTER PROCEDURE dbo.usp_Load_FactEntradas
   @Desde DATE = NULL,
   @Hasta DATE = NULL
@@ -364,20 +368,20 @@ BEGIN
 
   ;WITH src AS (
     SELECT
-      LTRIM(RTRIM(e.Empresa))        AS Empresa,
-      LTRIM(RTRIM(e.Folio))          AS Folio,
+      LTRIM(RTRIM(e.Empresa))        COLLATE DATABASE_DEFAULT AS Empresa,
+      LTRIM(RTRIM(e.Folio))          COLLATE DATABASE_DEFAULT AS Folio,
       e.Fecha                        AS FechaHora,
-      CONVERT(INT, CONVERT(CHAR(8), e.Fecha, 112)) AS DateKey,
-      NULLIF(LTRIM(RTRIM(e.Cliente)),'')   AS Cliente,
-      NULLIF(LTRIM(RTRIM(e.Vendedor)),'')  AS Vendedor,
-      NULLIF(LTRIM(RTRIM(e.Moneda)),'')    AS Moneda,
+      CONVERT(INT, CONVERT(CHAR(8), e.Fecha, 112))            AS DateKey,
+      NULLIF(LTRIM(RTRIM(e.Cliente))  COLLATE DATABASE_DEFAULT,'') AS Cliente,
+      NULLIF(LTRIM(RTRIM(e.Vendedor)) COLLATE DATABASE_DEFAULT,'') AS Vendedor,
+      NULLIF(LTRIM(RTRIM(e.Moneda))   COLLATE DATABASE_DEFAULT,'') AS Moneda,
       e.TotalImporte,
       e.TotalDescuento,
       e.TotalImpuesto,
       e.Total,
       d.Partida                      AS Renglon,
-      NULLIF(LTRIM(RTRIM(d.Articulo)),'')  AS Articulo,
-      NULLIF(LTRIM(RTRIM(d.Almacen)),'')   AS Almacen,
+      NULLIF(LTRIM(RTRIM(d.Articulo)) COLLATE DATABASE_DEFAULT,'') AS Articulo,
+      NULLIF(LTRIM(RTRIM(d.Almacen))  COLLATE DATABASE_DEFAULT,'') AS Almacen,
       d.CantidadUMedInv              AS Cantidad_d,
       d.Precio                       AS PrecioUnitario_d,
       d.TotalDescuento               AS Descuento_d,
@@ -402,8 +406,8 @@ BEGIN
     s.Empresa,
     s.Folio,
     s.FechaHora,
-    s.TotalImporte,        -- Subtotal tomado como TotalImporte del encabezado
-    s.TotalImpuesto,       -- Impuestos
+    s.TotalImporte,        -- Subtotal (encabezado)
+    s.TotalImpuesto,       -- Impuestos (encabezado)
     s.TotalImporte,
     s.TotalDescuento,
     s.Total,
@@ -414,7 +418,7 @@ BEGIN
     s.Impuesto_d,
     s.Importe_d
   FROM src s
-  LEFT JOIN dbo.DimArticulo da   ON da.ArticuloNK  = s.Articulo AND da.IsCurrent = 1
+  LEFT JOIN dbo.DimArticulo da   ON da.ArticuloNK  = ISNULL(s.Articulo,'(NA)') AND da.IsCurrent = 1
   LEFT JOIN dbo.DimAlmacen  al   ON al.AlmacenNK   = ISNULL(s.Almacen,'N/A')
   LEFT JOIN dbo.DimCliente  cl   ON cl.ClienteNK   = ISNULL(s.Cliente,'-1')
   LEFT JOIN dbo.DimVendedor ve   ON ve.VendedorNK  = ISNULL(s.Vendedor,'-1')
@@ -426,7 +430,6 @@ BEGIN
 END
 GO
 
--- 5.2 Salidas
 CREATE OR ALTER PROCEDURE dbo.usp_Load_FactSalidas
   @Desde DATE = NULL,
   @Hasta DATE = NULL
@@ -436,22 +439,22 @@ BEGIN
 
   ;WITH src AS (
     SELECT
-      LTRIM(RTRIM(s.Empresa))        AS Empresa,
-      LTRIM(RTRIM(s.Folio))          AS Folio,
-      s.Fecha                        AS FechaHora,
-      CONVERT(INT, CONVERT(CHAR(8), s.Fecha, 112)) AS DateKey,
-      NULLIF(LTRIM(RTRIM(s.Cliente)),'')        AS Cliente,
-      NULLIF(LTRIM(RTRIM(s.Vendedor)),'')       AS Vendedor,
-      NULLIF(LTRIM(RTRIM(s.Moneda)),'')         AS Moneda,
-      NULLIF(LTRIM(RTRIM(s.CondicionPago)),'')  AS CondicionPago,
-      NULLIF(LTRIM(RTRIM(s.MedioEmbarque)),'')  AS MedioEmbarque,
+      LTRIM(RTRIM(s.Empresa))         COLLATE DATABASE_DEFAULT AS Empresa,
+      LTRIM(RTRIM(s.Folio))           COLLATE DATABASE_DEFAULT AS Folio,
+      s.Fecha                         AS FechaHora,
+      CONVERT(INT, CONVERT(CHAR(8), s.Fecha, 112))            AS DateKey,
+      NULLIF(LTRIM(RTRIM(s.Cliente))        COLLATE DATABASE_DEFAULT,'') AS Cliente,
+      NULLIF(LTRIM(RTRIM(s.Vendedor))       COLLATE DATABASE_DEFAULT,'') AS Vendedor,
+      NULLIF(LTRIM(RTRIM(s.Moneda))         COLLATE DATABASE_DEFAULT,'') AS Moneda,
+      NULLIF(LTRIM(RTRIM(s.CondicionPago))  COLLATE DATABASE_DEFAULT,'') AS CondicionPago,
+      NULLIF(LTRIM(RTRIM(s.MedioEmbarque))  COLLATE DATABASE_DEFAULT,'') AS MedioEmbarque,
       s.TotalImporte,
       s.TotalDescuento,
       s.TotalImpuesto,
       s.Total,
       d.Partida                      AS Renglon,
-      NULLIF(LTRIM(RTRIM(d.Articulo)),'')  AS Articulo,
-      NULLIF(LTRIM(RTRIM(d.Almacen)),'')   AS Almacen,
+      NULLIF(LTRIM(RTRIM(d.Articulo)) COLLATE DATABASE_DEFAULT,'') AS Articulo,
+      NULLIF(LTRIM(RTRIM(d.Almacen))  COLLATE DATABASE_DEFAULT,'') AS Almacen,
       d.CantidadUMedInv              AS Cantidad_d,
       d.Precio                       AS PrecioUnitario_d,
       d.TotalDescuento               AS Descuento_d,
@@ -478,8 +481,8 @@ BEGIN
     s.Empresa,
     s.Folio,
     s.FechaHora,
-    s.TotalImporte,       -- Subtotal
-    s.TotalImpuesto,      -- Impuestos
+    s.TotalImporte,
+    s.TotalImpuesto,
     s.TotalImporte,
     s.TotalDescuento,
     s.Total,
@@ -490,7 +493,7 @@ BEGIN
     s.Impuesto_d,
     s.Importe_d
   FROM src s
-  LEFT JOIN dbo.DimArticulo      da ON da.ArticuloNK       = s.Articulo AND da.IsCurrent = 1
+  LEFT JOIN dbo.DimArticulo      da ON da.ArticuloNK       = ISNULL(s.Articulo,'(NA)') AND da.IsCurrent = 1
   LEFT JOIN dbo.DimAlmacen       al ON al.AlmacenNK        = ISNULL(s.Almacen,'N/A')
   LEFT JOIN dbo.DimCliente       cl ON cl.ClienteNK        = ISNULL(s.Cliente,'-1')
   LEFT JOIN dbo.DimVendedor      ve ON ve.VendedorNK       = ISNULL(s.Vendedor,'-1')
@@ -505,9 +508,7 @@ END
 GO
 
 /* =========================================================
-   6) ORQUESTADOR
-   - Si @Desde/@Hasta son NULL, calcula rango [min(fecha)..max(fecha)]
-     de Entradas y Salidas en OLTP.
+   5) ORQUESTADOR
    =========================================================*/
 CREATE OR ALTER PROCEDURE dbo.usp_Run_ETL_Autopartes
   @Desde DATE = NULL,
@@ -529,20 +530,15 @@ BEGIN
     SELECT
       @d = ISNULL(@d, (SELECT MIN(fmin) FROM r WHERE fmin IS NOT NULL)),
       @h = ISNULL(@h, (SELECT MAX(fmax) FROM r WHERE fmax IS NOT NULL));
-    -- Si aún están NULL (no hay datos), usar hoy
     IF @d IS NULL SET @d = CAST(GETDATE() AS DATE);
     IF @h IS NULL SET @h = CAST(GETDATE() AS DATE);
   END
 
-  PRINT CONCAT('Rango detectado: ', CONVERT(varchar(10),@d,120),' .. ', CONVERT(varchar(10),@h,120));
+  PRINT CONCAT('Rango: ', CONVERT(varchar(10),@d,120),' .. ', CONVERT(varchar(10),@h,120));
 
-  -- 1) Asegurar miembros desconocidos con "No espesificado"
   EXEC dbo.usp_Ensure_Unknown_Members_NoEspesificado;
 
-  -- 2) DimFecha
   EXEC dbo.usp_Load_DimFecha @Desde=@d, @Hasta=@h;
-
-  -- 3) Dimensiones catálogo
   EXEC dbo.usp_Load_DimMoneda;
   EXEC dbo.usp_Load_DimCondicionPago;
   EXEC dbo.usp_Load_DimMedioEmbarque;
@@ -551,7 +547,6 @@ BEGIN
   EXEC dbo.usp_Load_DimAlmacen;
   EXEC dbo.usp_Load_DimArticulo;
 
-  -- 4) Hechos
   EXEC dbo.usp_Load_FactEntradas @Desde=@d, @Hasta=@h;
   EXEC dbo.usp_Load_FactSalidas  @Desde=@d, @Hasta=@h;
 
