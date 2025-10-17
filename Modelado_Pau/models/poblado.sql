@@ -9,8 +9,8 @@ AS BEGIN
 	-- Eliminacion de las tablas dim
 	DELETE [dbo].[dim_articulo];
 	DELETE [dbo].[dim_cliente];
-	DELETE [dbo].[dim_entrada];
-	DELETE [dbo].[dim_salida];
+	DELETE [dbo].[dim_sub_entrada];
+	DELETE [dbo].[dim_sub_salida];
 	DELETE [dbo].[dim_time];
 	DELETE [dbo].[dim_vendedor];
 
@@ -24,15 +24,15 @@ AS BEGIN
 	EXEC [dbo].[sp_dim_cliente]
 	PRINT 'Tabla dim_cliente poblada!'
 
-	-- Datos de la tabla dim_entrada
-	INSERT INTO [dbo].[dim_entrada]
-	EXEC [dbo].[sp_dim_entrada]
-	PRINT 'Tabla dim_entrada poblada!'
+	-- Datos de la tabla dim_sub_entrada
+	INSERT INTO [dbo].[dim_sub_entrada]
+	EXEC [dbo].[sp_dim_sub_entrada]
+	PRINT 'Tabla dim_sub_entrada poblada!'
 
-	-- Datos de la tabla dim_salida
-	INSERT INTO [dbo].[dim_salida]
-	EXEC [dbo].[sp_dim_salida]
-	PRINT 'Tabla dim_salida poblada!'
+	-- Datos de la tabla dim_sub_salida
+	INSERT INTO [dbo].[dim_sub_salida]
+	EXEC [dbo].[sp_dim_sub_salida]
+	PRINT 'Tabla dim_sub_salida poblada!'
 
 	-- Datos de la tabla dim_time
 	INSERT INTO [dbo].[dim_time]
