@@ -36,4 +36,6 @@ CREATE TABLE fact_salida (
 
 	Total NUMERIC,
     Total_D NUMERIC, -- D
+
+    Contar_Partidas INT
 );

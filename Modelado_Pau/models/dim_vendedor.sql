@@ -6,6 +6,11 @@ BEGIN
 	SELECT DISTINCT
 		UPPER(TRIM(v.[Clave])) as VendedorID,
 		UPPER(TRIM(v.[Nombre])) AS Nombre
-
 	FROM [AutopartesO2025].[dbo].[Vendedor] v
+
+	UNION ALL
+    SELECT 
+		'NO PROPORCIONADO' AS VendedorID,
+        'NO PROPORCIONADO' AS Nombre;
 END;
+

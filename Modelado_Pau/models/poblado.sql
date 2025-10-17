@@ -9,6 +9,7 @@ AS BEGIN
 	-- Eliminacion de las tablas dim
 	DELETE [dbo].[dim_articulo];
 	DELETE [dbo].[dim_cliente];
+	DELETE [dbo].[dim_embarque];
 	DELETE [dbo].[dim_sub_entrada];
 	DELETE [dbo].[dim_sub_salida];
 	DELETE [dbo].[dim_time];
@@ -23,6 +24,11 @@ AS BEGIN
 	INSERT INTO [dbo].[dim_cliente]
 	EXEC [dbo].[sp_dim_cliente]
 	PRINT 'Tabla dim_cliente poblada!'
+
+	-- Datos de la tabla dim_embarque
+	INSERT INTO [dbo].[dim_embarque]
+	EXEC [dbo].[sp_dim_embarque]
+	PRINT 'Tabla dim_embarque poblada!'
 
 	-- Datos de la tabla dim_sub_entrada
 	INSERT INTO [dbo].[dim_sub_entrada]
@@ -43,16 +49,6 @@ AS BEGIN
 	INSERT INTO [dbo].[dim_vendedor]
 	EXEC [dbo].[sp_dim_vendedor]
 	PRINT 'Tabla dim_time poblada!'
-
-	-- Insercion de un registro "no valido" dentro de dim_vendedor
-	INSERT INTO [dbo].[dim_vendedor] (VendedorID, Nombre)
-	SELECT 'NO PROPORCIONADO', 'NO PROPORCIONADO'
-	WHERE NOT EXISTS (SELECT 1 FROM [dbo].[dim_vendedor] WHERE VendedorID = 'NO PROPORCIONADO');
-
-	-- Insercion de un registro "no valido" dentro de dim_cliente
-	INSERT INTO [dbo].[dim_cliente] (ClienteID, Ciudad, Estado, Pais, Tipo_Cliente)
-	SELECT 'NO PROPORCIONADO', 'NO PROPORCIONADO', 'NO PROPORCIONADO', 'NO PROPORCIONADO', 'NO PROPORCIONADO'
-	WHERE NOT EXISTS (SELECT 1 FROM [dbo].[dim_cliente] WHERE ClienteID = 'NO PROPORCIONADO');
 
 	-- Datos de la tabla fact_entrada
 	INSERT INTO [dbo].[fact_entrada]

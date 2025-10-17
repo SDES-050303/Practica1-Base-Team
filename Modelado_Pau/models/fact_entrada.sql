@@ -42,8 +42,9 @@ BEGIN
         d.[TotalImpuesto] AS Total_Impuesto_D,
 
         e.[Total] AS Total,
-        d.[Total] AS Total_D
+        d.[Total] AS Total_D,
 
+        1 AS Contar_Partidas
     FROM [AutopartesO2025].[dbo].[EntradaEncabezado] e
 
     LEFT JOIN [AutopartesO2025].[dbo].[EntradaDetalle] d
