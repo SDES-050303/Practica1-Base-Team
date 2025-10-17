@@ -1,6 +1,6 @@
 USE [Proyecto_ES]
 
-CREATE TABLE dim_salida (
+CREATE TABLE dim_sub_salida (
 	Folio NVARCHAR (50),
 	ClienteID NVARCHAR (50),
 	VendedorID NVARCHAR (50),
