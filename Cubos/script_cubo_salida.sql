@@ -21,7 +21,8 @@ FROM [Cubo_Salida]
 
   DIMENSION [Cubo_Salida].[Dim Articulo],
   DIMENSION [Cubo_Salida].[Dim Cliente],
-  DIMENSION [Cubo_Salida].[Dim Salida],
+  DIMENSION [Cubo_Salida].[Dim Embarque],
+  DIMENSION [Cubo_Salida].[Dim Sub Salida],
   DIMENSION [Cubo_Salida].[Dim Time],
   DIMENSION [Cubo_Salida].[Dim Vendedor]
 );
