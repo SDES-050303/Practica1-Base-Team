@@ -1,0 +1,3197 @@
+<?xml version='1.0' encoding='utf-8' ?>
+
+<!-- build 20252.25.0514.2217                               -->
+<workbook original-version='18.1' source-build='2025.2.0 (20252.25.0514.2217)' source-platform='mac' version='18.1' xmlns:user='http://www.tableausoftware.com/xml/user'>
+  <document-format-change-manifest>
+    <AccessibleZoneTabOrder />
+    <AnimationOnByDefault />
+    <AutoCreateAndUpdateDSDPhoneLayouts />
+    <IntuitiveSorting />
+    <IntuitiveSorting_SP2 />
+    <MarkAnimation />
+    <ObjectModelEncapsulateLegacy />
+    <ObjectModelExtractV2 />
+    <ObjectModelTableType />
+    <SchemaViewerObjectModel />
+    <SetMembershipControl />
+    <SheetIdentifierTracking />
+    <SortTagCleanup />
+    <_.fcp.VConnDownstreamExtractsWithWarnings.true...VConnDownstreamExtractsWithWarnings />
+    <WindowsPersistSimpleIdentifiers />
+    <WorksheetBackgroundTransparency />
+    <ZoneBackgroundTransparency />
+  </document-format-change-manifest>
+  <preferences>
+    <preference name='ui.encoding.shelf.height' value='24' />
+    <preference name='ui.shelf.height' value='26' />
+  </preferences>
+  <datasources>
+    <datasource caption='fact_salida+' inline='true' name='federated.0sdv2jb0uh4ow512hhuwo0bx77p4' version='18.1'>
+      <connection class='federated'>
+        <named-connections>
+          <named-connection caption='fact_salida' name='textscan.0s4ro341gvagqa10ht6xa0xiaedx'>
+            <connection class='textscan' directory='/Users/danielrios/Repos/iteso/noveno/data-warehousing/Proyecto/tableros/csv' filename='fact_salida.csv' password='' server='' />
+          </named-connection>
+        </named-connections>
+        <relation type='collection'>
+          <relation connection='textscan.0s4ro341gvagqa10ht6xa0xiaedx' name='fact_salida.csv' table='[fact_salida#csv]' type='table'>
+            <columns character-set='UTF-8' header='yes' locale='en' separator=','>
+              <column datatype='string' name='Folio' ordinal='0' />
+              <column datatype='integer' name='ClienteID' ordinal='1' />
+              <column datatype='integer' name='VendedorID' ordinal='2' />
+              <column datatype='string' name='ArticuloID' ordinal='3' />
+              <column datatype='string' name='Descripcion_Articulo' ordinal='4' />
+              <column datatype='string' name='Embarque' ordinal='5' />
+              <column datatype='date' name='TimeID' ordinal='6' />
+              <column datatype='string' name='Empresa' ordinal='7' />
+              <column datatype='integer' name='Almacen' ordinal='8' />
+              <column datatype='integer' name='Ubicacion' ordinal='9' />
+              <column datatype='integer' name='Partida' ordinal='10' />
+              <column datatype='integer' name='Condicion_Pago' ordinal='11' />
+              <column datatype='string' name='Moneda' ordinal='12' />
+              <column datatype='integer' name='Cantidad' ordinal='13' />
+              <column datatype='integer' name='Precio_Unitario' ordinal='14' />
+              <column datatype='string' name='Unidad' ordinal='15' />
+              <column datatype='integer' name='Cantidad_Unidad' ordinal='16' />
+              <column datatype='integer' name='Pct_Descuento' ordinal='17' />
+              <column datatype='integer' name='Pct_Descuento_Global' ordinal='18' />
+              <column datatype='integer' name='Pct_Impuesto' ordinal='19' />
+              <column datatype='integer' name='Total_Descuento' ordinal='20' />
+              <column datatype='integer' name='Total_Descuento_D' ordinal='21' />
+              <column datatype='integer' name='Total_Importe' ordinal='22' />
+              <column datatype='integer' name='Total_Importe_D' ordinal='23' />
+              <column datatype='integer' name='Total_Impuesto' ordinal='24' />
+              <column datatype='integer' name='Total_Impuesto_D' ordinal='25' />
+              <column datatype='integer' name='Total' ordinal='26' />
+              <column datatype='integer' name='Total_D' ordinal='27' />
+              <column datatype='integer' name='F29' ordinal='28' />
+            </columns>
+          </relation>
+          <relation connection='textscan.0s4ro341gvagqa10ht6xa0xiaedx' name='dim_articulo.csv' table='[dim_articulo#csv]' type='table'>
+            <columns character-set='windows-1252' header='yes' locale='en' separator=','>
+              <column datatype='string' name='ArticuloID' ordinal='0' />
+              <column datatype='string' name='Descripcion' ordinal='1' />
+              <column datatype='string' name='Articulo_Tipo' ordinal='2' />
+              <column datatype='string' name='Articulo_Grupo' ordinal='3' />
+              <column datatype='string' name='Articulo_Clase' ordinal='4' />
+              <column datatype='integer' name='Precio' ordinal='5' />
+              <column datatype='integer' name='F7' ordinal='6' />
+              <column datatype='integer' name='F8' ordinal='7' />
+            </columns>
+          </relation>
+          <relation connection='textscan.0s4ro341gvagqa10ht6xa0xiaedx' name='dim_cliente.csv' table='[dim_cliente#csv]' type='table'>
+            <columns character-set='UTF-8' header='yes' locale='en' separator=','>
+              <column datatype='integer' name='ClienteID' ordinal='0' />
+              <column datatype='string' name='Ciudad' ordinal='1' />
+              <column datatype='integer' name='Estado' ordinal='2' />
+              <column datatype='integer' name='Pais' ordinal='3' />
+              <column datatype='string' name='Tipo_Cliente' ordinal='4' />
+            </columns>
+          </relation>
+          <relation connection='textscan.0s4ro341gvagqa10ht6xa0xiaedx' name='dim_salida.csv' table='[dim_salida#csv]' type='table'>
+            <columns character-set='UTF-8' header='yes' locale='en' separator=','>
+              <column datatype='string' name='Folio' ordinal='0' />
+              <column datatype='string' name='ClienteID' ordinal='1' />
+              <column datatype='string' name='VendedorID' ordinal='2' />
+              <column datatype='string' name='Embarque' ordinal='3' />
+              <column datatype='date' name='TimeID' ordinal='4' />
+            </columns>
+          </relation>
+          <relation connection='textscan.0s4ro341gvagqa10ht6xa0xiaedx' name='dim_time.csv' table='[dim_time#csv]' type='table'>
+            <columns character-set='UTF-8' header='yes' locale='en' separator=','>
+              <column datatype='date' name='TimeID' ordinal='0' />
+              <column datatype='integer' name='Anio' ordinal='1' />
+              <column datatype='string' name='Semestre' ordinal='2' />
+              <column datatype='string' name='Cuatrimestre' ordinal='3' />
+              <column datatype='string' name='Trimestre' ordinal='4' />
+              <column datatype='integer' name='Mes' ordinal='5' />
+              <column datatype='string' name='Dia_semana' ordinal='6' />
+              <column datatype='integer' name='Dia' ordinal='7' />
+            </columns>
+          </relation>
+          <relation connection='textscan.0s4ro341gvagqa10ht6xa0xiaedx' name='dim_vendedor.csv' table='[dim_vendedor#csv]' type='table'>
+            <columns character-set='windows-1252' header='yes' locale='en' separator=','>
+              <column datatype='integer' name='VendedorID' ordinal='0' />
+              <column datatype='string' name='Nombre' ordinal='1' />
+            </columns>
+          </relation>
+        </relation>
+        <cols>
+          <map key='[Almacen]' value='[fact_salida.csv].[Almacen]' />
+          <map key='[Anio]' value='[dim_time.csv].[Anio]' />
+          <map key='[ArticuloID (dim_articulo.csv)]' value='[dim_articulo.csv].[ArticuloID]' />
+          <map key='[ArticuloID]' value='[fact_salida.csv].[ArticuloID]' />
+          <map key='[Articulo_Clase]' value='[dim_articulo.csv].[Articulo_Clase]' />
+          <map key='[Articulo_Grupo]' value='[dim_articulo.csv].[Articulo_Grupo]' />
+          <map key='[Articulo_Tipo]' value='[dim_articulo.csv].[Articulo_Tipo]' />
+          <map key='[Cantidad]' value='[fact_salida.csv].[Cantidad]' />
+          <map key='[Cantidad_Unidad]' value='[fact_salida.csv].[Cantidad_Unidad]' />
+          <map key='[Ciudad]' value='[dim_cliente.csv].[Ciudad]' />
+          <map key='[ClienteID (dim_cliente.csv)]' value='[dim_cliente.csv].[ClienteID]' />
+          <map key='[ClienteID (dim_salida.csv)]' value='[dim_salida.csv].[ClienteID]' />
+          <map key='[ClienteID]' value='[fact_salida.csv].[ClienteID]' />
+          <map key='[Condicion_Pago]' value='[fact_salida.csv].[Condicion_Pago]' />
+          <map key='[Cuatrimestre]' value='[dim_time.csv].[Cuatrimestre]' />
+          <map key='[Descripcion]' value='[dim_articulo.csv].[Descripcion]' />
+          <map key='[Descripcion_Articulo]' value='[fact_salida.csv].[Descripcion_Articulo]' />
+          <map key='[Dia]' value='[dim_time.csv].[Dia]' />
+          <map key='[Dia_semana]' value='[dim_time.csv].[Dia_semana]' />
+          <map key='[Embarque (dim_salida.csv)]' value='[dim_salida.csv].[Embarque]' />
+          <map key='[Embarque]' value='[fact_salida.csv].[Embarque]' />
+          <map key='[Empresa]' value='[fact_salida.csv].[Empresa]' />
+          <map key='[Estado]' value='[dim_cliente.csv].[Estado]' />
+          <map key='[F29]' value='[fact_salida.csv].[F29]' />
+          <map key='[F7]' value='[dim_articulo.csv].[F7]' />
+          <map key='[F8]' value='[dim_articulo.csv].[F8]' />
+          <map key='[Folio (dim_salida.csv)]' value='[dim_salida.csv].[Folio]' />
+          <map key='[Folio]' value='[fact_salida.csv].[Folio]' />
+          <map key='[Mes]' value='[dim_time.csv].[Mes]' />
+          <map key='[Moneda]' value='[fact_salida.csv].[Moneda]' />
+          <map key='[Nombre]' value='[dim_vendedor.csv].[Nombre]' />
+          <map key='[Pais]' value='[dim_cliente.csv].[Pais]' />
+          <map key='[Partida]' value='[fact_salida.csv].[Partida]' />
+          <map key='[Pct_Descuento]' value='[fact_salida.csv].[Pct_Descuento]' />
+          <map key='[Pct_Descuento_Global]' value='[fact_salida.csv].[Pct_Descuento_Global]' />
+          <map key='[Pct_Impuesto]' value='[fact_salida.csv].[Pct_Impuesto]' />
+          <map key='[Precio]' value='[dim_articulo.csv].[Precio]' />
+          <map key='[Precio_Unitario]' value='[fact_salida.csv].[Precio_Unitario]' />
+          <map key='[Semestre]' value='[dim_time.csv].[Semestre]' />
+          <map key='[TimeID (dim_salida.csv)]' value='[dim_salida.csv].[TimeID]' />
+          <map key='[TimeID (dim_time.csv)]' value='[dim_time.csv].[TimeID]' />
+          <map key='[TimeID]' value='[fact_salida.csv].[TimeID]' />
+          <map key='[Tipo_Cliente]' value='[dim_cliente.csv].[Tipo_Cliente]' />
+          <map key='[Total]' value='[fact_salida.csv].[Total]' />
+          <map key='[Total_D]' value='[fact_salida.csv].[Total_D]' />
+          <map key='[Total_Descuento]' value='[fact_salida.csv].[Total_Descuento]' />
+          <map key='[Total_Descuento_D]' value='[fact_salida.csv].[Total_Descuento_D]' />
+          <map key='[Total_Importe]' value='[fact_salida.csv].[Total_Importe]' />
+          <map key='[Total_Importe_D]' value='[fact_salida.csv].[Total_Importe_D]' />
+          <map key='[Total_Impuesto]' value='[fact_salida.csv].[Total_Impuesto]' />
+          <map key='[Total_Impuesto_D]' value='[fact_salida.csv].[Total_Impuesto_D]' />
+          <map key='[Trimestre]' value='[dim_time.csv].[Trimestre]' />
+          <map key='[Ubicacion]' value='[fact_salida.csv].[Ubicacion]' />
+          <map key='[Unidad]' value='[fact_salida.csv].[Unidad]' />
+          <map key='[VendedorID (dim_salida.csv)]' value='[dim_salida.csv].[VendedorID]' />
+          <map key='[VendedorID (dim_vendedor.csv)]' value='[dim_vendedor.csv].[VendedorID]' />
+          <map key='[VendedorID]' value='[fact_salida.csv].[VendedorID]' />
+        </cols>
+        <metadata-records>
+          <metadata-record class='capability'>
+            <remote-name />
+            <remote-type>0</remote-type>
+            <parent-name>[fact_salida.csv]</parent-name>
+            <remote-alias />
+            <aggregation>Count</aggregation>
+            <contains-null>true</contains-null>
+            <attributes>
+              <attribute datatype='string' name='character-set'>&quot;UTF-8&quot;</attribute>
+              <attribute datatype='string' name='collation'>&quot;en_GB&quot;</attribute>
+              <attribute datatype='string' name='currency'>&quot;¤&quot;</attribute>
+              <attribute datatype='string' name='field-delimiter'>&quot;,&quot;</attribute>
+              <attribute datatype='string' name='header-row'>&quot;true&quot;</attribute>
+              <attribute datatype='string' name='locale'>&quot;en&quot;</attribute>
+              <attribute datatype='string' name='single-char'>&quot;&quot;</attribute>
+            </attributes>
+          </metadata-record>
+          <metadata-record class='capability'>
+            <remote-name />
+            <remote-type>0</remote-type>
+            <parent-name>[dim_articulo.csv]</parent-name>
+            <remote-alias />
+            <aggregation>Count</aggregation>
+            <contains-null>true</contains-null>
+            <attributes>
+              <attribute datatype='string' name='character-set'>&quot;ibm-5348_P100-1997&quot;</attribute>
+              <attribute datatype='string' name='collation'>&quot;en_GB&quot;</attribute>
+              <attribute datatype='string' name='currency'>&quot;¤&quot;</attribute>
+              <attribute datatype='string' name='field-delimiter'>&quot;,&quot;</attribute>
+              <attribute datatype='string' name='header-row'>&quot;true&quot;</attribute>
+              <attribute datatype='string' name='locale'>&quot;en&quot;</attribute>
+              <attribute datatype='string' name='single-char'>&quot;&quot;</attribute>
+            </attributes>
+          </metadata-record>
+          <metadata-record class='capability'>
+            <remote-name />
+            <remote-type>0</remote-type>
+            <parent-name>[dim_cliente.csv]</parent-name>
+            <remote-alias />
+            <aggregation>Count</aggregation>
+            <contains-null>true</contains-null>
+            <attributes>
+              <attribute datatype='string' name='character-set'>&quot;UTF-8&quot;</attribute>
+              <attribute datatype='string' name='collation'>&quot;en_GB&quot;</attribute>
+              <attribute datatype='string' name='currency'>&quot;¤&quot;</attribute>
+              <attribute datatype='string' name='field-delimiter'>&quot;,&quot;</attribute>
+              <attribute datatype='string' name='header-row'>&quot;true&quot;</attribute>
+              <attribute datatype='string' name='locale'>&quot;en&quot;</attribute>
+              <attribute datatype='string' name='single-char'>&quot;&quot;</attribute>
+            </attributes>
+          </metadata-record>
+          <metadata-record class='capability'>
+            <remote-name />
+            <remote-type>0</remote-type>
+            <parent-name>[dim_salida.csv]</parent-name>
+            <remote-alias />
+            <aggregation>Count</aggregation>
+            <contains-null>true</contains-null>
+            <attributes>
+              <attribute datatype='string' name='character-set'>&quot;UTF-8&quot;</attribute>
+              <attribute datatype='string' name='collation'>&quot;en_GB&quot;</attribute>
+              <attribute datatype='string' name='currency'>&quot;¤&quot;</attribute>
+              <attribute datatype='string' name='field-delimiter'>&quot;,&quot;</attribute>
+              <attribute datatype='string' name='header-row'>&quot;true&quot;</attribute>
+              <attribute datatype='string' name='locale'>&quot;en&quot;</attribute>
+              <attribute datatype='string' name='single-char'>&quot;&quot;</attribute>
+            </attributes>
+          </metadata-record>
+          <metadata-record class='capability'>
+            <remote-name />
+            <remote-type>0</remote-type>
+            <parent-name>[dim_time.csv]</parent-name>
+            <remote-alias />
+            <aggregation>Count</aggregation>
+            <contains-null>true</contains-null>
+            <attributes>
+              <attribute datatype='string' name='character-set'>&quot;UTF-8&quot;</attribute>
+              <attribute datatype='string' name='collation'>&quot;en_GB&quot;</attribute>
+              <attribute datatype='string' name='currency'>&quot;¤&quot;</attribute>
+              <attribute datatype='string' name='field-delimiter'>&quot;,&quot;</attribute>
+              <attribute datatype='string' name='header-row'>&quot;true&quot;</attribute>
+              <attribute datatype='string' name='locale'>&quot;en&quot;</attribute>
+              <attribute datatype='string' name='single-char'>&quot;&quot;</attribute>
+            </attributes>
+          </metadata-record>
+          <metadata-record class='capability'>
+            <remote-name />
+            <remote-type>0</remote-type>
+            <parent-name>[dim_vendedor.csv]</parent-name>
+            <remote-alias />
+            <aggregation>Count</aggregation>
+            <contains-null>true</contains-null>
+            <attributes>
+              <attribute datatype='string' name='character-set'>&quot;windows-1252&quot;</attribute>
+              <attribute datatype='string' name='collation'>&quot;en_GB&quot;</attribute>
+              <attribute datatype='string' name='currency'>&quot;¤&quot;</attribute>
+              <attribute datatype='string' name='field-delimiter'>&quot;,&quot;</attribute>
+              <attribute datatype='string' name='header-row'>&quot;true&quot;</attribute>
+              <attribute datatype='string' name='locale'>&quot;en&quot;</attribute>
+              <attribute datatype='string' name='single-char'>&quot;&quot;</attribute>
+            </attributes>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>Folio</remote-name>
+            <remote-type>129</remote-type>
+            <local-name>[Folio]</local-name>
+            <parent-name>[fact_salida.csv]</parent-name>
+            <remote-alias>Folio</remote-alias>
+            <ordinal>0</ordinal>
+            <local-type>string</local-type>
+            <aggregation>Count</aggregation>
+            <scale>1</scale>
+            <width>1073741823</width>
+            <contains-null>true</contains-null>
+            <collation flag='0' name='LEN_RGB' />
+            <object-id>[fact_salida.csv_BB8DB2DD9E4C4440AB30078AB052C78F]</object-id>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>ClienteID</remote-name>
+            <remote-type>20</remote-type>
+            <local-name>[ClienteID]</local-name>
+            <parent-name>[fact_salida.csv]</parent-name>
+            <remote-alias>ClienteID</remote-alias>
+            <ordinal>1</ordinal>
+            <local-type>integer</local-type>
+            <aggregation>Sum</aggregation>
+            <contains-null>true</contains-null>
+            <object-id>[fact_salida.csv_BB8DB2DD9E4C4440AB30078AB052C78F]</object-id>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>VendedorID</remote-name>
+            <remote-type>20</remote-type>
+            <local-name>[VendedorID]</local-name>
+            <parent-name>[fact_salida.csv]</parent-name>
+            <remote-alias>VendedorID</remote-alias>
+            <ordinal>2</ordinal>
+            <local-type>integer</local-type>
+            <aggregation>Sum</aggregation>
+            <contains-null>true</contains-null>
+            <object-id>[fact_salida.csv_BB8DB2DD9E4C4440AB30078AB052C78F]</object-id>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>ArticuloID</remote-name>
+            <remote-type>129</remote-type>
+            <local-name>[ArticuloID]</local-name>
+            <parent-name>[fact_salida.csv]</parent-name>
+            <remote-alias>ArticuloID</remote-alias>
+            <ordinal>3</ordinal>
+            <local-type>string</local-type>
+            <aggregation>Count</aggregation>
+            <scale>1</scale>
+            <width>1073741823</width>
+            <contains-null>true</contains-null>
+            <collation flag='0' name='LEN_RGB' />
+            <object-id>[fact_salida.csv_BB8DB2DD9E4C4440AB30078AB052C78F]</object-id>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>Descripcion_Articulo</remote-name>
+            <remote-type>129</remote-type>
+            <local-name>[Descripcion_Articulo]</local-name>
+            <parent-name>[fact_salida.csv]</parent-name>
+            <remote-alias>Descripcion_Articulo</remote-alias>
+            <ordinal>4</ordinal>
+            <local-type>string</local-type>
+            <aggregation>Count</aggregation>
+            <scale>1</scale>
+            <width>1073741823</width>
+            <contains-null>true</contains-null>
+            <collation flag='0' name='LEN_RGB' />
+            <object-id>[fact_salida.csv_BB8DB2DD9E4C4440AB30078AB052C78F]</object-id>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>Embarque</remote-name>
+            <remote-type>129</remote-type>
+            <local-name>[Embarque]</local-name>
+            <parent-name>[fact_salida.csv]</parent-name>
+            <remote-alias>Embarque</remote-alias>
+            <ordinal>5</ordinal>
+            <local-type>string</local-type>
+            <aggregation>Count</aggregation>
+            <scale>1</scale>
+            <width>1073741823</width>
+            <contains-null>true</contains-null>
+            <collation flag='0' name='LEN_RGB' />
+            <object-id>[fact_salida.csv_BB8DB2DD9E4C4440AB30078AB052C78F]</object-id>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>TimeID</remote-name>
+            <remote-type>133</remote-type>
+            <local-name>[TimeID]</local-name>
+            <parent-name>[fact_salida.csv]</parent-name>
+            <remote-alias>TimeID</remote-alias>
+            <ordinal>6</ordinal>
+            <local-type>date</local-type>
+            <aggregation>Year</aggregation>
+            <contains-null>true</contains-null>
+            <object-id>[fact_salida.csv_BB8DB2DD9E4C4440AB30078AB052C78F]</object-id>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>Empresa</remote-name>
+            <remote-type>129</remote-type>
+            <local-name>[Empresa]</local-name>
+            <parent-name>[fact_salida.csv]</parent-name>
+            <remote-alias>Empresa</remote-alias>
+            <ordinal>7</ordinal>
+            <local-type>string</local-type>
+            <aggregation>Count</aggregation>
+            <scale>1</scale>
+            <width>1073741823</width>
+            <contains-null>true</contains-null>
+            <collation flag='0' name='LEN_RGB' />
+            <object-id>[fact_salida.csv_BB8DB2DD9E4C4440AB30078AB052C78F]</object-id>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>Almacen</remote-name>
+            <remote-type>20</remote-type>
+            <local-name>[Almacen]</local-name>
+            <parent-name>[fact_salida.csv]</parent-name>
+            <remote-alias>Almacen</remote-alias>
+            <ordinal>8</ordinal>
+            <local-type>integer</local-type>
+            <aggregation>Sum</aggregation>
+            <contains-null>true</contains-null>
+            <object-id>[fact_salida.csv_BB8DB2DD9E4C4440AB30078AB052C78F]</object-id>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>Ubicacion</remote-name>
+            <remote-type>20</remote-type>
+            <local-name>[Ubicacion]</local-name>
+            <parent-name>[fact_salida.csv]</parent-name>
+            <remote-alias>Ubicacion</remote-alias>
+            <ordinal>9</ordinal>
+            <local-type>integer</local-type>
+            <aggregation>Sum</aggregation>
+            <contains-null>true</contains-null>
+            <object-id>[fact_salida.csv_BB8DB2DD9E4C4440AB30078AB052C78F]</object-id>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>Partida</remote-name>
+            <remote-type>20</remote-type>
+            <local-name>[Partida]</local-name>
+            <parent-name>[fact_salida.csv]</parent-name>
+            <remote-alias>Partida</remote-alias>
+            <ordinal>10</ordinal>
+            <local-type>integer</local-type>
+            <aggregation>Sum</aggregation>
+            <contains-null>true</contains-null>
+            <object-id>[fact_salida.csv_BB8DB2DD9E4C4440AB30078AB052C78F]</object-id>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>Condicion_Pago</remote-name>
+            <remote-type>20</remote-type>
+            <local-name>[Condicion_Pago]</local-name>
+            <parent-name>[fact_salida.csv]</parent-name>
+            <remote-alias>Condicion_Pago</remote-alias>
+            <ordinal>11</ordinal>
+            <local-type>integer</local-type>
+            <aggregation>Sum</aggregation>
+            <contains-null>true</contains-null>
+            <object-id>[fact_salida.csv_BB8DB2DD9E4C4440AB30078AB052C78F]</object-id>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>Moneda</remote-name>
+            <remote-type>129</remote-type>
+            <local-name>[Moneda]</local-name>
+            <parent-name>[fact_salida.csv]</parent-name>
+            <remote-alias>Moneda</remote-alias>
+            <ordinal>12</ordinal>
+            <local-type>string</local-type>
+            <aggregation>Count</aggregation>
+            <scale>1</scale>
+            <width>1073741823</width>
+            <contains-null>true</contains-null>
+            <collation flag='0' name='LEN_RGB' />
+            <object-id>[fact_salida.csv_BB8DB2DD9E4C4440AB30078AB052C78F]</object-id>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>Cantidad</remote-name>
+            <remote-type>20</remote-type>
+            <local-name>[Cantidad]</local-name>
+            <parent-name>[fact_salida.csv]</parent-name>
+            <remote-alias>Cantidad</remote-alias>
+            <ordinal>13</ordinal>
+            <local-type>integer</local-type>
+            <aggregation>Sum</aggregation>
+            <contains-null>true</contains-null>
+            <object-id>[fact_salida.csv_BB8DB2DD9E4C4440AB30078AB052C78F]</object-id>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>Precio_Unitario</remote-name>
+            <remote-type>20</remote-type>
+            <local-name>[Precio_Unitario]</local-name>
+            <parent-name>[fact_salida.csv]</parent-name>
+            <remote-alias>Precio_Unitario</remote-alias>
+            <ordinal>14</ordinal>
+            <local-type>integer</local-type>
+            <aggregation>Sum</aggregation>
+            <contains-null>true</contains-null>
+            <object-id>[fact_salida.csv_BB8DB2DD9E4C4440AB30078AB052C78F]</object-id>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>Unidad</remote-name>
+            <remote-type>129</remote-type>
+            <local-name>[Unidad]</local-name>
+            <parent-name>[fact_salida.csv]</parent-name>
+            <remote-alias>Unidad</remote-alias>
+            <ordinal>15</ordinal>
+            <local-type>string</local-type>
+            <aggregation>Count</aggregation>
+            <scale>1</scale>
+            <width>1073741823</width>
+            <contains-null>true</contains-null>
+            <collation flag='0' name='LEN_RGB' />
+            <object-id>[fact_salida.csv_BB8DB2DD9E4C4440AB30078AB052C78F]</object-id>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>Cantidad_Unidad</remote-name>
+            <remote-type>20</remote-type>
+            <local-name>[Cantidad_Unidad]</local-name>
+            <parent-name>[fact_salida.csv]</parent-name>
+            <remote-alias>Cantidad_Unidad</remote-alias>
+            <ordinal>16</ordinal>
+            <local-type>integer</local-type>
+            <aggregation>Sum</aggregation>
+            <contains-null>true</contains-null>
+            <object-id>[fact_salida.csv_BB8DB2DD9E4C4440AB30078AB052C78F]</object-id>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>Pct_Descuento</remote-name>
+            <remote-type>20</remote-type>
+            <local-name>[Pct_Descuento]</local-name>
+            <parent-name>[fact_salida.csv]</parent-name>
+            <remote-alias>Pct_Descuento</remote-alias>
+            <ordinal>17</ordinal>
+            <local-type>integer</local-type>
+            <aggregation>Sum</aggregation>
+            <contains-null>true</contains-null>
+            <object-id>[fact_salida.csv_BB8DB2DD9E4C4440AB30078AB052C78F]</object-id>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>Pct_Descuento_Global</remote-name>
+            <remote-type>20</remote-type>
+            <local-name>[Pct_Descuento_Global]</local-name>
+            <parent-name>[fact_salida.csv]</parent-name>
+            <remote-alias>Pct_Descuento_Global</remote-alias>
+            <ordinal>18</ordinal>
+            <local-type>integer</local-type>
+            <aggregation>Sum</aggregation>
+            <contains-null>true</contains-null>
+            <object-id>[fact_salida.csv_BB8DB2DD9E4C4440AB30078AB052C78F]</object-id>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>Pct_Impuesto</remote-name>
+            <remote-type>20</remote-type>
+            <local-name>[Pct_Impuesto]</local-name>
+            <parent-name>[fact_salida.csv]</parent-name>
+            <remote-alias>Pct_Impuesto</remote-alias>
+            <ordinal>19</ordinal>
+            <local-type>integer</local-type>
+            <aggregation>Sum</aggregation>
+            <contains-null>true</contains-null>
+            <object-id>[fact_salida.csv_BB8DB2DD9E4C4440AB30078AB052C78F]</object-id>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>Total_Descuento</remote-name>
+            <remote-type>20</remote-type>
+            <local-name>[Total_Descuento]</local-name>
+            <parent-name>[fact_salida.csv]</parent-name>
+            <remote-alias>Total_Descuento</remote-alias>
+            <ordinal>20</ordinal>
+            <local-type>integer</local-type>
+            <aggregation>Sum</aggregation>
+            <contains-null>true</contains-null>
+            <object-id>[fact_salida.csv_BB8DB2DD9E4C4440AB30078AB052C78F]</object-id>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>Total_Descuento_D</remote-name>
+            <remote-type>20</remote-type>
+            <local-name>[Total_Descuento_D]</local-name>
+            <parent-name>[fact_salida.csv]</parent-name>
+            <remote-alias>Total_Descuento_D</remote-alias>
+            <ordinal>21</ordinal>
+            <local-type>integer</local-type>
+            <aggregation>Sum</aggregation>
+            <contains-null>true</contains-null>
+            <object-id>[fact_salida.csv_BB8DB2DD9E4C4440AB30078AB052C78F]</object-id>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>Total_Importe</remote-name>
+            <remote-type>20</remote-type>
+            <local-name>[Total_Importe]</local-name>
+            <parent-name>[fact_salida.csv]</parent-name>
+            <remote-alias>Total_Importe</remote-alias>
+            <ordinal>22</ordinal>
+            <local-type>integer</local-type>
+            <aggregation>Sum</aggregation>
+            <contains-null>true</contains-null>
+            <object-id>[fact_salida.csv_BB8DB2DD9E4C4440AB30078AB052C78F]</object-id>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>Total_Importe_D</remote-name>
+            <remote-type>20</remote-type>
+            <local-name>[Total_Importe_D]</local-name>
+            <parent-name>[fact_salida.csv]</parent-name>
+            <remote-alias>Total_Importe_D</remote-alias>
+            <ordinal>23</ordinal>
+            <local-type>integer</local-type>
+            <aggregation>Sum</aggregation>
+            <contains-null>true</contains-null>
+            <object-id>[fact_salida.csv_BB8DB2DD9E4C4440AB30078AB052C78F]</object-id>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>Total_Impuesto</remote-name>
+            <remote-type>20</remote-type>
+            <local-name>[Total_Impuesto]</local-name>
+            <parent-name>[fact_salida.csv]</parent-name>
+            <remote-alias>Total_Impuesto</remote-alias>
+            <ordinal>24</ordinal>
+            <local-type>integer</local-type>
+            <aggregation>Sum</aggregation>
+            <contains-null>true</contains-null>
+            <object-id>[fact_salida.csv_BB8DB2DD9E4C4440AB30078AB052C78F]</object-id>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>Total_Impuesto_D</remote-name>
+            <remote-type>20</remote-type>
+            <local-name>[Total_Impuesto_D]</local-name>
+            <parent-name>[fact_salida.csv]</parent-name>
+            <remote-alias>Total_Impuesto_D</remote-alias>
+            <ordinal>25</ordinal>
+            <local-type>integer</local-type>
+            <aggregation>Sum</aggregation>
+            <contains-null>true</contains-null>
+            <object-id>[fact_salida.csv_BB8DB2DD9E4C4440AB30078AB052C78F]</object-id>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>Total</remote-name>
+            <remote-type>20</remote-type>
+            <local-name>[Total]</local-name>
+            <parent-name>[fact_salida.csv]</parent-name>
+            <remote-alias>Total</remote-alias>
+            <ordinal>26</ordinal>
+            <local-type>integer</local-type>
+            <aggregation>Sum</aggregation>
+            <contains-null>true</contains-null>
+            <object-id>[fact_salida.csv_BB8DB2DD9E4C4440AB30078AB052C78F]</object-id>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>Total_D</remote-name>
+            <remote-type>20</remote-type>
+            <local-name>[Total_D]</local-name>
+            <parent-name>[fact_salida.csv]</parent-name>
+            <remote-alias>Total_D</remote-alias>
+            <ordinal>27</ordinal>
+            <local-type>integer</local-type>
+            <aggregation>Sum</aggregation>
+            <contains-null>true</contains-null>
+            <object-id>[fact_salida.csv_BB8DB2DD9E4C4440AB30078AB052C78F]</object-id>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>F29</remote-name>
+            <remote-type>20</remote-type>
+            <local-name>[F29]</local-name>
+            <parent-name>[fact_salida.csv]</parent-name>
+            <remote-alias>F29</remote-alias>
+            <ordinal>28</ordinal>
+            <local-type>integer</local-type>
+            <aggregation>Sum</aggregation>
+            <contains-null>true</contains-null>
+            <object-id>[fact_salida.csv_BB8DB2DD9E4C4440AB30078AB052C78F]</object-id>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>ArticuloID</remote-name>
+            <remote-type>129</remote-type>
+            <local-name>[ArticuloID (dim_articulo.csv)]</local-name>
+            <parent-name>[dim_articulo.csv]</parent-name>
+            <remote-alias>ArticuloID</remote-alias>
+            <ordinal>29</ordinal>
+            <local-type>string</local-type>
+            <aggregation>Count</aggregation>
+            <scale>1</scale>
+            <width>1073741823</width>
+            <contains-null>true</contains-null>
+            <collation flag='0' name='LEN_RGB' />
+            <object-id>[dim_articulo.csv_FFE681245449438795B0A21F562916EC]</object-id>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>Descripcion</remote-name>
+            <remote-type>129</remote-type>
+            <local-name>[Descripcion]</local-name>
+            <parent-name>[dim_articulo.csv]</parent-name>
+            <remote-alias>Descripcion</remote-alias>
+            <ordinal>30</ordinal>
+            <local-type>string</local-type>
+            <aggregation>Count</aggregation>
+            <scale>1</scale>
+            <width>1073741823</width>
+            <contains-null>true</contains-null>
+            <collation flag='0' name='LEN_RGB' />
+            <object-id>[dim_articulo.csv_FFE681245449438795B0A21F562916EC]</object-id>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>Articulo_Tipo</remote-name>
+            <remote-type>129</remote-type>
+            <local-name>[Articulo_Tipo]</local-name>
+            <parent-name>[dim_articulo.csv]</parent-name>
+            <remote-alias>Articulo_Tipo</remote-alias>
+            <ordinal>31</ordinal>
+            <local-type>string</local-type>
+            <aggregation>Count</aggregation>
+            <scale>1</scale>
+            <width>1073741823</width>
+            <contains-null>true</contains-null>
+            <collation flag='0' name='LEN_RGB' />
+            <object-id>[dim_articulo.csv_FFE681245449438795B0A21F562916EC]</object-id>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>Articulo_Grupo</remote-name>
+            <remote-type>129</remote-type>
+            <local-name>[Articulo_Grupo]</local-name>
+            <parent-name>[dim_articulo.csv]</parent-name>
+            <remote-alias>Articulo_Grupo</remote-alias>
+            <ordinal>32</ordinal>
+            <local-type>string</local-type>
+            <aggregation>Count</aggregation>
+            <scale>1</scale>
+            <width>1073741823</width>
+            <contains-null>true</contains-null>
+            <collation flag='0' name='LEN_RGB' />
+            <object-id>[dim_articulo.csv_FFE681245449438795B0A21F562916EC]</object-id>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>Articulo_Clase</remote-name>
+            <remote-type>129</remote-type>
+            <local-name>[Articulo_Clase]</local-name>
+            <parent-name>[dim_articulo.csv]</parent-name>
+            <remote-alias>Articulo_Clase</remote-alias>
+            <ordinal>33</ordinal>
+            <local-type>string</local-type>
+            <aggregation>Count</aggregation>
+            <scale>1</scale>
+            <width>1073741823</width>
+            <contains-null>true</contains-null>
+            <collation flag='0' name='LEN_RGB' />
+            <object-id>[dim_articulo.csv_FFE681245449438795B0A21F562916EC]</object-id>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>Precio</remote-name>
+            <remote-type>20</remote-type>
+            <local-name>[Precio]</local-name>
+            <parent-name>[dim_articulo.csv]</parent-name>
+            <remote-alias>Precio</remote-alias>
+            <ordinal>34</ordinal>
+            <local-type>integer</local-type>
+            <aggregation>Sum</aggregation>
+            <contains-null>true</contains-null>
+            <object-id>[dim_articulo.csv_FFE681245449438795B0A21F562916EC]</object-id>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>F7</remote-name>
+            <remote-type>20</remote-type>
+            <local-name>[F7]</local-name>
+            <parent-name>[dim_articulo.csv]</parent-name>
+            <remote-alias>F7</remote-alias>
+            <ordinal>35</ordinal>
+            <local-type>integer</local-type>
+            <aggregation>Sum</aggregation>
+            <contains-null>true</contains-null>
+            <object-id>[dim_articulo.csv_FFE681245449438795B0A21F562916EC]</object-id>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>F8</remote-name>
+            <remote-type>20</remote-type>
+            <local-name>[F8]</local-name>
+            <parent-name>[dim_articulo.csv]</parent-name>
+            <remote-alias>F8</remote-alias>
+            <ordinal>36</ordinal>
+            <local-type>integer</local-type>
+            <aggregation>Sum</aggregation>
+            <contains-null>true</contains-null>
+            <object-id>[dim_articulo.csv_FFE681245449438795B0A21F562916EC]</object-id>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>ClienteID</remote-name>
+            <remote-type>20</remote-type>
+            <local-name>[ClienteID (dim_cliente.csv)]</local-name>
+            <parent-name>[dim_cliente.csv]</parent-name>
+            <remote-alias>ClienteID</remote-alias>
+            <ordinal>37</ordinal>
+            <local-type>integer</local-type>
+            <aggregation>Sum</aggregation>
+            <contains-null>true</contains-null>
+            <object-id>[dim_cliente.csv_B39CDE1C1DB7427E94E02F93E619C111]</object-id>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>Ciudad</remote-name>
+            <remote-type>129</remote-type>
+            <local-name>[Ciudad]</local-name>
+            <parent-name>[dim_cliente.csv]</parent-name>
+            <remote-alias>Ciudad</remote-alias>
+            <ordinal>38</ordinal>
+            <local-type>string</local-type>
+            <aggregation>Count</aggregation>
+            <scale>1</scale>
+            <width>1073741823</width>
+            <contains-null>true</contains-null>
+            <collation flag='0' name='LEN_RGB' />
+            <object-id>[dim_cliente.csv_B39CDE1C1DB7427E94E02F93E619C111]</object-id>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>Estado</remote-name>
+            <remote-type>20</remote-type>
+            <local-name>[Estado]</local-name>
+            <parent-name>[dim_cliente.csv]</parent-name>
+            <remote-alias>Estado</remote-alias>
+            <ordinal>39</ordinal>
+            <local-type>integer</local-type>
+            <aggregation>Sum</aggregation>
+            <contains-null>true</contains-null>
+            <object-id>[dim_cliente.csv_B39CDE1C1DB7427E94E02F93E619C111]</object-id>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>Pais</remote-name>
+            <remote-type>20</remote-type>
+            <local-name>[Pais]</local-name>
+            <parent-name>[dim_cliente.csv]</parent-name>
+            <remote-alias>Pais</remote-alias>
+            <ordinal>40</ordinal>
+            <local-type>integer</local-type>
+            <aggregation>Sum</aggregation>
+            <contains-null>true</contains-null>
+            <object-id>[dim_cliente.csv_B39CDE1C1DB7427E94E02F93E619C111]</object-id>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>Tipo_Cliente</remote-name>
+            <remote-type>129</remote-type>
+            <local-name>[Tipo_Cliente]</local-name>
+            <parent-name>[dim_cliente.csv]</parent-name>
+            <remote-alias>Tipo_Cliente</remote-alias>
+            <ordinal>41</ordinal>
+            <local-type>string</local-type>
+            <aggregation>Count</aggregation>
+            <scale>1</scale>
+            <width>1073741823</width>
+            <contains-null>true</contains-null>
+            <collation flag='0' name='LEN_RGB' />
+            <object-id>[dim_cliente.csv_B39CDE1C1DB7427E94E02F93E619C111]</object-id>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>Folio</remote-name>
+            <remote-type>129</remote-type>
+            <local-name>[Folio (dim_salida.csv)]</local-name>
+            <parent-name>[dim_salida.csv]</parent-name>
+            <remote-alias>Folio</remote-alias>
+            <ordinal>42</ordinal>
+            <local-type>string</local-type>
+            <aggregation>Count</aggregation>
+            <scale>1</scale>
+            <width>1073741823</width>
+            <contains-null>true</contains-null>
+            <collation flag='0' name='LEN_RGB' />
+            <object-id>[dim_salida.csv_5EF561F8015E463A9AC84C86AAADED62]</object-id>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>ClienteID</remote-name>
+            <remote-type>129</remote-type>
+            <local-name>[ClienteID (dim_salida.csv)]</local-name>
+            <parent-name>[dim_salida.csv]</parent-name>
+            <remote-alias>ClienteID</remote-alias>
+            <ordinal>43</ordinal>
+            <local-type>string</local-type>
+            <aggregation>Count</aggregation>
+            <scale>1</scale>
+            <width>1073741823</width>
+            <contains-null>true</contains-null>
+            <collation flag='0' name='LEN_RGB' />
+            <object-id>[dim_salida.csv_5EF561F8015E463A9AC84C86AAADED62]</object-id>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>VendedorID</remote-name>
+            <remote-type>129</remote-type>
+            <local-name>[VendedorID (dim_salida.csv)]</local-name>
+            <parent-name>[dim_salida.csv]</parent-name>
+            <remote-alias>VendedorID</remote-alias>
+            <ordinal>44</ordinal>
+            <local-type>string</local-type>
+            <aggregation>Count</aggregation>
+            <scale>1</scale>
+            <width>1073741823</width>
+            <contains-null>true</contains-null>
+            <collation flag='0' name='LEN_RGB' />
+            <object-id>[dim_salida.csv_5EF561F8015E463A9AC84C86AAADED62]</object-id>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>Embarque</remote-name>
+            <remote-type>129</remote-type>
+            <local-name>[Embarque (dim_salida.csv)]</local-name>
+            <parent-name>[dim_salida.csv]</parent-name>
+            <remote-alias>Embarque</remote-alias>
+            <ordinal>45</ordinal>
+            <local-type>string</local-type>
+            <aggregation>Count</aggregation>
+            <scale>1</scale>
+            <width>1073741823</width>
+            <contains-null>true</contains-null>
+            <collation flag='0' name='LEN_RGB' />
+            <object-id>[dim_salida.csv_5EF561F8015E463A9AC84C86AAADED62]</object-id>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>TimeID</remote-name>
+            <remote-type>133</remote-type>
+            <local-name>[TimeID (dim_salida.csv)]</local-name>
+            <parent-name>[dim_salida.csv]</parent-name>
+            <remote-alias>TimeID</remote-alias>
+            <ordinal>46</ordinal>
+            <local-type>date</local-type>
+            <aggregation>Year</aggregation>
+            <contains-null>true</contains-null>
+            <object-id>[dim_salida.csv_5EF561F8015E463A9AC84C86AAADED62]</object-id>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>TimeID</remote-name>
+            <remote-type>133</remote-type>
+            <local-name>[TimeID (dim_time.csv)]</local-name>
+            <parent-name>[dim_time.csv]</parent-name>
+            <remote-alias>TimeID</remote-alias>
+            <ordinal>47</ordinal>
+            <local-type>date</local-type>
+            <aggregation>Year</aggregation>
+            <contains-null>true</contains-null>
+            <object-id>[dim_time.csv_5398C8910D8E49D0B5BB487DB8B6EB21]</object-id>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>Anio</remote-name>
+            <remote-type>20</remote-type>
+            <local-name>[Anio]</local-name>
+            <parent-name>[dim_time.csv]</parent-name>
+            <remote-alias>Anio</remote-alias>
+            <ordinal>48</ordinal>
+            <local-type>integer</local-type>
+            <aggregation>Sum</aggregation>
+            <contains-null>true</contains-null>
+            <object-id>[dim_time.csv_5398C8910D8E49D0B5BB487DB8B6EB21]</object-id>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>Semestre</remote-name>
+            <remote-type>129</remote-type>
+            <local-name>[Semestre]</local-name>
+            <parent-name>[dim_time.csv]</parent-name>
+            <remote-alias>Semestre</remote-alias>
+            <ordinal>49</ordinal>
+            <local-type>string</local-type>
+            <aggregation>Count</aggregation>
+            <scale>1</scale>
+            <width>1073741823</width>
+            <contains-null>true</contains-null>
+            <collation flag='0' name='LEN_RGB' />
+            <object-id>[dim_time.csv_5398C8910D8E49D0B5BB487DB8B6EB21]</object-id>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>Cuatrimestre</remote-name>
+            <remote-type>129</remote-type>
+            <local-name>[Cuatrimestre]</local-name>
+            <parent-name>[dim_time.csv]</parent-name>
+            <remote-alias>Cuatrimestre</remote-alias>
+            <ordinal>50</ordinal>
+            <local-type>string</local-type>
+            <aggregation>Count</aggregation>
+            <scale>1</scale>
+            <width>1073741823</width>
+            <contains-null>true</contains-null>
+            <collation flag='0' name='LEN_RGB' />
+            <object-id>[dim_time.csv_5398C8910D8E49D0B5BB487DB8B6EB21]</object-id>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>Trimestre</remote-name>
+            <remote-type>129</remote-type>
+            <local-name>[Trimestre]</local-name>
+            <parent-name>[dim_time.csv]</parent-name>
+            <remote-alias>Trimestre</remote-alias>
+            <ordinal>51</ordinal>
+            <local-type>string</local-type>
+            <aggregation>Count</aggregation>
+            <scale>1</scale>
+            <width>1073741823</width>
+            <contains-null>true</contains-null>
+            <collation flag='0' name='LEN_RGB' />
+            <object-id>[dim_time.csv_5398C8910D8E49D0B5BB487DB8B6EB21]</object-id>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>Mes</remote-name>
+            <remote-type>20</remote-type>
+            <local-name>[Mes]</local-name>
+            <parent-name>[dim_time.csv]</parent-name>
+            <remote-alias>Mes</remote-alias>
+            <ordinal>52</ordinal>
+            <local-type>integer</local-type>
+            <aggregation>Sum</aggregation>
+            <contains-null>true</contains-null>
+            <object-id>[dim_time.csv_5398C8910D8E49D0B5BB487DB8B6EB21]</object-id>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>Dia_semana</remote-name>
+            <remote-type>129</remote-type>
+            <local-name>[Dia_semana]</local-name>
+            <parent-name>[dim_time.csv]</parent-name>
+            <remote-alias>Dia_semana</remote-alias>
+            <ordinal>53</ordinal>
+            <local-type>string</local-type>
+            <aggregation>Count</aggregation>
+            <scale>1</scale>
+            <width>1073741823</width>
+            <contains-null>true</contains-null>
+            <collation flag='0' name='LEN_RGB' />
+            <object-id>[dim_time.csv_5398C8910D8E49D0B5BB487DB8B6EB21]</object-id>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>Dia</remote-name>
+            <remote-type>20</remote-type>
+            <local-name>[Dia]</local-name>
+            <parent-name>[dim_time.csv]</parent-name>
+            <remote-alias>Dia</remote-alias>
+            <ordinal>54</ordinal>
+            <local-type>integer</local-type>
+            <aggregation>Sum</aggregation>
+            <contains-null>true</contains-null>
+            <object-id>[dim_time.csv_5398C8910D8E49D0B5BB487DB8B6EB21]</object-id>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>VendedorID</remote-name>
+            <remote-type>20</remote-type>
+            <local-name>[VendedorID (dim_vendedor.csv)]</local-name>
+            <parent-name>[dim_vendedor.csv]</parent-name>
+            <remote-alias>VendedorID</remote-alias>
+            <ordinal>55</ordinal>
+            <local-type>integer</local-type>
+            <aggregation>Sum</aggregation>
+            <contains-null>true</contains-null>
+            <object-id>[dim_vendedor.csv_7532A02B78474C88874E04701848B305]</object-id>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>Nombre</remote-name>
+            <remote-type>129</remote-type>
+            <local-name>[Nombre]</local-name>
+            <parent-name>[dim_vendedor.csv]</parent-name>
+            <remote-alias>Nombre</remote-alias>
+            <ordinal>56</ordinal>
+            <local-type>string</local-type>
+            <aggregation>Count</aggregation>
+            <scale>1</scale>
+            <width>1073741823</width>
+            <contains-null>true</contains-null>
+            <collation flag='0' name='LEN_RGB' />
+            <object-id>[dim_vendedor.csv_7532A02B78474C88874E04701848B305]</object-id>
+          </metadata-record>
+        </metadata-records>
+      </connection>
+      <aliases enabled='yes' />
+      <column datatype='string' name='[:Measure Names]' role='dimension' type='nominal'>
+        <aliases>
+          <alias key='&quot;[federated.0sdv2jb0uh4ow512hhuwo0bx77p4].[sum:Cantidad_Unidad:qk]&quot;' value='Unidades Vendidas' />
+          <alias key='&quot;[federated.0sdv2jb0uh4ow512hhuwo0bx77p4].[sum:Total_D:qk]&quot;' value='Total de Ventas' />
+        </aliases>
+      </column>
+      <column aggregation='Sum' datatype='integer' name='[Anio]' role='dimension' type='ordinal' />
+      <column caption='ArticuloID (dim articulo.csv)' datatype='string' name='[ArticuloID (dim_articulo.csv)]' role='dimension' type='nominal' />
+      <column caption='Articulo ID' datatype='string' name='[ArticuloID]' role='dimension' type='nominal' />
+      <column caption='Articulo Clase' datatype='string' name='[Articulo_Clase]' role='dimension' type='nominal' />
+      <column caption='Articulo Grupo' datatype='string' name='[Articulo_Grupo]' role='dimension' type='nominal' />
+      <column caption='Articulo Tipo' datatype='string' name='[Articulo_Tipo]' role='dimension' type='nominal' />
+      <column caption='Cantidad Unidad' datatype='integer' name='[Cantidad_Unidad]' role='measure' type='quantitative' />
+      <column caption='Ciudad1' datatype='string' name='[Ciudad]' role='dimension' semantic-role='[City].[Name]' type='nominal' />
+      <column caption='ClienteID (dim cliente.csv)' datatype='integer' name='[ClienteID (dim_cliente.csv)]' role='dimension' type='ordinal' />
+      <column caption='ClienteID (dim salida.csv)' datatype='string' name='[ClienteID (dim_salida.csv)]' role='dimension' type='nominal' />
+      <column caption='Cliente ID' datatype='integer' name='[ClienteID]' role='dimension' type='ordinal' />
+      <column aggregation='Sum' caption='Condicion Pago' datatype='integer' name='[Condicion_Pago]' role='dimension' type='ordinal' />
+      <column caption='Descripcion Articulo' datatype='string' name='[Descripcion_Articulo]' role='dimension' type='nominal' />
+      <column caption='Dia semana' datatype='string' name='[Dia_semana]' role='dimension' type='nominal' />
+      <column caption='Embarque (dim salida.csv)' datatype='string' name='[Embarque (dim_salida.csv)]' role='dimension' type='nominal' />
+      <column caption='Folio (dim salida.csv)' datatype='string' name='[Folio (dim_salida.csv)]' role='dimension' type='nominal' />
+      <column aggregation='Sum' datatype='integer' name='[Mes]' role='dimension' type='ordinal' />
+      <column caption='Pct Descuento' datatype='integer' name='[Pct_Descuento]' role='measure' type='quantitative' />
+      <column caption='Pct Descuento Global' datatype='integer' name='[Pct_Descuento_Global]' role='measure' type='quantitative' />
+      <column caption='Pct Impuesto' datatype='integer' name='[Pct_Impuesto]' role='measure' type='quantitative' />
+      <column caption='Precio Unitario' datatype='integer' name='[Precio_Unitario]' role='measure' type='quantitative' />
+      <column caption='TimeID (dim salida.csv)' datatype='date' name='[TimeID (dim_salida.csv)]' role='dimension' type='ordinal' />
+      <column caption='TimeID (dim time.csv)' datatype='date' name='[TimeID (dim_time.csv)]' role='dimension' type='ordinal' />
+      <column caption='Time ID' datatype='date' name='[TimeID]' role='dimension' type='ordinal' />
+      <column caption='Tipo Cliente' datatype='string' name='[Tipo_Cliente]' role='dimension' type='nominal' />
+      <column caption='Total D' datatype='integer' name='[Total_D]' role='measure' type='quantitative' />
+      <column caption='Total Descuento' datatype='integer' name='[Total_Descuento]' role='measure' type='quantitative' />
+      <column caption='Total Descuento D' datatype='integer' name='[Total_Descuento_D]' role='measure' type='quantitative' />
+      <column caption='Total Importe' datatype='integer' name='[Total_Importe]' role='measure' type='quantitative' />
+      <column caption='Total Importe D' datatype='integer' name='[Total_Importe_D]' role='measure' type='quantitative' />
+      <column caption='Total Impuesto' datatype='integer' name='[Total_Impuesto]' role='measure' type='quantitative' />
+      <column caption='Total Impuesto D' datatype='integer' name='[Total_Impuesto_D]' role='measure' type='quantitative' />
+      <column caption='VendedorID (dim salida.csv)' datatype='string' name='[VendedorID (dim_salida.csv)]' role='dimension' type='nominal' />
+      <column caption='VendedorID (dim vendedor.csv)' datatype='integer' name='[VendedorID (dim_vendedor.csv)]' role='dimension' type='ordinal' />
+      <column caption='Vendedor ID' datatype='integer' name='[VendedorID]' role='dimension' type='ordinal' />
+      <column caption='dim_articulo.csv' datatype='table' name='[__tableau_internal_object_id__].[dim_articulo.csv_FFE681245449438795B0A21F562916EC]' role='measure' type='quantitative' />
+      <column caption='dim_cliente.csv' datatype='table' name='[__tableau_internal_object_id__].[dim_cliente.csv_B39CDE1C1DB7427E94E02F93E619C111]' role='measure' type='quantitative' />
+      <column caption='dim_salida.csv' datatype='table' name='[__tableau_internal_object_id__].[dim_salida.csv_5EF561F8015E463A9AC84C86AAADED62]' role='measure' type='quantitative' />
+      <column caption='dim_time.csv' datatype='table' name='[__tableau_internal_object_id__].[dim_time.csv_5398C8910D8E49D0B5BB487DB8B6EB21]' role='measure' type='quantitative' />
+      <column caption='dim_vendedor.csv' datatype='table' name='[__tableau_internal_object_id__].[dim_vendedor.csv_7532A02B78474C88874E04701848B305]' role='measure' type='quantitative' />
+      <column caption='fact_salida.csv' datatype='table' name='[__tableau_internal_object_id__].[fact_salida.csv_BB8DB2DD9E4C4440AB30078AB052C78F]' role='measure' type='quantitative' />
+      <column-instance column='[Cantidad_Unidad]' derivation='Sum' name='[sum:Cantidad_Unidad:qk]' pivot='key' type='quantitative' />
+      <column-instance column='[Total_D]' derivation='Sum' name='[sum:Total_D:qk]' pivot='key' type='quantitative' />
+      <extract _.fcp.VConnDownstreamExtractsWithWarnings.true...user-specific='false' count='-1' enabled='true' object-id='' units='records'>
+        <connection access_mode='readonly' author-locale='en_US' class='hyper' dbname='Data/tableau-temp/#TableauTemp_1pn4id00q24pg014fjpdp11rescl.hyper' default-settings='hyper' schema='Extract' sslmode='' tablename='Extract' update-time='10/17/2025 01:40:36 PM' username='tableau_internal_user'>
+          <relation type='collection'>
+            <relation name='fact_salida.csv_BB8DB2DD9E4C4440AB30078AB052C78F' table='[Extract].[fact_salida.csv_BB8DB2DD9E4C4440AB30078AB052C78F]' type='table' />
+            <relation name='dim_articulo.csv_FFE681245449438795B0A21F562916EC' table='[Extract].[dim_articulo.csv_FFE681245449438795B0A21F562916EC]' type='table' />
+            <relation name='dim_cliente.csv_B39CDE1C1DB7427E94E02F93E619C111' table='[Extract].[dim_cliente.csv_B39CDE1C1DB7427E94E02F93E619C111]' type='table' />
+            <relation name='dim_salida.csv_5EF561F8015E463A9AC84C86AAADED62' table='[Extract].[dim_salida.csv_5EF561F8015E463A9AC84C86AAADED62]' type='table' />
+            <relation name='dim_time.csv_5398C8910D8E49D0B5BB487DB8B6EB21' table='[Extract].[dim_time.csv_5398C8910D8E49D0B5BB487DB8B6EB21]' type='table' />
+            <relation name='dim_vendedor.csv_7532A02B78474C88874E04701848B305' table='[Extract].[dim_vendedor.csv_7532A02B78474C88874E04701848B305]' type='table' />
+          </relation>
+          <cols>
+            <map key='[Almacen]' value='[fact_salida.csv_BB8DB2DD9E4C4440AB30078AB052C78F].[Almacen]' />
+            <map key='[Anio]' value='[dim_time.csv_5398C8910D8E49D0B5BB487DB8B6EB21].[Anio]' />
+            <map key='[ArticuloID (dim_articulo.csv)]' value='[dim_articulo.csv_FFE681245449438795B0A21F562916EC].[ArticuloID]' />
+            <map key='[ArticuloID]' value='[fact_salida.csv_BB8DB2DD9E4C4440AB30078AB052C78F].[ArticuloID]' />
+            <map key='[Articulo_Clase]' value='[dim_articulo.csv_FFE681245449438795B0A21F562916EC].[Articulo_Clase]' />
+            <map key='[Articulo_Grupo]' value='[dim_articulo.csv_FFE681245449438795B0A21F562916EC].[Articulo_Grupo]' />
+            <map key='[Articulo_Tipo]' value='[dim_articulo.csv_FFE681245449438795B0A21F562916EC].[Articulo_Tipo]' />
+            <map key='[Cantidad]' value='[fact_salida.csv_BB8DB2DD9E4C4440AB30078AB052C78F].[Cantidad]' />
+            <map key='[Cantidad_Unidad]' value='[fact_salida.csv_BB8DB2DD9E4C4440AB30078AB052C78F].[Cantidad_Unidad]' />
+            <map key='[Ciudad]' value='[dim_cliente.csv_B39CDE1C1DB7427E94E02F93E619C111].[Ciudad]' />
+            <map key='[ClienteID (dim_cliente.csv)]' value='[dim_cliente.csv_B39CDE1C1DB7427E94E02F93E619C111].[ClienteID]' />
+            <map key='[ClienteID (dim_salida.csv)]' value='[dim_salida.csv_5EF561F8015E463A9AC84C86AAADED62].[ClienteID]' />
+            <map key='[ClienteID]' value='[fact_salida.csv_BB8DB2DD9E4C4440AB30078AB052C78F].[ClienteID]' />
+            <map key='[Condicion_Pago]' value='[fact_salida.csv_BB8DB2DD9E4C4440AB30078AB052C78F].[Condicion_Pago]' />
+            <map key='[Cuatrimestre]' value='[dim_time.csv_5398C8910D8E49D0B5BB487DB8B6EB21].[Cuatrimestre]' />
+            <map key='[Descripcion]' value='[dim_articulo.csv_FFE681245449438795B0A21F562916EC].[Descripcion]' />
+            <map key='[Descripcion_Articulo]' value='[fact_salida.csv_BB8DB2DD9E4C4440AB30078AB052C78F].[Descripcion_Articulo]' />
+            <map key='[Dia]' value='[dim_time.csv_5398C8910D8E49D0B5BB487DB8B6EB21].[Dia]' />
+            <map key='[Dia_semana]' value='[dim_time.csv_5398C8910D8E49D0B5BB487DB8B6EB21].[Dia_semana]' />
+            <map key='[Embarque (dim_salida.csv)]' value='[dim_salida.csv_5EF561F8015E463A9AC84C86AAADED62].[Embarque]' />
+            <map key='[Embarque]' value='[fact_salida.csv_BB8DB2DD9E4C4440AB30078AB052C78F].[Embarque]' />
+            <map key='[Empresa]' value='[fact_salida.csv_BB8DB2DD9E4C4440AB30078AB052C78F].[Empresa]' />
+            <map key='[Estado]' value='[dim_cliente.csv_B39CDE1C1DB7427E94E02F93E619C111].[Estado]' />
+            <map key='[F29]' value='[fact_salida.csv_BB8DB2DD9E4C4440AB30078AB052C78F].[F29]' />
+            <map key='[F7]' value='[dim_articulo.csv_FFE681245449438795B0A21F562916EC].[F7]' />
+            <map key='[F8]' value='[dim_articulo.csv_FFE681245449438795B0A21F562916EC].[F8]' />
+            <map key='[Folio (dim_salida.csv)]' value='[dim_salida.csv_5EF561F8015E463A9AC84C86AAADED62].[Folio]' />
+            <map key='[Folio]' value='[fact_salida.csv_BB8DB2DD9E4C4440AB30078AB052C78F].[Folio]' />
+            <map key='[Mes]' value='[dim_time.csv_5398C8910D8E49D0B5BB487DB8B6EB21].[Mes]' />
+            <map key='[Moneda]' value='[fact_salida.csv_BB8DB2DD9E4C4440AB30078AB052C78F].[Moneda]' />
+            <map key='[Nombre]' value='[dim_vendedor.csv_7532A02B78474C88874E04701848B305].[Nombre]' />
+            <map key='[Pais]' value='[dim_cliente.csv_B39CDE1C1DB7427E94E02F93E619C111].[Pais]' />
+            <map key='[Partida]' value='[fact_salida.csv_BB8DB2DD9E4C4440AB30078AB052C78F].[Partida]' />
+            <map key='[Pct_Descuento]' value='[fact_salida.csv_BB8DB2DD9E4C4440AB30078AB052C78F].[Pct_Descuento]' />
+            <map key='[Pct_Descuento_Global]' value='[fact_salida.csv_BB8DB2DD9E4C4440AB30078AB052C78F].[Pct_Descuento_Global]' />
+            <map key='[Pct_Impuesto]' value='[fact_salida.csv_BB8DB2DD9E4C4440AB30078AB052C78F].[Pct_Impuesto]' />
+            <map key='[Precio]' value='[dim_articulo.csv_FFE681245449438795B0A21F562916EC].[Precio]' />
+            <map key='[Precio_Unitario]' value='[fact_salida.csv_BB8DB2DD9E4C4440AB30078AB052C78F].[Precio_Unitario]' />
+            <map key='[Semestre]' value='[dim_time.csv_5398C8910D8E49D0B5BB487DB8B6EB21].[Semestre]' />
+            <map key='[TimeID (dim_salida.csv)]' value='[dim_salida.csv_5EF561F8015E463A9AC84C86AAADED62].[TimeID]' />
+            <map key='[TimeID (dim_time.csv)]' value='[dim_time.csv_5398C8910D8E49D0B5BB487DB8B6EB21].[TimeID]' />
+            <map key='[TimeID]' value='[fact_salida.csv_BB8DB2DD9E4C4440AB30078AB052C78F].[TimeID]' />
+            <map key='[Tipo_Cliente]' value='[dim_cliente.csv_B39CDE1C1DB7427E94E02F93E619C111].[Tipo_Cliente]' />
+            <map key='[Total]' value='[fact_salida.csv_BB8DB2DD9E4C4440AB30078AB052C78F].[Total]' />
+            <map key='[Total_D]' value='[fact_salida.csv_BB8DB2DD9E4C4440AB30078AB052C78F].[Total_D]' />
+            <map key='[Total_Descuento]' value='[fact_salida.csv_BB8DB2DD9E4C4440AB30078AB052C78F].[Total_Descuento]' />
+            <map key='[Total_Descuento_D]' value='[fact_salida.csv_BB8DB2DD9E4C4440AB30078AB052C78F].[Total_Descuento_D]' />
+            <map key='[Total_Importe]' value='[fact_salida.csv_BB8DB2DD9E4C4440AB30078AB052C78F].[Total_Importe]' />
+            <map key='[Total_Importe_D]' value='[fact_salida.csv_BB8DB2DD9E4C4440AB30078AB052C78F].[Total_Importe_D]' />
+            <map key='[Total_Impuesto]' value='[fact_salida.csv_BB8DB2DD9E4C4440AB30078AB052C78F].[Total_Impuesto]' />
+            <map key='[Total_Impuesto_D]' value='[fact_salida.csv_BB8DB2DD9E4C4440AB30078AB052C78F].[Total_Impuesto_D]' />
+            <map key='[Trimestre]' value='[dim_time.csv_5398C8910D8E49D0B5BB487DB8B6EB21].[Trimestre]' />
+            <map key='[Ubicacion]' value='[fact_salida.csv_BB8DB2DD9E4C4440AB30078AB052C78F].[Ubicacion]' />
+            <map key='[Unidad]' value='[fact_salida.csv_BB8DB2DD9E4C4440AB30078AB052C78F].[Unidad]' />
+            <map key='[VendedorID (dim_salida.csv)]' value='[dim_salida.csv_5EF561F8015E463A9AC84C86AAADED62].[VendedorID]' />
+            <map key='[VendedorID (dim_vendedor.csv)]' value='[dim_vendedor.csv_7532A02B78474C88874E04701848B305].[VendedorID]' />
+            <map key='[VendedorID]' value='[fact_salida.csv_BB8DB2DD9E4C4440AB30078AB052C78F].[VendedorID]' />
+          </cols>
+          <metadata-records>
+            <metadata-record class='column'>
+              <remote-name>Folio</remote-name>
+              <remote-type>129</remote-type>
+              <local-name>[Folio]</local-name>
+              <parent-name>[fact_salida.csv_BB8DB2DD9E4C4440AB30078AB052C78F]</parent-name>
+              <remote-alias>Folio</remote-alias>
+              <ordinal>0</ordinal>
+              <family>fact_salida.csv</family>
+              <local-type>string</local-type>
+              <aggregation>Count</aggregation>
+              <approx-count>86864</approx-count>
+              <contains-null>true</contains-null>
+              <collation flag='0' name='LEN_RGB' />
+              <object-id>[fact_salida.csv_BB8DB2DD9E4C4440AB30078AB052C78F]</object-id>
+            </metadata-record>
+            <metadata-record class='column'>
+              <remote-name>ClienteID</remote-name>
+              <remote-type>20</remote-type>
+              <local-name>[ClienteID]</local-name>
+              <parent-name>[fact_salida.csv_BB8DB2DD9E4C4440AB30078AB052C78F]</parent-name>
+              <remote-alias>ClienteID</remote-alias>
+              <ordinal>1</ordinal>
+              <family>fact_salida.csv</family>
+              <local-type>integer</local-type>
+              <aggregation>Sum</aggregation>
+              <approx-count>2018</approx-count>
+              <contains-null>true</contains-null>
+              <object-id>[fact_salida.csv_BB8DB2DD9E4C4440AB30078AB052C78F]</object-id>
+            </metadata-record>
+            <metadata-record class='column'>
+              <remote-name>VendedorID</remote-name>
+              <remote-type>20</remote-type>
+              <local-name>[VendedorID]</local-name>
+              <parent-name>[fact_salida.csv_BB8DB2DD9E4C4440AB30078AB052C78F]</parent-name>
+              <remote-alias>VendedorID</remote-alias>
+              <ordinal>2</ordinal>
+              <family>fact_salida.csv</family>
+              <local-type>integer</local-type>
+              <aggregation>Sum</aggregation>
+              <approx-count>12</approx-count>
+              <contains-null>true</contains-null>
+              <object-id>[fact_salida.csv_BB8DB2DD9E4C4440AB30078AB052C78F]</object-id>
+            </metadata-record>
+            <metadata-record class='column'>
+              <remote-name>ArticuloID</remote-name>
+              <remote-type>129</remote-type>
+              <local-name>[ArticuloID]</local-name>
+              <parent-name>[fact_salida.csv_BB8DB2DD9E4C4440AB30078AB052C78F]</parent-name>
+              <remote-alias>ArticuloID</remote-alias>
+              <ordinal>3</ordinal>
+              <family>fact_salida.csv</family>
+              <local-type>string</local-type>
+              <aggregation>Count</aggregation>
+              <approx-count>10791</approx-count>
+              <contains-null>true</contains-null>
+              <collation flag='0' name='LEN_RGB' />
+              <object-id>[fact_salida.csv_BB8DB2DD9E4C4440AB30078AB052C78F]</object-id>
+            </metadata-record>
+            <metadata-record class='column'>
+              <remote-name>Descripcion_Articulo</remote-name>
+              <remote-type>129</remote-type>
+              <local-name>[Descripcion_Articulo]</local-name>
+              <parent-name>[fact_salida.csv_BB8DB2DD9E4C4440AB30078AB052C78F]</parent-name>
+              <remote-alias>Descripcion_Articulo</remote-alias>
+              <ordinal>4</ordinal>
+              <family>fact_salida.csv</family>
+              <local-type>string</local-type>
+              <aggregation>Count</aggregation>
+              <approx-count>11128</approx-count>
+              <contains-null>true</contains-null>
+              <collation flag='0' name='LEN_RGB' />
+              <object-id>[fact_salida.csv_BB8DB2DD9E4C4440AB30078AB052C78F]</object-id>
+            </metadata-record>
+            <metadata-record class='column'>
+              <remote-name>Embarque</remote-name>
+              <remote-type>129</remote-type>
+              <local-name>[Embarque]</local-name>
+              <parent-name>[fact_salida.csv_BB8DB2DD9E4C4440AB30078AB052C78F]</parent-name>
+              <remote-alias>Embarque</remote-alias>
+              <ordinal>5</ordinal>
+              <family>fact_salida.csv</family>
+              <local-type>string</local-type>
+              <aggregation>Count</aggregation>
+              <approx-count>7</approx-count>
+              <contains-null>true</contains-null>
+              <collation flag='0' name='LEN_RGB' />
+              <object-id>[fact_salida.csv_BB8DB2DD9E4C4440AB30078AB052C78F]</object-id>
+            </metadata-record>
+            <metadata-record class='column'>
+              <remote-name>TimeID</remote-name>
+              <remote-type>133</remote-type>
+              <local-name>[TimeID]</local-name>
+              <parent-name>[fact_salida.csv_BB8DB2DD9E4C4440AB30078AB052C78F]</parent-name>
+              <remote-alias>TimeID</remote-alias>
+              <ordinal>6</ordinal>
+              <family>fact_salida.csv</family>
+              <local-type>date</local-type>
+              <aggregation>Year</aggregation>
+              <approx-count>16190</approx-count>
+              <contains-null>true</contains-null>
+              <object-id>[fact_salida.csv_BB8DB2DD9E4C4440AB30078AB052C78F]</object-id>
+            </metadata-record>
+            <metadata-record class='column'>
+              <remote-name>Empresa</remote-name>
+              <remote-type>129</remote-type>
+              <local-name>[Empresa]</local-name>
+              <parent-name>[fact_salida.csv_BB8DB2DD9E4C4440AB30078AB052C78F]</parent-name>
+              <remote-alias>Empresa</remote-alias>
+              <ordinal>7</ordinal>
+              <family>fact_salida.csv</family>
+              <local-type>string</local-type>
+              <aggregation>Count</aggregation>
+              <approx-count>105</approx-count>
+              <contains-null>true</contains-null>
+              <collation flag='0' name='LEN_RGB' />
+              <object-id>[fact_salida.csv_BB8DB2DD9E4C4440AB30078AB052C78F]</object-id>
+            </metadata-record>
+            <metadata-record class='column'>
+              <remote-name>Almacen</remote-name>
+              <remote-type>20</remote-type>
+              <local-name>[Almacen]</local-name>
+              <parent-name>[fact_salida.csv_BB8DB2DD9E4C4440AB30078AB052C78F]</parent-name>
+              <remote-alias>Almacen</remote-alias>
+              <ordinal>8</ordinal>
+              <family>fact_salida.csv</family>
+              <local-type>integer</local-type>
+              <aggregation>Sum</aggregation>
+              <approx-count>2</approx-count>
+              <contains-null>true</contains-null>
+              <object-id>[fact_salida.csv_BB8DB2DD9E4C4440AB30078AB052C78F]</object-id>
+            </metadata-record>
+            <metadata-record class='column'>
+              <remote-name>Ubicacion</remote-name>
+              <remote-type>20</remote-type>
+              <local-name>[Ubicacion]</local-name>
+              <parent-name>[fact_salida.csv_BB8DB2DD9E4C4440AB30078AB052C78F]</parent-name>
+              <remote-alias>Ubicacion</remote-alias>
+              <ordinal>9</ordinal>
+              <family>fact_salida.csv</family>
+              <local-type>integer</local-type>
+              <aggregation>Sum</aggregation>
+              <approx-count>3</approx-count>
+              <contains-null>true</contains-null>
+              <object-id>[fact_salida.csv_BB8DB2DD9E4C4440AB30078AB052C78F]</object-id>
+            </metadata-record>
+            <metadata-record class='column'>
+              <remote-name>Partida</remote-name>
+              <remote-type>20</remote-type>
+              <local-name>[Partida]</local-name>
+              <parent-name>[fact_salida.csv_BB8DB2DD9E4C4440AB30078AB052C78F]</parent-name>
+              <remote-alias>Partida</remote-alias>
+              <ordinal>10</ordinal>
+              <family>fact_salida.csv</family>
+              <local-type>integer</local-type>
+              <aggregation>Sum</aggregation>
+              <approx-count>192</approx-count>
+              <contains-null>true</contains-null>
+              <object-id>[fact_salida.csv_BB8DB2DD9E4C4440AB30078AB052C78F]</object-id>
+            </metadata-record>
+            <metadata-record class='column'>
+              <remote-name>Condicion_Pago</remote-name>
+              <remote-type>20</remote-type>
+              <local-name>[Condicion_Pago]</local-name>
+              <parent-name>[fact_salida.csv_BB8DB2DD9E4C4440AB30078AB052C78F]</parent-name>
+              <remote-alias>Condicion_Pago</remote-alias>
+              <ordinal>11</ordinal>
+              <family>fact_salida.csv</family>
+              <local-type>integer</local-type>
+              <aggregation>Sum</aggregation>
+              <approx-count>28</approx-count>
+              <contains-null>true</contains-null>
+              <object-id>[fact_salida.csv_BB8DB2DD9E4C4440AB30078AB052C78F]</object-id>
+            </metadata-record>
+            <metadata-record class='column'>
+              <remote-name>Moneda</remote-name>
+              <remote-type>129</remote-type>
+              <local-name>[Moneda]</local-name>
+              <parent-name>[fact_salida.csv_BB8DB2DD9E4C4440AB30078AB052C78F]</parent-name>
+              <remote-alias>Moneda</remote-alias>
+              <ordinal>12</ordinal>
+              <family>fact_salida.csv</family>
+              <local-type>string</local-type>
+              <aggregation>Count</aggregation>
+              <approx-count>105</approx-count>
+              <contains-null>true</contains-null>
+              <collation flag='0' name='LEN_RGB' />
+              <object-id>[fact_salida.csv_BB8DB2DD9E4C4440AB30078AB052C78F]</object-id>
+            </metadata-record>
+            <metadata-record class='column'>
+              <remote-name>Cantidad</remote-name>
+              <remote-type>20</remote-type>
+              <local-name>[Cantidad]</local-name>
+              <parent-name>[fact_salida.csv_BB8DB2DD9E4C4440AB30078AB052C78F]</parent-name>
+              <remote-alias>Cantidad</remote-alias>
+              <ordinal>13</ordinal>
+              <family>fact_salida.csv</family>
+              <local-type>integer</local-type>
+              <aggregation>Sum</aggregation>
+              <approx-count>201</approx-count>
+              <contains-null>true</contains-null>
+              <object-id>[fact_salida.csv_BB8DB2DD9E4C4440AB30078AB052C78F]</object-id>
+            </metadata-record>
+            <metadata-record class='column'>
+              <remote-name>Precio_Unitario</remote-name>
+              <remote-type>20</remote-type>
+              <local-name>[Precio_Unitario]</local-name>
+              <parent-name>[fact_salida.csv_BB8DB2DD9E4C4440AB30078AB052C78F]</parent-name>
+              <remote-alias>Precio_Unitario</remote-alias>
+              <ordinal>14</ordinal>
+              <family>fact_salida.csv</family>
+              <local-type>integer</local-type>
+              <aggregation>Sum</aggregation>
+              <approx-count>243</approx-count>
+              <contains-null>true</contains-null>
+              <object-id>[fact_salida.csv_BB8DB2DD9E4C4440AB30078AB052C78F]</object-id>
+            </metadata-record>
+            <metadata-record class='column'>
+              <remote-name>Unidad</remote-name>
+              <remote-type>129</remote-type>
+              <local-name>[Unidad]</local-name>
+              <parent-name>[fact_salida.csv_BB8DB2DD9E4C4440AB30078AB052C78F]</parent-name>
+              <remote-alias>Unidad</remote-alias>
+              <ordinal>15</ordinal>
+              <family>fact_salida.csv</family>
+              <local-type>string</local-type>
+              <aggregation>Count</aggregation>
+              <approx-count>105</approx-count>
+              <contains-null>true</contains-null>
+              <collation flag='0' name='LEN_RGB' />
+              <object-id>[fact_salida.csv_BB8DB2DD9E4C4440AB30078AB052C78F]</object-id>
+            </metadata-record>
+            <metadata-record class='column'>
+              <remote-name>Cantidad_Unidad</remote-name>
+              <remote-type>20</remote-type>
+              <local-name>[Cantidad_Unidad]</local-name>
+              <parent-name>[fact_salida.csv_BB8DB2DD9E4C4440AB30078AB052C78F]</parent-name>
+              <remote-alias>Cantidad_Unidad</remote-alias>
+              <ordinal>16</ordinal>
+              <family>fact_salida.csv</family>
+              <local-type>integer</local-type>
+              <aggregation>Sum</aggregation>
+              <approx-count>201</approx-count>
+              <contains-null>true</contains-null>
+              <object-id>[fact_salida.csv_BB8DB2DD9E4C4440AB30078AB052C78F]</object-id>
+            </metadata-record>
+            <metadata-record class='column'>
+              <remote-name>Pct_Descuento</remote-name>
+              <remote-type>20</remote-type>
+              <local-name>[Pct_Descuento]</local-name>
+              <parent-name>[fact_salida.csv_BB8DB2DD9E4C4440AB30078AB052C78F]</parent-name>
+              <remote-alias>Pct_Descuento</remote-alias>
+              <ordinal>17</ordinal>
+              <family>fact_salida.csv</family>
+              <local-type>integer</local-type>
+              <aggregation>Sum</aggregation>
+              <approx-count>2</approx-count>
+              <contains-null>true</contains-null>
+              <object-id>[fact_salida.csv_BB8DB2DD9E4C4440AB30078AB052C78F]</object-id>
+            </metadata-record>
+            <metadata-record class='column'>
+              <remote-name>Pct_Descuento_Global</remote-name>
+              <remote-type>20</remote-type>
+              <local-name>[Pct_Descuento_Global]</local-name>
+              <parent-name>[fact_salida.csv_BB8DB2DD9E4C4440AB30078AB052C78F]</parent-name>
+              <remote-alias>Pct_Descuento_Global</remote-alias>
+              <ordinal>18</ordinal>
+              <family>fact_salida.csv</family>
+              <local-type>integer</local-type>
+              <aggregation>Sum</aggregation>
+              <approx-count>32</approx-count>
+              <contains-null>true</contains-null>
+              <object-id>[fact_salida.csv_BB8DB2DD9E4C4440AB30078AB052C78F]</object-id>
+            </metadata-record>
+            <metadata-record class='column'>
+              <remote-name>Pct_Impuesto</remote-name>
+              <remote-type>20</remote-type>
+              <local-name>[Pct_Impuesto]</local-name>
+              <parent-name>[fact_salida.csv_BB8DB2DD9E4C4440AB30078AB052C78F]</parent-name>
+              <remote-alias>Pct_Impuesto</remote-alias>
+              <ordinal>19</ordinal>
+              <family>fact_salida.csv</family>
+              <local-type>integer</local-type>
+              <aggregation>Sum</aggregation>
+              <approx-count>20</approx-count>
+              <contains-null>true</contains-null>
+              <object-id>[fact_salida.csv_BB8DB2DD9E4C4440AB30078AB052C78F]</object-id>
+            </metadata-record>
+            <metadata-record class='column'>
+              <remote-name>Total_Descuento</remote-name>
+              <remote-type>20</remote-type>
+              <local-name>[Total_Descuento]</local-name>
+              <parent-name>[fact_salida.csv_BB8DB2DD9E4C4440AB30078AB052C78F]</parent-name>
+              <remote-alias>Total_Descuento</remote-alias>
+              <ordinal>20</ordinal>
+              <family>fact_salida.csv</family>
+              <local-type>integer</local-type>
+              <aggregation>Sum</aggregation>
+              <approx-count>54890</approx-count>
+              <contains-null>true</contains-null>
+              <object-id>[fact_salida.csv_BB8DB2DD9E4C4440AB30078AB052C78F]</object-id>
+            </metadata-record>
+            <metadata-record class='column'>
+              <remote-name>Total_Descuento_D</remote-name>
+              <remote-type>20</remote-type>
+              <local-name>[Total_Descuento_D]</local-name>
+              <parent-name>[fact_salida.csv_BB8DB2DD9E4C4440AB30078AB052C78F]</parent-name>
+              <remote-alias>Total_Descuento_D</remote-alias>
+              <ordinal>21</ordinal>
+              <family>fact_salida.csv</family>
+              <local-type>integer</local-type>
+              <aggregation>Sum</aggregation>
+              <approx-count>2804</approx-count>
+              <contains-null>true</contains-null>
+              <object-id>[fact_salida.csv_BB8DB2DD9E4C4440AB30078AB052C78F]</object-id>
+            </metadata-record>
+            <metadata-record class='column'>
+              <remote-name>Total_Importe</remote-name>
+              <remote-type>20</remote-type>
+              <local-name>[Total_Importe]</local-name>
+              <parent-name>[fact_salida.csv_BB8DB2DD9E4C4440AB30078AB052C78F]</parent-name>
+              <remote-alias>Total_Importe</remote-alias>
+              <ordinal>22</ordinal>
+              <family>fact_salida.csv</family>
+              <local-type>integer</local-type>
+              <aggregation>Sum</aggregation>
+              <approx-count>32012</approx-count>
+              <contains-null>true</contains-null>
+              <object-id>[fact_salida.csv_BB8DB2DD9E4C4440AB30078AB052C78F]</object-id>
+            </metadata-record>
+            <metadata-record class='column'>
+              <remote-name>Total_Importe_D</remote-name>
+              <remote-type>20</remote-type>
+              <local-name>[Total_Importe_D]</local-name>
+              <parent-name>[fact_salida.csv_BB8DB2DD9E4C4440AB30078AB052C78F]</parent-name>
+              <remote-alias>Total_Importe_D</remote-alias>
+              <ordinal>23</ordinal>
+              <family>fact_salida.csv</family>
+              <local-type>integer</local-type>
+              <aggregation>Sum</aggregation>
+              <approx-count>723</approx-count>
+              <contains-null>true</contains-null>
+              <object-id>[fact_salida.csv_BB8DB2DD9E4C4440AB30078AB052C78F]</object-id>
+            </metadata-record>
+            <metadata-record class='column'>
+              <remote-name>Total_Impuesto</remote-name>
+              <remote-type>20</remote-type>
+              <local-name>[Total_Impuesto]</local-name>
+              <parent-name>[fact_salida.csv_BB8DB2DD9E4C4440AB30078AB052C78F]</parent-name>
+              <remote-alias>Total_Impuesto</remote-alias>
+              <ordinal>24</ordinal>
+              <family>fact_salida.csv</family>
+              <local-type>integer</local-type>
+              <aggregation>Sum</aggregation>
+              <approx-count>20036</approx-count>
+              <contains-null>true</contains-null>
+              <object-id>[fact_salida.csv_BB8DB2DD9E4C4440AB30078AB052C78F]</object-id>
+            </metadata-record>
+            <metadata-record class='column'>
+              <remote-name>Total_Impuesto_D</remote-name>
+              <remote-type>20</remote-type>
+              <local-name>[Total_Impuesto_D]</local-name>
+              <parent-name>[fact_salida.csv_BB8DB2DD9E4C4440AB30078AB052C78F]</parent-name>
+              <remote-alias>Total_Impuesto_D</remote-alias>
+              <ordinal>25</ordinal>
+              <family>fact_salida.csv</family>
+              <local-type>integer</local-type>
+              <aggregation>Sum</aggregation>
+              <approx-count>927</approx-count>
+              <contains-null>true</contains-null>
+              <object-id>[fact_salida.csv_BB8DB2DD9E4C4440AB30078AB052C78F]</object-id>
+            </metadata-record>
+            <metadata-record class='column'>
+              <remote-name>Total</remote-name>
+              <remote-type>20</remote-type>
+              <local-name>[Total]</local-name>
+              <parent-name>[fact_salida.csv_BB8DB2DD9E4C4440AB30078AB052C78F]</parent-name>
+              <remote-alias>Total</remote-alias>
+              <ordinal>26</ordinal>
+              <family>fact_salida.csv</family>
+              <local-type>integer</local-type>
+              <aggregation>Sum</aggregation>
+              <approx-count>55153</approx-count>
+              <contains-null>true</contains-null>
+              <object-id>[fact_salida.csv_BB8DB2DD9E4C4440AB30078AB052C78F]</object-id>
+            </metadata-record>
+            <metadata-record class='column'>
+              <remote-name>Total_D</remote-name>
+              <remote-type>20</remote-type>
+              <local-name>[Total_D]</local-name>
+              <parent-name>[fact_salida.csv_BB8DB2DD9E4C4440AB30078AB052C78F]</parent-name>
+              <remote-alias>Total_D</remote-alias>
+              <ordinal>27</ordinal>
+              <family>fact_salida.csv</family>
+              <local-type>integer</local-type>
+              <aggregation>Sum</aggregation>
+              <approx-count>3257</approx-count>
+              <contains-null>true</contains-null>
+              <object-id>[fact_salida.csv_BB8DB2DD9E4C4440AB30078AB052C78F]</object-id>
+            </metadata-record>
+            <metadata-record class='column'>
+              <remote-name>F29</remote-name>
+              <remote-type>20</remote-type>
+              <local-name>[F29]</local-name>
+              <parent-name>[fact_salida.csv_BB8DB2DD9E4C4440AB30078AB052C78F]</parent-name>
+              <remote-alias>F29</remote-alias>
+              <ordinal>28</ordinal>
+              <family>fact_salida.csv</family>
+              <local-type>integer</local-type>
+              <aggregation>Sum</aggregation>
+              <approx-count>105</approx-count>
+              <contains-null>true</contains-null>
+              <object-id>[fact_salida.csv_BB8DB2DD9E4C4440AB30078AB052C78F]</object-id>
+            </metadata-record>
+            <metadata-record class='column'>
+              <remote-name>ArticuloID</remote-name>
+              <remote-type>129</remote-type>
+              <local-name>[ArticuloID (dim_articulo.csv)]</local-name>
+              <parent-name>[dim_articulo.csv_FFE681245449438795B0A21F562916EC]</parent-name>
+              <remote-alias>ArticuloID</remote-alias>
+              <ordinal>29</ordinal>
+              <family>dim_articulo.csv</family>
+              <local-type>string</local-type>
+              <aggregation>Count</aggregation>
+              <approx-count>3725</approx-count>
+              <contains-null>true</contains-null>
+              <collation flag='0' name='LEN_RGB' />
+              <object-id>[dim_articulo.csv_FFE681245449438795B0A21F562916EC]</object-id>
+            </metadata-record>
+            <metadata-record class='column'>
+              <remote-name>Descripcion</remote-name>
+              <remote-type>129</remote-type>
+              <local-name>[Descripcion]</local-name>
+              <parent-name>[dim_articulo.csv_FFE681245449438795B0A21F562916EC]</parent-name>
+              <remote-alias>Descripcion</remote-alias>
+              <ordinal>30</ordinal>
+              <family>dim_articulo.csv</family>
+              <local-type>string</local-type>
+              <aggregation>Count</aggregation>
+              <approx-count>3602</approx-count>
+              <contains-null>true</contains-null>
+              <collation flag='0' name='LEN_RGB' />
+              <object-id>[dim_articulo.csv_FFE681245449438795B0A21F562916EC]</object-id>
+            </metadata-record>
+            <metadata-record class='column'>
+              <remote-name>Articulo_Tipo</remote-name>
+              <remote-type>129</remote-type>
+              <local-name>[Articulo_Tipo]</local-name>
+              <parent-name>[dim_articulo.csv_FFE681245449438795B0A21F562916EC]</parent-name>
+              <remote-alias>Articulo_Tipo</remote-alias>
+              <ordinal>31</ordinal>
+              <family>dim_articulo.csv</family>
+              <local-type>string</local-type>
+              <aggregation>Count</aggregation>
+              <approx-count>52</approx-count>
+              <contains-null>true</contains-null>
+              <collation flag='0' name='LEN_RGB' />
+              <object-id>[dim_articulo.csv_FFE681245449438795B0A21F562916EC]</object-id>
+            </metadata-record>
+            <metadata-record class='column'>
+              <remote-name>Articulo_Grupo</remote-name>
+              <remote-type>129</remote-type>
+              <local-name>[Articulo_Grupo]</local-name>
+              <parent-name>[dim_articulo.csv_FFE681245449438795B0A21F562916EC]</parent-name>
+              <remote-alias>Articulo_Grupo</remote-alias>
+              <ordinal>32</ordinal>
+              <family>dim_articulo.csv</family>
+              <local-type>string</local-type>
+              <aggregation>Count</aggregation>
+              <approx-count>19</approx-count>
+              <contains-null>true</contains-null>
+              <collation flag='0' name='LEN_RGB' />
+              <object-id>[dim_articulo.csv_FFE681245449438795B0A21F562916EC]</object-id>
+            </metadata-record>
+            <metadata-record class='column'>
+              <remote-name>Articulo_Clase</remote-name>
+              <remote-type>129</remote-type>
+              <local-name>[Articulo_Clase]</local-name>
+              <parent-name>[dim_articulo.csv_FFE681245449438795B0A21F562916EC]</parent-name>
+              <remote-alias>Articulo_Clase</remote-alias>
+              <ordinal>33</ordinal>
+              <family>dim_articulo.csv</family>
+              <local-type>string</local-type>
+              <aggregation>Count</aggregation>
+              <approx-count>9</approx-count>
+              <contains-null>true</contains-null>
+              <collation flag='0' name='LEN_RGB' />
+              <object-id>[dim_articulo.csv_FFE681245449438795B0A21F562916EC]</object-id>
+            </metadata-record>
+            <metadata-record class='column'>
+              <remote-name>Precio</remote-name>
+              <remote-type>20</remote-type>
+              <local-name>[Precio]</local-name>
+              <parent-name>[dim_articulo.csv_FFE681245449438795B0A21F562916EC]</parent-name>
+              <remote-alias>Precio</remote-alias>
+              <ordinal>34</ordinal>
+              <family>dim_articulo.csv</family>
+              <local-type>integer</local-type>
+              <aggregation>Sum</aggregation>
+              <approx-count>116</approx-count>
+              <contains-null>true</contains-null>
+              <object-id>[dim_articulo.csv_FFE681245449438795B0A21F562916EC]</object-id>
+            </metadata-record>
+            <metadata-record class='column'>
+              <remote-name>F7</remote-name>
+              <remote-type>20</remote-type>
+              <local-name>[F7]</local-name>
+              <parent-name>[dim_articulo.csv_FFE681245449438795B0A21F562916EC]</parent-name>
+              <remote-alias>F7</remote-alias>
+              <ordinal>35</ordinal>
+              <family>dim_articulo.csv</family>
+              <local-type>integer</local-type>
+              <aggregation>Sum</aggregation>
+              <approx-count>2</approx-count>
+              <contains-null>true</contains-null>
+              <object-id>[dim_articulo.csv_FFE681245449438795B0A21F562916EC]</object-id>
+            </metadata-record>
+            <metadata-record class='column'>
+              <remote-name>F8</remote-name>
+              <remote-type>20</remote-type>
+              <local-name>[F8]</local-name>
+              <parent-name>[dim_articulo.csv_FFE681245449438795B0A21F562916EC]</parent-name>
+              <remote-alias>F8</remote-alias>
+              <ordinal>36</ordinal>
+              <family>dim_articulo.csv</family>
+              <local-type>integer</local-type>
+              <aggregation>Sum</aggregation>
+              <approx-count>2</approx-count>
+              <contains-null>true</contains-null>
+              <object-id>[dim_articulo.csv_FFE681245449438795B0A21F562916EC]</object-id>
+            </metadata-record>
+            <metadata-record class='column'>
+              <remote-name>ClienteID</remote-name>
+              <remote-type>20</remote-type>
+              <local-name>[ClienteID (dim_cliente.csv)]</local-name>
+              <parent-name>[dim_cliente.csv_B39CDE1C1DB7427E94E02F93E619C111]</parent-name>
+              <remote-alias>ClienteID</remote-alias>
+              <ordinal>37</ordinal>
+              <family>dim_cliente.csv</family>
+              <local-type>integer</local-type>
+              <aggregation>Sum</aggregation>
+              <approx-count>1234</approx-count>
+              <contains-null>true</contains-null>
+              <object-id>[dim_cliente.csv_B39CDE1C1DB7427E94E02F93E619C111]</object-id>
+            </metadata-record>
+            <metadata-record class='column'>
+              <remote-name>Ciudad</remote-name>
+              <remote-type>129</remote-type>
+              <local-name>[Ciudad]</local-name>
+              <parent-name>[dim_cliente.csv_B39CDE1C1DB7427E94E02F93E619C111]</parent-name>
+              <remote-alias>Ciudad</remote-alias>
+              <ordinal>38</ordinal>
+              <family>dim_cliente.csv</family>
+              <local-type>string</local-type>
+              <aggregation>Count</aggregation>
+              <approx-count>268</approx-count>
+              <contains-null>true</contains-null>
+              <collation flag='0' name='LEN_RGB' />
+              <object-id>[dim_cliente.csv_B39CDE1C1DB7427E94E02F93E619C111]</object-id>
+            </metadata-record>
+            <metadata-record class='column'>
+              <remote-name>Estado</remote-name>
+              <remote-type>20</remote-type>
+              <local-name>[Estado]</local-name>
+              <parent-name>[dim_cliente.csv_B39CDE1C1DB7427E94E02F93E619C111]</parent-name>
+              <remote-alias>Estado</remote-alias>
+              <ordinal>39</ordinal>
+              <family>dim_cliente.csv</family>
+              <local-type>integer</local-type>
+              <aggregation>Sum</aggregation>
+              <approx-count>33</approx-count>
+              <contains-null>true</contains-null>
+              <object-id>[dim_cliente.csv_B39CDE1C1DB7427E94E02F93E619C111]</object-id>
+            </metadata-record>
+            <metadata-record class='column'>
+              <remote-name>Pais</remote-name>
+              <remote-type>20</remote-type>
+              <local-name>[Pais]</local-name>
+              <parent-name>[dim_cliente.csv_B39CDE1C1DB7427E94E02F93E619C111]</parent-name>
+              <remote-alias>Pais</remote-alias>
+              <ordinal>40</ordinal>
+              <family>dim_cliente.csv</family>
+              <local-type>integer</local-type>
+              <aggregation>Sum</aggregation>
+              <approx-count>2</approx-count>
+              <contains-null>true</contains-null>
+              <object-id>[dim_cliente.csv_B39CDE1C1DB7427E94E02F93E619C111]</object-id>
+            </metadata-record>
+            <metadata-record class='column'>
+              <remote-name>Tipo_Cliente</remote-name>
+              <remote-type>129</remote-type>
+              <local-name>[Tipo_Cliente]</local-name>
+              <parent-name>[dim_cliente.csv_B39CDE1C1DB7427E94E02F93E619C111]</parent-name>
+              <remote-alias>Tipo_Cliente</remote-alias>
+              <ordinal>41</ordinal>
+              <family>dim_cliente.csv</family>
+              <local-type>string</local-type>
+              <aggregation>Count</aggregation>
+              <approx-count>4</approx-count>
+              <contains-null>true</contains-null>
+              <collation flag='0' name='LEN_RGB' />
+              <object-id>[dim_cliente.csv_B39CDE1C1DB7427E94E02F93E619C111]</object-id>
+            </metadata-record>
+            <metadata-record class='column'>
+              <remote-name>Folio</remote-name>
+              <remote-type>129</remote-type>
+              <local-name>[Folio (dim_salida.csv)]</local-name>
+              <parent-name>[dim_salida.csv_5EF561F8015E463A9AC84C86AAADED62]</parent-name>
+              <remote-alias>Folio</remote-alias>
+              <ordinal>42</ordinal>
+              <family>dim_salida.csv</family>
+              <local-type>string</local-type>
+              <aggregation>Count</aggregation>
+              <approx-count>30862</approx-count>
+              <contains-null>true</contains-null>
+              <collation flag='0' name='LEN_RGB' />
+              <object-id>[dim_salida.csv_5EF561F8015E463A9AC84C86AAADED62]</object-id>
+            </metadata-record>
+            <metadata-record class='column'>
+              <remote-name>ClienteID</remote-name>
+              <remote-type>129</remote-type>
+              <local-name>[ClienteID (dim_salida.csv)]</local-name>
+              <parent-name>[dim_salida.csv_5EF561F8015E463A9AC84C86AAADED62]</parent-name>
+              <remote-alias>ClienteID</remote-alias>
+              <ordinal>43</ordinal>
+              <family>dim_salida.csv</family>
+              <local-type>string</local-type>
+              <aggregation>Count</aggregation>
+              <approx-count>1126</approx-count>
+              <contains-null>true</contains-null>
+              <collation flag='0' name='LEN_RGB' />
+              <object-id>[dim_salida.csv_5EF561F8015E463A9AC84C86AAADED62]</object-id>
+            </metadata-record>
+            <metadata-record class='column'>
+              <remote-name>VendedorID</remote-name>
+              <remote-type>129</remote-type>
+              <local-name>[VendedorID (dim_salida.csv)]</local-name>
+              <parent-name>[dim_salida.csv_5EF561F8015E463A9AC84C86AAADED62]</parent-name>
+              <remote-alias>VendedorID</remote-alias>
+              <ordinal>44</ordinal>
+              <family>dim_salida.csv</family>
+              <local-type>string</local-type>
+              <aggregation>Count</aggregation>
+              <approx-count>12</approx-count>
+              <contains-null>true</contains-null>
+              <collation flag='0' name='LEN_RGB' />
+              <object-id>[dim_salida.csv_5EF561F8015E463A9AC84C86AAADED62]</object-id>
+            </metadata-record>
+            <metadata-record class='column'>
+              <remote-name>Embarque</remote-name>
+              <remote-type>129</remote-type>
+              <local-name>[Embarque (dim_salida.csv)]</local-name>
+              <parent-name>[dim_salida.csv_5EF561F8015E463A9AC84C86AAADED62]</parent-name>
+              <remote-alias>Embarque</remote-alias>
+              <ordinal>45</ordinal>
+              <family>dim_salida.csv</family>
+              <local-type>string</local-type>
+              <aggregation>Count</aggregation>
+              <approx-count>4</approx-count>
+              <contains-null>true</contains-null>
+              <collation flag='0' name='LEN_RGB' />
+              <object-id>[dim_salida.csv_5EF561F8015E463A9AC84C86AAADED62]</object-id>
+            </metadata-record>
+            <metadata-record class='column'>
+              <remote-name>TimeID</remote-name>
+              <remote-type>133</remote-type>
+              <local-name>[TimeID (dim_salida.csv)]</local-name>
+              <parent-name>[dim_salida.csv_5EF561F8015E463A9AC84C86AAADED62]</parent-name>
+              <remote-alias>TimeID</remote-alias>
+              <ordinal>46</ordinal>
+              <family>dim_salida.csv</family>
+              <local-type>date</local-type>
+              <aggregation>Year</aggregation>
+              <approx-count>5581</approx-count>
+              <contains-null>true</contains-null>
+              <object-id>[dim_salida.csv_5EF561F8015E463A9AC84C86AAADED62]</object-id>
+            </metadata-record>
+            <metadata-record class='column'>
+              <remote-name>TimeID</remote-name>
+              <remote-type>133</remote-type>
+              <local-name>[TimeID (dim_time.csv)]</local-name>
+              <parent-name>[dim_time.csv_5398C8910D8E49D0B5BB487DB8B6EB21]</parent-name>
+              <remote-alias>TimeID</remote-alias>
+              <ordinal>47</ordinal>
+              <family>dim_time.csv</family>
+              <local-type>date</local-type>
+              <aggregation>Year</aggregation>
+              <approx-count>3380</approx-count>
+              <contains-null>true</contains-null>
+              <object-id>[dim_time.csv_5398C8910D8E49D0B5BB487DB8B6EB21]</object-id>
+            </metadata-record>
+            <metadata-record class='column'>
+              <remote-name>Anio</remote-name>
+              <remote-type>20</remote-type>
+              <local-name>[Anio]</local-name>
+              <parent-name>[dim_time.csv_5398C8910D8E49D0B5BB487DB8B6EB21]</parent-name>
+              <remote-alias>Anio</remote-alias>
+              <ordinal>48</ordinal>
+              <family>dim_time.csv</family>
+              <local-type>integer</local-type>
+              <aggregation>Sum</aggregation>
+              <approx-count>11</approx-count>
+              <contains-null>true</contains-null>
+              <object-id>[dim_time.csv_5398C8910D8E49D0B5BB487DB8B6EB21]</object-id>
+            </metadata-record>
+            <metadata-record class='column'>
+              <remote-name>Semestre</remote-name>
+              <remote-type>129</remote-type>
+              <local-name>[Semestre]</local-name>
+              <parent-name>[dim_time.csv_5398C8910D8E49D0B5BB487DB8B6EB21]</parent-name>
+              <remote-alias>Semestre</remote-alias>
+              <ordinal>49</ordinal>
+              <family>dim_time.csv</family>
+              <local-type>string</local-type>
+              <aggregation>Count</aggregation>
+              <approx-count>2</approx-count>
+              <contains-null>true</contains-null>
+              <collation flag='0' name='LEN_RGB' />
+              <object-id>[dim_time.csv_5398C8910D8E49D0B5BB487DB8B6EB21]</object-id>
+            </metadata-record>
+            <metadata-record class='column'>
+              <remote-name>Cuatrimestre</remote-name>
+              <remote-type>129</remote-type>
+              <local-name>[Cuatrimestre]</local-name>
+              <parent-name>[dim_time.csv_5398C8910D8E49D0B5BB487DB8B6EB21]</parent-name>
+              <remote-alias>Cuatrimestre</remote-alias>
+              <ordinal>50</ordinal>
+              <family>dim_time.csv</family>
+              <local-type>string</local-type>
+              <aggregation>Count</aggregation>
+              <approx-count>3</approx-count>
+              <contains-null>true</contains-null>
+              <collation flag='0' name='LEN_RGB' />
+              <object-id>[dim_time.csv_5398C8910D8E49D0B5BB487DB8B6EB21]</object-id>
+            </metadata-record>
+            <metadata-record class='column'>
+              <remote-name>Trimestre</remote-name>
+              <remote-type>129</remote-type>
+              <local-name>[Trimestre]</local-name>
+              <parent-name>[dim_time.csv_5398C8910D8E49D0B5BB487DB8B6EB21]</parent-name>
+              <remote-alias>Trimestre</remote-alias>
+              <ordinal>51</ordinal>
+              <family>dim_time.csv</family>
+              <local-type>string</local-type>
+              <aggregation>Count</aggregation>
+              <approx-count>4</approx-count>
+              <contains-null>true</contains-null>
+              <collation flag='0' name='LEN_RGB' />
+              <object-id>[dim_time.csv_5398C8910D8E49D0B5BB487DB8B6EB21]</object-id>
+            </metadata-record>
+            <metadata-record class='column'>
+              <remote-name>Mes</remote-name>
+              <remote-type>20</remote-type>
+              <local-name>[Mes]</local-name>
+              <parent-name>[dim_time.csv_5398C8910D8E49D0B5BB487DB8B6EB21]</parent-name>
+              <remote-alias>Mes</remote-alias>
+              <ordinal>52</ordinal>
+              <family>dim_time.csv</family>
+              <local-type>integer</local-type>
+              <aggregation>Sum</aggregation>
+              <approx-count>12</approx-count>
+              <contains-null>true</contains-null>
+              <object-id>[dim_time.csv_5398C8910D8E49D0B5BB487DB8B6EB21]</object-id>
+            </metadata-record>
+            <metadata-record class='column'>
+              <remote-name>Dia_semana</remote-name>
+              <remote-type>129</remote-type>
+              <local-name>[Dia_semana]</local-name>
+              <parent-name>[dim_time.csv_5398C8910D8E49D0B5BB487DB8B6EB21]</parent-name>
+              <remote-alias>Dia_semana</remote-alias>
+              <ordinal>53</ordinal>
+              <family>dim_time.csv</family>
+              <local-type>string</local-type>
+              <aggregation>Count</aggregation>
+              <approx-count>7</approx-count>
+              <contains-null>true</contains-null>
+              <collation flag='0' name='LEN_RGB' />
+              <object-id>[dim_time.csv_5398C8910D8E49D0B5BB487DB8B6EB21]</object-id>
+            </metadata-record>
+            <metadata-record class='column'>
+              <remote-name>Dia</remote-name>
+              <remote-type>20</remote-type>
+              <local-name>[Dia]</local-name>
+              <parent-name>[dim_time.csv_5398C8910D8E49D0B5BB487DB8B6EB21]</parent-name>
+              <remote-alias>Dia</remote-alias>
+              <ordinal>54</ordinal>
+              <family>dim_time.csv</family>
+              <local-type>integer</local-type>
+              <aggregation>Sum</aggregation>
+              <approx-count>31</approx-count>
+              <contains-null>true</contains-null>
+              <object-id>[dim_time.csv_5398C8910D8E49D0B5BB487DB8B6EB21]</object-id>
+            </metadata-record>
+            <metadata-record class='column'>
+              <remote-name>VendedorID</remote-name>
+              <remote-type>20</remote-type>
+              <local-name>[VendedorID (dim_vendedor.csv)]</local-name>
+              <parent-name>[dim_vendedor.csv_7532A02B78474C88874E04701848B305]</parent-name>
+              <remote-alias>VendedorID</remote-alias>
+              <ordinal>55</ordinal>
+              <family>dim_vendedor.csv</family>
+              <local-type>integer</local-type>
+              <aggregation>Sum</aggregation>
+              <approx-count>12</approx-count>
+              <contains-null>true</contains-null>
+              <object-id>[dim_vendedor.csv_7532A02B78474C88874E04701848B305]</object-id>
+            </metadata-record>
+            <metadata-record class='column'>
+              <remote-name>Nombre</remote-name>
+              <remote-type>129</remote-type>
+              <local-name>[Nombre]</local-name>
+              <parent-name>[dim_vendedor.csv_7532A02B78474C88874E04701848B305]</parent-name>
+              <remote-alias>Nombre</remote-alias>
+              <ordinal>56</ordinal>
+              <family>dim_vendedor.csv</family>
+              <local-type>string</local-type>
+              <aggregation>Count</aggregation>
+              <approx-count>12</approx-count>
+              <contains-null>true</contains-null>
+              <collation flag='0' name='LEN_RGB' />
+              <object-id>[dim_vendedor.csv_7532A02B78474C88874E04701848B305]</object-id>
+            </metadata-record>
+          </metadata-records>
+        </connection>
+      </extract>
+      <layout dim-ordering='alphabetic' measure-ordering='alphabetic' show-structure='true' />
+      <semantic-values>
+        <semantic-value key='[Country].[Name]' value='&quot;United States&quot;' />
+      </semantic-values>
+      <object-graph>
+        <objects>
+          <object caption='dim_articulo.csv' id='dim_articulo.csv_FFE681245449438795B0A21F562916EC'>
+            <properties context=''>
+              <relation connection='textscan.0s4ro341gvagqa10ht6xa0xiaedx' name='dim_articulo.csv' table='[dim_articulo#csv]' type='table'>
+                <columns character-set='windows-1252' header='yes' locale='en' separator=','>
+                  <column datatype='string' name='ArticuloID' ordinal='0' />
+                  <column datatype='string' name='Descripcion' ordinal='1' />
+                  <column datatype='string' name='Articulo_Tipo' ordinal='2' />
+                  <column datatype='string' name='Articulo_Grupo' ordinal='3' />
+                  <column datatype='string' name='Articulo_Clase' ordinal='4' />
+                  <column datatype='integer' name='Precio' ordinal='5' />
+                  <column datatype='integer' name='F7' ordinal='6' />
+                  <column datatype='integer' name='F8' ordinal='7' />
+                </columns>
+              </relation>
+            </properties>
+            <properties context='extract'>
+              <relation name='dim_articulo.csv_FFE681245449438795B0A21F562916EC' table='[Extract].[dim_articulo.csv_FFE681245449438795B0A21F562916EC]' type='table' />
+            </properties>
+          </object>
+          <object caption='dim_cliente.csv' id='dim_cliente.csv_B39CDE1C1DB7427E94E02F93E619C111'>
+            <properties context=''>
+              <relation connection='textscan.0s4ro341gvagqa10ht6xa0xiaedx' name='dim_cliente.csv' table='[dim_cliente#csv]' type='table'>
+                <columns character-set='UTF-8' header='yes' locale='en' separator=','>
+                  <column datatype='integer' name='ClienteID' ordinal='0' />
+                  <column datatype='string' name='Ciudad' ordinal='1' />
+                  <column datatype='integer' name='Estado' ordinal='2' />
+                  <column datatype='integer' name='Pais' ordinal='3' />
+                  <column datatype='string' name='Tipo_Cliente' ordinal='4' />
+                </columns>
+              </relation>
+            </properties>
+            <properties context='extract'>
+              <relation name='dim_cliente.csv_B39CDE1C1DB7427E94E02F93E619C111' table='[Extract].[dim_cliente.csv_B39CDE1C1DB7427E94E02F93E619C111]' type='table' />
+            </properties>
+          </object>
+          <object caption='dim_salida.csv' id='dim_salida.csv_5EF561F8015E463A9AC84C86AAADED62'>
+            <properties context=''>
+              <relation connection='textscan.0s4ro341gvagqa10ht6xa0xiaedx' name='dim_salida.csv' table='[dim_salida#csv]' type='table'>
+                <columns character-set='UTF-8' header='yes' locale='en' separator=','>
+                  <column datatype='string' name='Folio' ordinal='0' />
+                  <column datatype='string' name='ClienteID' ordinal='1' />
+                  <column datatype='string' name='VendedorID' ordinal='2' />
+                  <column datatype='string' name='Embarque' ordinal='3' />
+                  <column datatype='date' name='TimeID' ordinal='4' />
+                </columns>
+              </relation>
+            </properties>
+            <properties context='extract'>
+              <relation name='dim_salida.csv_5EF561F8015E463A9AC84C86AAADED62' table='[Extract].[dim_salida.csv_5EF561F8015E463A9AC84C86AAADED62]' type='table' />
+            </properties>
+          </object>
+          <object caption='dim_time.csv' id='dim_time.csv_5398C8910D8E49D0B5BB487DB8B6EB21'>
+            <properties context=''>
+              <relation connection='textscan.0s4ro341gvagqa10ht6xa0xiaedx' name='dim_time.csv' table='[dim_time#csv]' type='table'>
+                <columns character-set='UTF-8' header='yes' locale='en' separator=','>
+                  <column datatype='date' name='TimeID' ordinal='0' />
+                  <column datatype='integer' name='Anio' ordinal='1' />
+                  <column datatype='string' name='Semestre' ordinal='2' />
+                  <column datatype='string' name='Cuatrimestre' ordinal='3' />
+                  <column datatype='string' name='Trimestre' ordinal='4' />
+                  <column datatype='integer' name='Mes' ordinal='5' />
+                  <column datatype='string' name='Dia_semana' ordinal='6' />
+                  <column datatype='integer' name='Dia' ordinal='7' />
+                </columns>
+              </relation>
+            </properties>
+            <properties context='extract'>
+              <relation name='dim_time.csv_5398C8910D8E49D0B5BB487DB8B6EB21' table='[Extract].[dim_time.csv_5398C8910D8E49D0B5BB487DB8B6EB21]' type='table' />
+            </properties>
+          </object>
+          <object caption='dim_vendedor.csv' id='dim_vendedor.csv_7532A02B78474C88874E04701848B305'>
+            <properties context=''>
+              <relation connection='textscan.0s4ro341gvagqa10ht6xa0xiaedx' name='dim_vendedor.csv' table='[dim_vendedor#csv]' type='table'>
+                <columns character-set='windows-1252' header='yes' locale='en' separator=','>
+                  <column datatype='integer' name='VendedorID' ordinal='0' />
+                  <column datatype='string' name='Nombre' ordinal='1' />
+                </columns>
+              </relation>
+            </properties>
+            <properties context='extract'>
+              <relation name='dim_vendedor.csv_7532A02B78474C88874E04701848B305' table='[Extract].[dim_vendedor.csv_7532A02B78474C88874E04701848B305]' type='table' />
+            </properties>
+          </object>
+          <object caption='fact_salida.csv' id='fact_salida.csv_BB8DB2DD9E4C4440AB30078AB052C78F'>
+            <properties context=''>
+              <relation connection='textscan.0s4ro341gvagqa10ht6xa0xiaedx' name='fact_salida.csv' table='[fact_salida#csv]' type='table'>
+                <columns character-set='UTF-8' header='yes' locale='en' separator=','>
+                  <column datatype='string' name='Folio' ordinal='0' />
+                  <column datatype='integer' name='ClienteID' ordinal='1' />
+                  <column datatype='integer' name='VendedorID' ordinal='2' />
+                  <column datatype='string' name='ArticuloID' ordinal='3' />
+                  <column datatype='string' name='Descripcion_Articulo' ordinal='4' />
+                  <column datatype='string' name='Embarque' ordinal='5' />
+                  <column datatype='date' name='TimeID' ordinal='6' />
+                  <column datatype='string' name='Empresa' ordinal='7' />
+                  <column datatype='integer' name='Almacen' ordinal='8' />
+                  <column datatype='integer' name='Ubicacion' ordinal='9' />
+                  <column datatype='integer' name='Partida' ordinal='10' />
+                  <column datatype='integer' name='Condicion_Pago' ordinal='11' />
+                  <column datatype='string' name='Moneda' ordinal='12' />
+                  <column datatype='integer' name='Cantidad' ordinal='13' />
+                  <column datatype='integer' name='Precio_Unitario' ordinal='14' />
+                  <column datatype='string' name='Unidad' ordinal='15' />
+                  <column datatype='integer' name='Cantidad_Unidad' ordinal='16' />
+                  <column datatype='integer' name='Pct_Descuento' ordinal='17' />
+                  <column datatype='integer' name='Pct_Descuento_Global' ordinal='18' />
+                  <column datatype='integer' name='Pct_Impuesto' ordinal='19' />
+                  <column datatype='integer' name='Total_Descuento' ordinal='20' />
+                  <column datatype='integer' name='Total_Descuento_D' ordinal='21' />
+                  <column datatype='integer' name='Total_Importe' ordinal='22' />
+                  <column datatype='integer' name='Total_Importe_D' ordinal='23' />
+                  <column datatype='integer' name='Total_Impuesto' ordinal='24' />
+                  <column datatype='integer' name='Total_Impuesto_D' ordinal='25' />
+                  <column datatype='integer' name='Total' ordinal='26' />
+                  <column datatype='integer' name='Total_D' ordinal='27' />
+                  <column datatype='integer' name='F29' ordinal='28' />
+                </columns>
+              </relation>
+            </properties>
+            <properties context='extract'>
+              <relation name='fact_salida.csv_BB8DB2DD9E4C4440AB30078AB052C78F' table='[Extract].[fact_salida.csv_BB8DB2DD9E4C4440AB30078AB052C78F]' type='table' />
+            </properties>
+          </object>
+        </objects>
+        <relationships>
+          <relationship>
+            <expression op='='>
+              <expression op='[ArticuloID]' />
+              <expression op='[ArticuloID (dim_articulo.csv)]' />
+            </expression>
+            <first-end-point object-id='fact_salida.csv_BB8DB2DD9E4C4440AB30078AB052C78F' />
+            <second-end-point object-id='dim_articulo.csv_FFE681245449438795B0A21F562916EC' />
+          </relationship>
+          <relationship>
+            <expression op='='>
+              <expression op='[ClienteID]' />
+              <expression op='[ClienteID (dim_cliente.csv)]' />
+            </expression>
+            <first-end-point object-id='fact_salida.csv_BB8DB2DD9E4C4440AB30078AB052C78F' />
+            <second-end-point object-id='dim_cliente.csv_B39CDE1C1DB7427E94E02F93E619C111' />
+          </relationship>
+          <relationship>
+            <expression op='='>
+              <expression op='[Folio]' />
+              <expression op='[Folio (dim_salida.csv)]' />
+            </expression>
+            <first-end-point object-id='fact_salida.csv_BB8DB2DD9E4C4440AB30078AB052C78F' />
+            <second-end-point object-id='dim_salida.csv_5EF561F8015E463A9AC84C86AAADED62' />
+          </relationship>
+          <relationship>
+            <expression op='='>
+              <expression op='[TimeID]' />
+              <expression op='[TimeID (dim_time.csv)]' />
+            </expression>
+            <first-end-point object-id='fact_salida.csv_BB8DB2DD9E4C4440AB30078AB052C78F' />
+            <second-end-point object-id='dim_time.csv_5398C8910D8E49D0B5BB487DB8B6EB21' />
+          </relationship>
+          <relationship>
+            <expression op='='>
+              <expression op='[VendedorID]' />
+              <expression op='[VendedorID (dim_vendedor.csv)]' />
+            </expression>
+            <first-end-point object-id='fact_salida.csv_BB8DB2DD9E4C4440AB30078AB052C78F' />
+            <second-end-point object-id='dim_vendedor.csv_7532A02B78474C88874E04701848B305' />
+          </relationship>
+        </relationships>
+      </object-graph>
+    </datasource>
+  </datasources>
+  <actions>
+    <action caption='Filter 1 (generated)' name='[Action1_BF6B50935D9C42DCAFE1231C569979FC]'>
+      <activation auto-clear='true' type='on-select' />
+      <source dashboard='Dashboard 1' type='sheet' worksheet='Ventas por cliente' />
+      <command command='tsc:tsl-filter'>
+        <param name='special-fields' value='all' />
+        <param name='target' value='Dashboard 1' />
+      </command>
+    </action>
+  </actions>
+  <worksheets>
+    <worksheet name='Comportamiento de cliente por año'>
+      <table>
+        <view>
+          <datasources>
+            <datasource caption='fact_salida+' name='federated.0sdv2jb0uh4ow512hhuwo0bx77p4' />
+          </datasources>
+          <datasource-dependencies datasource='federated.0sdv2jb0uh4ow512hhuwo0bx77p4'>
+            <column aggregation='Sum' datatype='integer' name='[Anio]' role='dimension' type='ordinal' />
+            <column caption='Cliente ID' datatype='integer' name='[ClienteID]' role='dimension' type='ordinal' />
+            <column datatype='integer' name='[Total]' role='measure' type='quantitative' />
+            <column caption='Total D' datatype='integer' name='[Total_D]' role='measure' type='quantitative' />
+            <column-instance column='[Anio]' derivation='None' name='[none:Anio:ok]' pivot='key' type='ordinal' />
+            <column-instance column='[ClienteID]' derivation='None' name='[none:ClienteID:ok]' pivot='key' type='ordinal' />
+            <column-instance column='[Total]' derivation='Sum' name='[sum:Total:qk]' pivot='key' type='quantitative' />
+            <column-instance column='[Total_D]' derivation='Sum' name='[sum:Total_D:qk]' pivot='key' type='quantitative' />
+          </datasource-dependencies>
+          <filter class='categorical' column='[federated.0sdv2jb0uh4ow512hhuwo0bx77p4].[none:Anio:ok]'>
+            <groupfilter function='union' user:ui-domain='database' user:ui-enumeration='inclusive' user:ui-marker='enumerate'>
+              <groupfilter function='member' level='[none:Anio:ok]' member='%null%' />
+              <groupfilter function='member' level='[none:Anio:ok]' member='2014' />
+              <groupfilter function='member' level='[none:Anio:ok]' member='2015' />
+              <groupfilter function='member' level='[none:Anio:ok]' member='2016' />
+              <groupfilter function='member' level='[none:Anio:ok]' member='2017' />
+              <groupfilter function='member' level='[none:Anio:ok]' member='2018' />
+              <groupfilter function='member' level='[none:Anio:ok]' member='2019' />
+              <groupfilter function='member' level='[none:Anio:ok]' member='2020' />
+              <groupfilter function='member' level='[none:Anio:ok]' member='2021' />
+              <groupfilter function='member' level='[none:Anio:ok]' member='2022' />
+            </groupfilter>
+          </filter>
+          <filter class='categorical' column='[federated.0sdv2jb0uh4ow512hhuwo0bx77p4].[none:ClienteID:ok]'>
+            <groupfilter count='10' end='top' function='end' units='records' user:ui-marker='end' user:ui-top-by-field='true'>
+              <groupfilter direction='DESC' expression='COUNT([ClienteID])' function='order' user:ui-marker='order'>
+                <groupfilter function='level-members' level='[none:ClienteID:ok]' user:ui-manual-selection='true' user:ui-manual-selection-all-when-empty='true' user:ui-manual-selection-is-empty='true' user:ui-marker='enumerate' />
+              </groupfilter>
+            </groupfilter>
+          </filter>
+          <slices>
+            <column>[federated.0sdv2jb0uh4ow512hhuwo0bx77p4].[none:ClienteID:ok]</column>
+            <column>[federated.0sdv2jb0uh4ow512hhuwo0bx77p4].[none:Anio:ok]</column>
+          </slices>
+          <aggregation value='true' />
+        </view>
+        <style />
+        <panes>
+          <pane selection-relaxation-option='selection-relaxation-allow'>
+            <view>
+              <breakdown value='auto' />
+            </view>
+            <mark class='Automatic' />
+            <encodings>
+              <color column='[federated.0sdv2jb0uh4ow512hhuwo0bx77p4].[none:ClienteID:ok]' />
+              <text column='[federated.0sdv2jb0uh4ow512hhuwo0bx77p4].[sum:Total_D:qk]' />
+            </encodings>
+            <style>
+              <style-rule element='mark'>
+                <format attr='mark-labels-show' value='true' />
+                <format attr='mark-labels-cull' value='true' />
+              </style-rule>
+            </style>
+          </pane>
+        </panes>
+        <rows>[federated.0sdv2jb0uh4ow512hhuwo0bx77p4].[sum:Total:qk]</rows>
+        <cols>([federated.0sdv2jb0uh4ow512hhuwo0bx77p4].[none:ClienteID:ok] / [federated.0sdv2jb0uh4ow512hhuwo0bx77p4].[none:Anio:ok])</cols>
+      </table>
+      <simple-id uuid='{B766942A-098D-4965-9E70-F9A25AEA4619}' />
+    </worksheet>
+    <worksheet name='Costo promedio por marca'>
+      <table>
+        <view>
+          <datasources>
+            <datasource caption='fact_salida+' name='federated.0sdv2jb0uh4ow512hhuwo0bx77p4' />
+          </datasources>
+          <datasource-dependencies datasource='federated.0sdv2jb0uh4ow512hhuwo0bx77p4'>
+            <column caption='Articulo Grupo' datatype='string' name='[Articulo_Grupo]' role='dimension' type='nominal' />
+            <column caption='Precio Unitario' datatype='integer' name='[Precio_Unitario]' role='measure' type='quantitative' />
+            <column-instance column='[Precio_Unitario]' derivation='Avg' name='[avg:Precio_Unitario:qk]' pivot='key' type='quantitative' />
+            <column-instance column='[Articulo_Grupo]' derivation='None' name='[none:Articulo_Grupo:nk]' pivot='key' type='nominal' />
+          </datasource-dependencies>
+          <filter class='categorical' column='[federated.0sdv2jb0uh4ow512hhuwo0bx77p4].[none:Articulo_Grupo:nk]'>
+            <groupfilter function='union' user:ui-domain='database' user:ui-enumeration='inclusive' user:ui-marker='enumerate'>
+              <groupfilter function='member' level='[none:Articulo_Grupo:nk]' member='&quot;ACCESORIOS&quot;' />
+              <groupfilter function='member' level='[none:Articulo_Grupo:nk]' member='&quot;BMW&quot;' />
+              <groupfilter function='member' level='[none:Articulo_Grupo:nk]' member='&quot;BRAZOS DE DEFENSA&quot;' />
+              <groupfilter function='member' level='[none:Articulo_Grupo:nk]' member='&quot;CHEVROLET&quot;' />
+              <groupfilter function='member' level='[none:Articulo_Grupo:nk]' member='&quot;DEFENSAS DELANTERAS&quot;' />
+              <groupfilter function='member' level='[none:Articulo_Grupo:nk]' member='&quot;DODGE&quot;' />
+              <groupfilter function='member' level='[none:Articulo_Grupo:nk]' member='&quot;FORD&quot;' />
+              <groupfilter function='member' level='[none:Articulo_Grupo:nk]' member='&quot;HONDA&quot;' />
+              <groupfilter function='member' level='[none:Articulo_Grupo:nk]' member='&quot;ISUZU&quot;' />
+              <groupfilter function='member' level='[none:Articulo_Grupo:nk]' member='&quot;MALIBU (TODOS) AUT 3 LIN&quot;' />
+              <groupfilter function='member' level='[none:Articulo_Grupo:nk]' member='&quot;MARQUIS 79-84 AUT 3 LIN&quot;' />
+              <groupfilter function='member' level='[none:Articulo_Grupo:nk]' member='&quot;MAZDA&quot;' />
+              <groupfilter function='member' level='[none:Articulo_Grupo:nk]' member='&quot;MERCEDES&quot;' />
+              <groupfilter function='member' level='[none:Articulo_Grupo:nk]' member='&quot;MITSUBISHI&quot;' />
+              <groupfilter function='member' level='[none:Articulo_Grupo:nk]' member='&quot;NISSAN&quot;' />
+              <groupfilter function='member' level='[none:Articulo_Grupo:nk]' member='&quot;NO PROPORCIONADO&quot;' />
+              <groupfilter function='member' level='[none:Articulo_Grupo:nk]' member='&quot;PEUGEOT&quot;' />
+              <groupfilter function='member' level='[none:Articulo_Grupo:nk]' member='&quot;RADIADORES&quot;' />
+              <groupfilter function='member' level='[none:Articulo_Grupo:nk]' member='&quot;RENAULT&quot;' />
+              <groupfilter function='member' level='[none:Articulo_Grupo:nk]' member='&quot;SEAT&quot;' />
+              <groupfilter function='member' level='[none:Articulo_Grupo:nk]' member='&quot;SOPORTE PARRILLA&quot;' />
+              <groupfilter function='member' level='[none:Articulo_Grupo:nk]' member='&quot;TOYOTA&quot;' />
+              <groupfilter function='member' level='[none:Articulo_Grupo:nk]' member='&quot;VOLSKWAGEN&quot;' />
+              <groupfilter function='member' level='[none:Articulo_Grupo:nk]' member='&quot;ZUNIVERSAL&quot;' />
+            </groupfilter>
+          </filter>
+          <shelf-sorts>
+            <shelf-sort-v2 dimension-to-sort='[federated.0sdv2jb0uh4ow512hhuwo0bx77p4].[none:Articulo_Grupo:nk]' direction='DESC' is-on-innermost-dimension='true' measure-to-sort-by='[federated.0sdv2jb0uh4ow512hhuwo0bx77p4].[avg:Precio_Unitario:qk]' shelf='columns' />
+          </shelf-sorts>
+          <slices>
+            <column>[federated.0sdv2jb0uh4ow512hhuwo0bx77p4].[none:Articulo_Grupo:nk]</column>
+          </slices>
+          <aggregation value='true' />
+        </view>
+        <style />
+        <panes>
+          <pane selection-relaxation-option='selection-relaxation-allow'>
+            <view>
+              <breakdown value='auto' />
+            </view>
+            <mark class='Automatic' />
+          </pane>
+        </panes>
+        <rows>[federated.0sdv2jb0uh4ow512hhuwo0bx77p4].[avg:Precio_Unitario:qk]</rows>
+        <cols>[federated.0sdv2jb0uh4ow512hhuwo0bx77p4].[none:Articulo_Grupo:nk]</cols>
+      </table>
+      <simple-id uuid='{74468B66-BF1E-4686-869F-89D728A187F2}' />
+    </worksheet>
+    <worksheet name='KPIs'>
+      <table>
+        <view>
+          <datasources>
+            <datasource caption='fact_salida+' name='federated.0sdv2jb0uh4ow512hhuwo0bx77p4' />
+          </datasources>
+          <datasource-dependencies datasource='federated.0sdv2jb0uh4ow512hhuwo0bx77p4'>
+            <column caption='Cantidad Unidad' datatype='integer' name='[Cantidad_Unidad]' role='measure' type='quantitative' />
+            <column datatype='integer' name='[Total]' role='measure' type='quantitative' />
+            <column caption='Total D' datatype='integer' name='[Total_D]' role='measure' type='quantitative' />
+            <column-instance column='[Cantidad_Unidad]' derivation='Sum' name='[sum:Cantidad_Unidad:qk]' pivot='key' type='quantitative' />
+            <column-instance column='[Total]' derivation='Sum' name='[sum:Total:qk]' pivot='key' type='quantitative' />
+            <column-instance column='[Total_D]' derivation='Sum' name='[sum:Total_D:qk]' pivot='key' type='quantitative' />
+          </datasource-dependencies>
+          <filter class='categorical' column='[federated.0sdv2jb0uh4ow512hhuwo0bx77p4].[:Measure Names]'>
+            <groupfilter function='union' user:op='manual'>
+              <groupfilter function='member' level='[:Measure Names]' member='&quot;[federated.0sdv2jb0uh4ow512hhuwo0bx77p4].[sum:Cantidad_Unidad:qk]&quot;' />
+              <groupfilter function='member' level='[:Measure Names]' member='&quot;[federated.0sdv2jb0uh4ow512hhuwo0bx77p4].[sum:Total_D:qk]&quot;' />
+            </groupfilter>
+          </filter>
+          <manual-sort column='[federated.0sdv2jb0uh4ow512hhuwo0bx77p4].[:Measure Names]' direction='ASC'>
+            <dictionary>
+              <bucket>&quot;[federated.0sdv2jb0uh4ow512hhuwo0bx77p4].[sum:Cantidad_Unidad:qk]&quot;</bucket>
+              <bucket>&quot;[federated.0sdv2jb0uh4ow512hhuwo0bx77p4].[sum:Total_D:qk]&quot;</bucket>
+              <bucket>&quot;[federated.0sdv2jb0uh4ow512hhuwo0bx77p4].[sum:Total:qk]&quot;</bucket>
+            </dictionary>
+          </manual-sort>
+          <slices>
+            <column>[federated.0sdv2jb0uh4ow512hhuwo0bx77p4].[:Measure Names]</column>
+          </slices>
+          <aggregation value='true' />
+        </view>
+        <style>
+          <style-rule element='cell'>
+            <format attr='width' field='[federated.0sdv2jb0uh4ow512hhuwo0bx77p4].[:Measure Names]' value='229' />
+            <format attr='vertical-align' data-class='total' scope='rows' value='center' />
+            <format attr='text-align' value='center' />
+          </style-rule>
+          <style-rule element='header'>
+            <format attr='border-width' data-class='total' scope='cols' value='0' />
+            <format attr='border-style' data-class='total' scope='cols' value='none' />
+            <format attr='border-width' data-class='subtotal' scope='cols' value='0' />
+            <format attr='border-style' data-class='subtotal' scope='cols' value='none' />
+            <format attr='border-width' data-class='subtotal' scope='rows' value='0' />
+            <format attr='border-style' data-class='subtotal' scope='rows' value='none' />
+          </style-rule>
+          <style-rule element='label'>
+            <format attr='font-size' field='[federated.0sdv2jb0uh4ow512hhuwo0bx77p4].[:Measure Names]' value='14' />
+            <format attr='text-align' scope='cols' value='center' />
+            <format attr='vertical-align' scope='cols' value='center' />
+            <format attr='text-align' scope='rows' value='center' />
+          </style-rule>
+          <style-rule element='pane'>
+            <format attr='border-width' data-class='total' scope='cols' value='0' />
+            <format attr='border-style' data-class='total' scope='cols' value='none' />
+            <format attr='border-width' data-class='subtotal' scope='cols' value='0' />
+            <format attr='border-style' data-class='subtotal' scope='cols' value='none' />
+            <format attr='border-width' data-class='subtotal' scope='rows' value='0' />
+            <format attr='border-style' data-class='subtotal' scope='rows' value='none' />
+          </style-rule>
+          <style-rule element='table-div'>
+            <format attr='stroke-size' scope='rows' value='0' />
+            <format attr='line-visibility' scope='rows' value='off' />
+          </style-rule>
+        </style>
+        <panes>
+          <pane selection-relaxation-option='selection-relaxation-allow'>
+            <view>
+              <breakdown value='auto' />
+            </view>
+            <mark class='Automatic' />
+            <encodings>
+              <text column='[federated.0sdv2jb0uh4ow512hhuwo0bx77p4].[Multiple Values]' />
+            </encodings>
+            <customized-label>
+              <formatted-text>
+                <run fontsize='12'>&lt;</run>
+                <run fontsize='12'>[federated.0sdv2jb0uh4ow512hhuwo0bx77p4].[Multiple Values]</run>
+                <run fontsize='12'>&gt;</run>
+              </formatted-text>
+            </customized-label>
+            <style>
+              <style-rule element='mark'>
+                <format attr='mark-labels-cull' value='true' />
+                <format attr='mark-labels-show' value='true' />
+              </style-rule>
+              <style-rule element='pane'>
+                <format attr='minwidth' value='-1' />
+                <format attr='maxwidth' value='-1' />
+              </style-rule>
+            </style>
+          </pane>
+        </panes>
+        <rows />
+        <cols>[federated.0sdv2jb0uh4ow512hhuwo0bx77p4].[:Measure Names]</cols>
+      </table>
+      <simple-id uuid='{699AB9BD-4FF2-4604-BBFC-E9D3F8EE8BE2}' />
+    </worksheet>
+    <worksheet name='Sheet 1'>
+      <table>
+        <view>
+          <datasources />
+          <aggregation value='true' />
+        </view>
+        <style />
+        <panes>
+          <pane selection-relaxation-option='selection-relaxation-allow'>
+            <view>
+              <breakdown value='auto' />
+            </view>
+            <mark class='Automatic' />
+          </pane>
+        </panes>
+        <rows />
+        <cols />
+      </table>
+      <simple-id uuid='{9438A1A5-64D2-4A6A-9E6B-D7F2B48D0C54}' />
+    </worksheet>
+    <worksheet name='Ventas por cliente'>
+      <table>
+        <view>
+          <datasources>
+            <datasource caption='fact_salida+' name='federated.0sdv2jb0uh4ow512hhuwo0bx77p4' />
+          </datasources>
+          <datasource-dependencies datasource='federated.0sdv2jb0uh4ow512hhuwo0bx77p4'>
+            <column caption='Ciudad1' datatype='string' name='[Ciudad]' role='dimension' semantic-role='[City].[Name]' type='nominal' />
+            <column caption='ClienteID (dim cliente.csv)' datatype='integer' name='[ClienteID (dim_cliente.csv)]' role='dimension' type='ordinal' />
+            <column caption='Cliente ID' datatype='integer' name='[ClienteID]' role='dimension' type='ordinal' />
+            <column caption='Total D' datatype='integer' name='[Total_D]' role='measure' type='quantitative' />
+            <column-instance column='[Ciudad]' derivation='None' name='[none:Ciudad:nk]' pivot='key' type='nominal' />
+            <column-instance column='[ClienteID (dim_cliente.csv)]' derivation='None' name='[none:ClienteID (dim_cliente.csv):ok]' pivot='key' type='ordinal' />
+            <column-instance column='[Total_D]' derivation='Sum' name='[sum:Total_D:qk]' pivot='key' type='quantitative' />
+          </datasource-dependencies>
+          <filter class='categorical' column='[federated.0sdv2jb0uh4ow512hhuwo0bx77p4].[none:Ciudad:nk]'>
+            <groupfilter function='union' user:ui-domain='database' user:ui-enumeration='inclusive' user:ui-marker='enumerate'>
+              <groupfilter function='member' level='[none:Ciudad:nk]' member='%null%' />
+              <groupfilter function='member' level='[none:Ciudad:nk]' member='&quot;AGS01&quot;' />
+              <groupfilter function='member' level='[none:Ciudad:nk]' member='&quot;AGS02&quot;' />
+              <groupfilter function='member' level='[none:Ciudad:nk]' member='&quot;AGS03&quot;' />
+              <groupfilter function='member' level='[none:Ciudad:nk]' member='&quot;AGS04&quot;' />
+              <groupfilter function='member' level='[none:Ciudad:nk]' member='&quot;BCN01&quot;' />
+              <groupfilter function='member' level='[none:Ciudad:nk]' member='&quot;BCN02&quot;' />
+              <groupfilter function='member' level='[none:Ciudad:nk]' member='&quot;BCN03&quot;' />
+              <groupfilter function='member' level='[none:Ciudad:nk]' member='&quot;BCN04&quot;' />
+              <groupfilter function='member' level='[none:Ciudad:nk]' member='&quot;BCS01&quot;' />
+              <groupfilter function='member' level='[none:Ciudad:nk]' member='&quot;BCS02&quot;' />
+              <groupfilter function='member' level='[none:Ciudad:nk]' member='&quot;CAM01&quot;' />
+              <groupfilter function='member' level='[none:Ciudad:nk]' member='&quot;CAM02&quot;' />
+              <groupfilter function='member' level='[none:Ciudad:nk]' member='&quot;CHI01&quot;' />
+              <groupfilter function='member' level='[none:Ciudad:nk]' member='&quot;CHI02&quot;' />
+              <groupfilter function='member' level='[none:Ciudad:nk]' member='&quot;CHI03&quot;' />
+              <groupfilter function='member' level='[none:Ciudad:nk]' member='&quot;CHI04&quot;' />
+              <groupfilter function='member' level='[none:Ciudad:nk]' member='&quot;CHI06&quot;' />
+              <groupfilter function='member' level='[none:Ciudad:nk]' member='&quot;CHI07&quot;' />
+              <groupfilter function='member' level='[none:Ciudad:nk]' member='&quot;CHI08&quot;' />
+              <groupfilter function='member' level='[none:Ciudad:nk]' member='&quot;CHI09&quot;' />
+              <groupfilter function='member' level='[none:Ciudad:nk]' member='&quot;CHI10&quot;' />
+              <groupfilter function='member' level='[none:Ciudad:nk]' member='&quot;CHP01&quot;' />
+              <groupfilter function='member' level='[none:Ciudad:nk]' member='&quot;CHP02&quot;' />
+              <groupfilter function='member' level='[none:Ciudad:nk]' member='&quot;CHP03&quot;' />
+              <groupfilter function='member' level='[none:Ciudad:nk]' member='&quot;CHP04&quot;' />
+              <groupfilter function='member' level='[none:Ciudad:nk]' member='&quot;CHP05&quot;' />
+              <groupfilter function='member' level='[none:Ciudad:nk]' member='&quot;CHP06&quot;' />
+              <groupfilter function='member' level='[none:Ciudad:nk]' member='&quot;CHP07&quot;' />
+              <groupfilter function='member' level='[none:Ciudad:nk]' member='&quot;CO01&quot;' />
+              <groupfilter function='member' level='[none:Ciudad:nk]' member='&quot;CO02&quot;' />
+              <groupfilter function='member' level='[none:Ciudad:nk]' member='&quot;CO03&quot;' />
+              <groupfilter function='member' level='[none:Ciudad:nk]' member='&quot;CO04&quot;' />
+              <groupfilter function='member' level='[none:Ciudad:nk]' member='&quot;COA01&quot;' />
+              <groupfilter function='member' level='[none:Ciudad:nk]' member='&quot;COA02&quot;' />
+              <groupfilter function='member' level='[none:Ciudad:nk]' member='&quot;COA03&quot;' />
+              <groupfilter function='member' level='[none:Ciudad:nk]' member='&quot;COA04&quot;' />
+              <groupfilter function='member' level='[none:Ciudad:nk]' member='&quot;COA05&quot;' />
+              <groupfilter function='member' level='[none:Ciudad:nk]' member='&quot;DF01&quot;' />
+              <groupfilter function='member' level='[none:Ciudad:nk]' member='&quot;DF02&quot;' />
+              <groupfilter function='member' level='[none:Ciudad:nk]' member='&quot;DUR01&quot;' />
+              <groupfilter function='member' level='[none:Ciudad:nk]' member='&quot;DUR02&quot;' />
+              <groupfilter function='member' level='[none:Ciudad:nk]' member='&quot;DUR03&quot;' />
+              <groupfilter function='member' level='[none:Ciudad:nk]' member='&quot;DUR04&quot;' />
+              <groupfilter function='member' level='[none:Ciudad:nk]' member='&quot;DUR05&quot;' />
+              <groupfilter function='member' level='[none:Ciudad:nk]' member='&quot;EM01&quot;' />
+              <groupfilter function='member' level='[none:Ciudad:nk]' member='&quot;EM02&quot;' />
+              <groupfilter function='member' level='[none:Ciudad:nk]' member='&quot;EM03&quot;' />
+              <groupfilter function='member' level='[none:Ciudad:nk]' member='&quot;EM04&quot;' />
+              <groupfilter function='member' level='[none:Ciudad:nk]' member='&quot;EM05&quot;' />
+              <groupfilter function='member' level='[none:Ciudad:nk]' member='&quot;EM06&quot;' />
+              <groupfilter function='member' level='[none:Ciudad:nk]' member='&quot;EM07&quot;' />
+              <groupfilter function='member' level='[none:Ciudad:nk]' member='&quot;EM08&quot;' />
+              <groupfilter function='member' level='[none:Ciudad:nk]' member='&quot;EM09&quot;' />
+              <groupfilter function='member' level='[none:Ciudad:nk]' member='&quot;EM10&quot;' />
+              <groupfilter function='member' level='[none:Ciudad:nk]' member='&quot;EM11&quot;' />
+              <groupfilter function='member' level='[none:Ciudad:nk]' member='&quot;EM12&quot;' />
+              <groupfilter function='member' level='[none:Ciudad:nk]' member='&quot;EM13&quot;' />
+              <groupfilter function='member' level='[none:Ciudad:nk]' member='&quot;EM14&quot;' />
+              <groupfilter function='member' level='[none:Ciudad:nk]' member='&quot;EM15&quot;' />
+              <groupfilter function='member' level='[none:Ciudad:nk]' member='&quot;EM16&quot;' />
+              <groupfilter function='member' level='[none:Ciudad:nk]' member='&quot;EM17&quot;' />
+              <groupfilter function='member' level='[none:Ciudad:nk]' member='&quot;GR01&quot;' />
+              <groupfilter function='member' level='[none:Ciudad:nk]' member='&quot;GR02&quot;' />
+              <groupfilter function='member' level='[none:Ciudad:nk]' member='&quot;GR03&quot;' />
+              <groupfilter function='member' level='[none:Ciudad:nk]' member='&quot;GR04&quot;' />
+              <groupfilter function='member' level='[none:Ciudad:nk]' member='&quot;GR05&quot;' />
+              <groupfilter function='member' level='[none:Ciudad:nk]' member='&quot;GR06&quot;' />
+              <groupfilter function='member' level='[none:Ciudad:nk]' member='&quot;GR07&quot;' />
+              <groupfilter function='member' level='[none:Ciudad:nk]' member='&quot;GT020&quot;' />
+              <groupfilter function='member' level='[none:Ciudad:nk]' member='&quot;GTO01&quot;' />
+              <groupfilter function='member' level='[none:Ciudad:nk]' member='&quot;GTO02&quot;' />
+              <groupfilter function='member' level='[none:Ciudad:nk]' member='&quot;GTO03&quot;' />
+              <groupfilter function='member' level='[none:Ciudad:nk]' member='&quot;GTO04&quot;' />
+              <groupfilter function='member' level='[none:Ciudad:nk]' member='&quot;GTO05&quot;' />
+              <groupfilter function='member' level='[none:Ciudad:nk]' member='&quot;GTO06&quot;' />
+              <groupfilter function='member' level='[none:Ciudad:nk]' member='&quot;GTO07&quot;' />
+              <groupfilter function='member' level='[none:Ciudad:nk]' member='&quot;GTO08&quot;' />
+              <groupfilter function='member' level='[none:Ciudad:nk]' member='&quot;GTO09&quot;' />
+              <groupfilter function='member' level='[none:Ciudad:nk]' member='&quot;GTO10&quot;' />
+              <groupfilter function='member' level='[none:Ciudad:nk]' member='&quot;GTO11&quot;' />
+              <groupfilter function='member' level='[none:Ciudad:nk]' member='&quot;GTO12&quot;' />
+              <groupfilter function='member' level='[none:Ciudad:nk]' member='&quot;GTO13&quot;' />
+              <groupfilter function='member' level='[none:Ciudad:nk]' member='&quot;GTO14&quot;' />
+              <groupfilter function='member' level='[none:Ciudad:nk]' member='&quot;GTO15&quot;' />
+              <groupfilter function='member' level='[none:Ciudad:nk]' member='&quot;GTO16&quot;' />
+              <groupfilter function='member' level='[none:Ciudad:nk]' member='&quot;GTO17&quot;' />
+              <groupfilter function='member' level='[none:Ciudad:nk]' member='&quot;GTO18&quot;' />
+              <groupfilter function='member' level='[none:Ciudad:nk]' member='&quot;GTO19&quot;' />
+              <groupfilter function='member' level='[none:Ciudad:nk]' member='&quot;HG008&quot;' />
+              <groupfilter function='member' level='[none:Ciudad:nk]' member='&quot;HGO01&quot;' />
+              <groupfilter function='member' level='[none:Ciudad:nk]' member='&quot;HGO02&quot;' />
+              <groupfilter function='member' level='[none:Ciudad:nk]' member='&quot;HGO03&quot;' />
+              <groupfilter function='member' level='[none:Ciudad:nk]' member='&quot;HGO04&quot;' />
+              <groupfilter function='member' level='[none:Ciudad:nk]' member='&quot;HGO05&quot;' />
+              <groupfilter function='member' level='[none:Ciudad:nk]' member='&quot;HGO06&quot;' />
+              <groupfilter function='member' level='[none:Ciudad:nk]' member='&quot;HGO07&quot;' />
+              <groupfilter function='member' level='[none:Ciudad:nk]' member='&quot;HGO09&quot;' />
+              <groupfilter function='member' level='[none:Ciudad:nk]' member='&quot;JA 28&quot;' />
+              <groupfilter function='member' level='[none:Ciudad:nk]' member='&quot;JA01&quot;' />
+              <groupfilter function='member' level='[none:Ciudad:nk]' member='&quot;JA02&quot;' />
+              <groupfilter function='member' level='[none:Ciudad:nk]' member='&quot;JA03&quot;' />
+              <groupfilter function='member' level='[none:Ciudad:nk]' member='&quot;JA04&quot;' />
+              <groupfilter function='member' level='[none:Ciudad:nk]' member='&quot;JA05&quot;' />
+              <groupfilter function='member' level='[none:Ciudad:nk]' member='&quot;JA06&quot;' />
+              <groupfilter function='member' level='[none:Ciudad:nk]' member='&quot;JA07&quot;' />
+              <groupfilter function='member' level='[none:Ciudad:nk]' member='&quot;JA08&quot;' />
+              <groupfilter function='member' level='[none:Ciudad:nk]' member='&quot;JA10&quot;' />
+              <groupfilter function='member' level='[none:Ciudad:nk]' member='&quot;JA11&quot;' />
+              <groupfilter function='member' level='[none:Ciudad:nk]' member='&quot;JA12&quot;' />
+              <groupfilter function='member' level='[none:Ciudad:nk]' member='&quot;JA13&quot;' />
+              <groupfilter function='member' level='[none:Ciudad:nk]' member='&quot;JA14&quot;' />
+              <groupfilter function='member' level='[none:Ciudad:nk]' member='&quot;JA15&quot;' />
+              <groupfilter function='member' level='[none:Ciudad:nk]' member='&quot;JA16&quot;' />
+              <groupfilter function='member' level='[none:Ciudad:nk]' member='&quot;JA17&quot;' />
+              <groupfilter function='member' level='[none:Ciudad:nk]' member='&quot;JA18&quot;' />
+              <groupfilter function='member' level='[none:Ciudad:nk]' member='&quot;JA19&quot;' />
+              <groupfilter function='member' level='[none:Ciudad:nk]' member='&quot;JA20&quot;' />
+              <groupfilter function='member' level='[none:Ciudad:nk]' member='&quot;JA21&quot;' />
+              <groupfilter function='member' level='[none:Ciudad:nk]' member='&quot;JA22&quot;' />
+              <groupfilter function='member' level='[none:Ciudad:nk]' member='&quot;JA23&quot;' />
+              <groupfilter function='member' level='[none:Ciudad:nk]' member='&quot;JA24&quot;' />
+              <groupfilter function='member' level='[none:Ciudad:nk]' member='&quot;JA25&quot;' />
+              <groupfilter function='member' level='[none:Ciudad:nk]' member='&quot;JA26&quot;' />
+              <groupfilter function='member' level='[none:Ciudad:nk]' member='&quot;JA27&quot;' />
+              <groupfilter function='member' level='[none:Ciudad:nk]' member='&quot;JA28&quot;' />
+              <groupfilter function='member' level='[none:Ciudad:nk]' member='&quot;MIC01&quot;' />
+              <groupfilter function='member' level='[none:Ciudad:nk]' member='&quot;MIC02&quot;' />
+              <groupfilter function='member' level='[none:Ciudad:nk]' member='&quot;MIC03&quot;' />
+              <groupfilter function='member' level='[none:Ciudad:nk]' member='&quot;MIC04&quot;' />
+              <groupfilter function='member' level='[none:Ciudad:nk]' member='&quot;MIC05&quot;' />
+              <groupfilter function='member' level='[none:Ciudad:nk]' member='&quot;MIC06&quot;' />
+              <groupfilter function='member' level='[none:Ciudad:nk]' member='&quot;MIC07&quot;' />
+              <groupfilter function='member' level='[none:Ciudad:nk]' member='&quot;MIC08&quot;' />
+              <groupfilter function='member' level='[none:Ciudad:nk]' member='&quot;MIC09&quot;' />
+              <groupfilter function='member' level='[none:Ciudad:nk]' member='&quot;MIC10&quot;' />
+              <groupfilter function='member' level='[none:Ciudad:nk]' member='&quot;MIC11&quot;' />
+              <groupfilter function='member' level='[none:Ciudad:nk]' member='&quot;MIC12&quot;' />
+              <groupfilter function='member' level='[none:Ciudad:nk]' member='&quot;MIC13&quot;' />
+              <groupfilter function='member' level='[none:Ciudad:nk]' member='&quot;MIC14&quot;' />
+              <groupfilter function='member' level='[none:Ciudad:nk]' member='&quot;MIC15&quot;' />
+              <groupfilter function='member' level='[none:Ciudad:nk]' member='&quot;MIC16&quot;' />
+              <groupfilter function='member' level='[none:Ciudad:nk]' member='&quot;MIC17&quot;' />
+              <groupfilter function='member' level='[none:Ciudad:nk]' member='&quot;MIC18&quot;' />
+              <groupfilter function='member' level='[none:Ciudad:nk]' member='&quot;MIC19&quot;' />
+              <groupfilter function='member' level='[none:Ciudad:nk]' member='&quot;MIC20&quot;' />
+              <groupfilter function='member' level='[none:Ciudad:nk]' member='&quot;MIC21&quot;' />
+              <groupfilter function='member' level='[none:Ciudad:nk]' member='&quot;MIC22&quot;' />
+              <groupfilter function='member' level='[none:Ciudad:nk]' member='&quot;MIC23&quot;' />
+              <groupfilter function='member' level='[none:Ciudad:nk]' member='&quot;MIC24&quot;' />
+              <groupfilter function='member' level='[none:Ciudad:nk]' member='&quot;MIC25&quot;' />
+              <groupfilter function='member' level='[none:Ciudad:nk]' member='&quot;MOR01&quot;' />
+              <groupfilter function='member' level='[none:Ciudad:nk]' member='&quot;MOR02&quot;' />
+              <groupfilter function='member' level='[none:Ciudad:nk]' member='&quot;MOR03&quot;' />
+              <groupfilter function='member' level='[none:Ciudad:nk]' member='&quot;NAY01&quot;' />
+              <groupfilter function='member' level='[none:Ciudad:nk]' member='&quot;NAY02&quot;' />
+              <groupfilter function='member' level='[none:Ciudad:nk]' member='&quot;NAY03&quot;' />
+              <groupfilter function='member' level='[none:Ciudad:nk]' member='&quot;NAY04&quot;' />
+              <groupfilter function='member' level='[none:Ciudad:nk]' member='&quot;NAY05&quot;' />
+              <groupfilter function='member' level='[none:Ciudad:nk]' member='&quot;NAY06&quot;' />
+              <groupfilter function='member' level='[none:Ciudad:nk]' member='&quot;NAY07&quot;' />
+              <groupfilter function='member' level='[none:Ciudad:nk]' member='&quot;NAY08&quot;' />
+              <groupfilter function='member' level='[none:Ciudad:nk]' member='&quot;NAY09&quot;' />
+              <groupfilter function='member' level='[none:Ciudad:nk]' member='&quot;NL01&quot;' />
+              <groupfilter function='member' level='[none:Ciudad:nk]' member='&quot;NL02&quot;' />
+              <groupfilter function='member' level='[none:Ciudad:nk]' member='&quot;NL03&quot;' />
+              <groupfilter function='member' level='[none:Ciudad:nk]' member='&quot;NL04&quot;' />
+              <groupfilter function='member' level='[none:Ciudad:nk]' member='&quot;NL05&quot;' />
+              <groupfilter function='member' level='[none:Ciudad:nk]' member='&quot;NO PROPORCIONADO&quot;' />
+              <groupfilter function='member' level='[none:Ciudad:nk]' member='&quot;OA01&quot;' />
+              <groupfilter function='member' level='[none:Ciudad:nk]' member='&quot;OA02&quot;' />
+              <groupfilter function='member' level='[none:Ciudad:nk]' member='&quot;OA03&quot;' />
+              <groupfilter function='member' level='[none:Ciudad:nk]' member='&quot;OA04&quot;' />
+              <groupfilter function='member' level='[none:Ciudad:nk]' member='&quot;OA05&quot;' />
+              <groupfilter function='member' level='[none:Ciudad:nk]' member='&quot;OA06&quot;' />
+              <groupfilter function='member' level='[none:Ciudad:nk]' member='&quot;OA07&quot;' />
+              <groupfilter function='member' level='[none:Ciudad:nk]' member='&quot;OA08&quot;' />
+              <groupfilter function='member' level='[none:Ciudad:nk]' member='&quot;OA09&quot;' />
+              <groupfilter function='member' level='[none:Ciudad:nk]' member='&quot;OA10&quot;' />
+              <groupfilter function='member' level='[none:Ciudad:nk]' member='&quot;OA11&quot;' />
+              <groupfilter function='member' level='[none:Ciudad:nk]' member='&quot;OA12&quot;' />
+              <groupfilter function='member' level='[none:Ciudad:nk]' member='&quot;OA13&quot;' />
+              <groupfilter function='member' level='[none:Ciudad:nk]' member='&quot;OA14&quot;' />
+              <groupfilter function='member' level='[none:Ciudad:nk]' member='&quot;OA15&quot;' />
+              <groupfilter function='member' level='[none:Ciudad:nk]' member='&quot;OA16&quot;' />
+              <groupfilter function='member' level='[none:Ciudad:nk]' member='&quot;PUE01&quot;' />
+              <groupfilter function='member' level='[none:Ciudad:nk]' member='&quot;PUE02&quot;' />
+              <groupfilter function='member' level='[none:Ciudad:nk]' member='&quot;PUE03&quot;' />
+              <groupfilter function='member' level='[none:Ciudad:nk]' member='&quot;PUE04&quot;' />
+              <groupfilter function='member' level='[none:Ciudad:nk]' member='&quot;PUE05&quot;' />
+              <groupfilter function='member' level='[none:Ciudad:nk]' member='&quot;PUE06&quot;' />
+              <groupfilter function='member' level='[none:Ciudad:nk]' member='&quot;PUE07&quot;' />
+              <groupfilter function='member' level='[none:Ciudad:nk]' member='&quot;PUE08&quot;' />
+              <groupfilter function='member' level='[none:Ciudad:nk]' member='&quot;PUE09&quot;' />
+              <groupfilter function='member' level='[none:Ciudad:nk]' member='&quot;QR01&quot;' />
+              <groupfilter function='member' level='[none:Ciudad:nk]' member='&quot;QR02&quot;' />
+              <groupfilter function='member' level='[none:Ciudad:nk]' member='&quot;QR03&quot;' />
+              <groupfilter function='member' level='[none:Ciudad:nk]' member='&quot;QR04&quot;' />
+              <groupfilter function='member' level='[none:Ciudad:nk]' member='&quot;QT005&quot;' />
+              <groupfilter function='member' level='[none:Ciudad:nk]' member='&quot;QTO01&quot;' />
+              <groupfilter function='member' level='[none:Ciudad:nk]' member='&quot;QTO02&quot;' />
+              <groupfilter function='member' level='[none:Ciudad:nk]' member='&quot;QTO03&quot;' />
+              <groupfilter function='member' level='[none:Ciudad:nk]' member='&quot;QTO04&quot;' />
+              <groupfilter function='member' level='[none:Ciudad:nk]' member='&quot;QTO06&quot;' />
+              <groupfilter function='member' level='[none:Ciudad:nk]' member='&quot;SIN01&quot;' />
+              <groupfilter function='member' level='[none:Ciudad:nk]' member='&quot;SIN02&quot;' />
+              <groupfilter function='member' level='[none:Ciudad:nk]' member='&quot;SIN03&quot;' />
+              <groupfilter function='member' level='[none:Ciudad:nk]' member='&quot;SIN04&quot;' />
+              <groupfilter function='member' level='[none:Ciudad:nk]' member='&quot;SIN05&quot;' />
+              <groupfilter function='member' level='[none:Ciudad:nk]' member='&quot;SIN06&quot;' />
+              <groupfilter function='member' level='[none:Ciudad:nk]' member='&quot;SLP01&quot;' />
+              <groupfilter function='member' level='[none:Ciudad:nk]' member='&quot;SLP02&quot;' />
+              <groupfilter function='member' level='[none:Ciudad:nk]' member='&quot;SLP03&quot;' />
+              <groupfilter function='member' level='[none:Ciudad:nk]' member='&quot;SLP04&quot;' />
+              <groupfilter function='member' level='[none:Ciudad:nk]' member='&quot;SLP05&quot;' />
+              <groupfilter function='member' level='[none:Ciudad:nk]' member='&quot;SLP06&quot;' />
+              <groupfilter function='member' level='[none:Ciudad:nk]' member='&quot;SLP07&quot;' />
+              <groupfilter function='member' level='[none:Ciudad:nk]' member='&quot;SLP08&quot;' />
+              <groupfilter function='member' level='[none:Ciudad:nk]' member='&quot;SLP09&quot;' />
+              <groupfilter function='member' level='[none:Ciudad:nk]' member='&quot;SLP10&quot;' />
+              <groupfilter function='member' level='[none:Ciudad:nk]' member='&quot;SLP11&quot;' />
+              <groupfilter function='member' level='[none:Ciudad:nk]' member='&quot;SON01&quot;' />
+              <groupfilter function='member' level='[none:Ciudad:nk]' member='&quot;SON02&quot;' />
+              <groupfilter function='member' level='[none:Ciudad:nk]' member='&quot;SON03&quot;' />
+              <groupfilter function='member' level='[none:Ciudad:nk]' member='&quot;SON04&quot;' />
+              <groupfilter function='member' level='[none:Ciudad:nk]' member='&quot;SON05&quot;' />
+              <groupfilter function='member' level='[none:Ciudad:nk]' member='&quot;SON06&quot;' />
+              <groupfilter function='member' level='[none:Ciudad:nk]' member='&quot;SON07&quot;' />
+              <groupfilter function='member' level='[none:Ciudad:nk]' member='&quot;SON08&quot;' />
+              <groupfilter function='member' level='[none:Ciudad:nk]' member='&quot;SON09&quot;' />
+              <groupfilter function='member' level='[none:Ciudad:nk]' member='&quot;SON10&quot;' />
+              <groupfilter function='member' level='[none:Ciudad:nk]' member='&quot;SON11&quot;' />
+              <groupfilter function='member' level='[none:Ciudad:nk]' member='&quot;SON12&quot;' />
+              <groupfilter function='member' level='[none:Ciudad:nk]' member='&quot;SON13&quot;' />
+              <groupfilter function='member' level='[none:Ciudad:nk]' member='&quot;TAB01&quot;' />
+              <groupfilter function='member' level='[none:Ciudad:nk]' member='&quot;TAB02&quot;' />
+              <groupfilter function='member' level='[none:Ciudad:nk]' member='&quot;TAB03&quot;' />
+              <groupfilter function='member' level='[none:Ciudad:nk]' member='&quot;TAM01&quot;' />
+              <groupfilter function='member' level='[none:Ciudad:nk]' member='&quot;TAM02&quot;' />
+              <groupfilter function='member' level='[none:Ciudad:nk]' member='&quot;TAM03&quot;' />
+              <groupfilter function='member' level='[none:Ciudad:nk]' member='&quot;TAM04&quot;' />
+              <groupfilter function='member' level='[none:Ciudad:nk]' member='&quot;TAM05&quot;' />
+              <groupfilter function='member' level='[none:Ciudad:nk]' member='&quot;TAM06&quot;' />
+              <groupfilter function='member' level='[none:Ciudad:nk]' member='&quot;TAM08&quot;' />
+              <groupfilter function='member' level='[none:Ciudad:nk]' member='&quot;TAM09&quot;' />
+              <groupfilter function='member' level='[none:Ciudad:nk]' member='&quot;TAM10&quot;' />
+              <groupfilter function='member' level='[none:Ciudad:nk]' member='&quot;TAM11&quot;' />
+              <groupfilter function='member' level='[none:Ciudad:nk]' member='&quot;TAM12&quot;' />
+              <groupfilter function='member' level='[none:Ciudad:nk]' member='&quot;TLA01&quot;' />
+              <groupfilter function='member' level='[none:Ciudad:nk]' member='&quot;TLA02&quot;' />
+              <groupfilter function='member' level='[none:Ciudad:nk]' member='&quot;TLA03&quot;' />
+              <groupfilter function='member' level='[none:Ciudad:nk]' member='&quot;VER01&quot;' />
+              <groupfilter function='member' level='[none:Ciudad:nk]' member='&quot;VER02&quot;' />
+              <groupfilter function='member' level='[none:Ciudad:nk]' member='&quot;VER03&quot;' />
+              <groupfilter function='member' level='[none:Ciudad:nk]' member='&quot;VER04&quot;' />
+              <groupfilter function='member' level='[none:Ciudad:nk]' member='&quot;VER05&quot;' />
+              <groupfilter function='member' level='[none:Ciudad:nk]' member='&quot;VER06&quot;' />
+              <groupfilter function='member' level='[none:Ciudad:nk]' member='&quot;VER07&quot;' />
+              <groupfilter function='member' level='[none:Ciudad:nk]' member='&quot;VER08&quot;' />
+              <groupfilter function='member' level='[none:Ciudad:nk]' member='&quot;VER09&quot;' />
+              <groupfilter function='member' level='[none:Ciudad:nk]' member='&quot;VER10&quot;' />
+              <groupfilter function='member' level='[none:Ciudad:nk]' member='&quot;VER11&quot;' />
+              <groupfilter function='member' level='[none:Ciudad:nk]' member='&quot;VER12&quot;' />
+              <groupfilter function='member' level='[none:Ciudad:nk]' member='&quot;VER13&quot;' />
+              <groupfilter function='member' level='[none:Ciudad:nk]' member='&quot;VER14&quot;' />
+              <groupfilter function='member' level='[none:Ciudad:nk]' member='&quot;VER15&quot;' />
+              <groupfilter function='member' level='[none:Ciudad:nk]' member='&quot;VER16&quot;' />
+              <groupfilter function='member' level='[none:Ciudad:nk]' member='&quot;VER17&quot;' />
+              <groupfilter function='member' level='[none:Ciudad:nk]' member='&quot;VER18&quot;' />
+              <groupfilter function='member' level='[none:Ciudad:nk]' member='&quot;VER19&quot;' />
+              <groupfilter function='member' level='[none:Ciudad:nk]' member='&quot;VER20&quot;' />
+              <groupfilter function='member' level='[none:Ciudad:nk]' member='&quot;VER21&quot;' />
+              <groupfilter function='member' level='[none:Ciudad:nk]' member='&quot;VER22&quot;' />
+              <groupfilter function='member' level='[none:Ciudad:nk]' member='&quot;YU01&quot;' />
+              <groupfilter function='member' level='[none:Ciudad:nk]' member='&quot;YUC02&quot;' />
+              <groupfilter function='member' level='[none:Ciudad:nk]' member='&quot;YUC03&quot;' />
+              <groupfilter function='member' level='[none:Ciudad:nk]' member='&quot;ZAC01&quot;' />
+              <groupfilter function='member' level='[none:Ciudad:nk]' member='&quot;ZAC02&quot;' />
+              <groupfilter function='member' level='[none:Ciudad:nk]' member='&quot;ZAC03&quot;' />
+              <groupfilter function='member' level='[none:Ciudad:nk]' member='&quot;ZAC04&quot;' />
+              <groupfilter function='member' level='[none:Ciudad:nk]' member='&quot;ZAC05&quot;' />
+              <groupfilter function='member' level='[none:Ciudad:nk]' member='&quot;ZAC06&quot;' />
+              <groupfilter function='member' level='[none:Ciudad:nk]' member='&quot;ZAC07&quot;' />
+              <groupfilter function='member' level='[none:Ciudad:nk]' member='&quot;ZAC08&quot;' />
+              <groupfilter function='member' level='[none:Ciudad:nk]' member='&quot;ZAC09&quot;' />
+              <groupfilter function='member' level='[none:Ciudad:nk]' member='&quot;ZAC10&quot;' />
+              <groupfilter function='member' level='[none:Ciudad:nk]' member='&quot;ZAC11&quot;' />
+              <groupfilter function='member' level='[none:Ciudad:nk]' member='&quot;ZAC12&quot;' />
+              <groupfilter function='member' level='[none:Ciudad:nk]' member='&quot;ZAC13&quot;' />
+            </groupfilter>
+          </filter>
+          <filter class='categorical' column='[federated.0sdv2jb0uh4ow512hhuwo0bx77p4].[none:ClienteID (dim_cliente.csv):ok]'>
+            <groupfilter count='10' end='top' function='end' units='records' user:ui-marker='end' user:ui-top-by-field='true'>
+              <groupfilter direction='DESC' expression='COUNT([ClienteID])' function='order' user:ui-marker='order'>
+                <groupfilter function='level-members' level='[none:ClienteID (dim_cliente.csv):ok]' user:ui-manual-selection='true' user:ui-manual-selection-all-when-empty='true' user:ui-manual-selection-is-empty='true' user:ui-marker='enumerate' />
+              </groupfilter>
+            </groupfilter>
+          </filter>
+          <slices>
+            <column>[federated.0sdv2jb0uh4ow512hhuwo0bx77p4].[none:ClienteID (dim_cliente.csv):ok]</column>
+            <column>[federated.0sdv2jb0uh4ow512hhuwo0bx77p4].[none:Ciudad:nk]</column>
+          </slices>
+          <aggregation value='true' />
+        </view>
+        <style />
+        <panes>
+          <pane selection-relaxation-option='selection-relaxation-allow'>
+            <view>
+              <breakdown value='auto' />
+            </view>
+            <mark class='Pie' />
+            <encodings>
+              <color column='[federated.0sdv2jb0uh4ow512hhuwo0bx77p4].[none:ClienteID (dim_cliente.csv):ok]' />
+              <wedge-size column='[federated.0sdv2jb0uh4ow512hhuwo0bx77p4].[sum:Total_D:qk]' />
+              <size column='[federated.0sdv2jb0uh4ow512hhuwo0bx77p4].[sum:Total_D:qk]' />
+            </encodings>
+          </pane>
+        </panes>
+        <rows />
+        <cols />
+      </table>
+      <simple-id uuid='{8F820F8A-ED08-4CFB-AF57-8ABD7C7A9E07}' />
+    </worksheet>
+    <worksheet name='Ventas por condición de pago'>
+      <table>
+        <view>
+          <datasources>
+            <datasource caption='fact_salida+' name='federated.0sdv2jb0uh4ow512hhuwo0bx77p4' />
+          </datasources>
+          <datasource-dependencies datasource='federated.0sdv2jb0uh4ow512hhuwo0bx77p4'>
+            <column aggregation='Sum' caption='Condicion Pago' datatype='integer' name='[Condicion_Pago]' role='dimension' type='ordinal' />
+            <column caption='Total D' datatype='integer' name='[Total_D]' role='measure' type='quantitative' />
+            <column-instance column='[Condicion_Pago]' derivation='None' name='[none:Condicion_Pago:ok]' pivot='key' type='ordinal' />
+            <column-instance column='[Total_D]' derivation='Sum' name='[sum:Total_D:qk]' pivot='key' type='quantitative' />
+          </datasource-dependencies>
+          <filter class='categorical' column='[federated.0sdv2jb0uh4ow512hhuwo0bx77p4].[none:Condicion_Pago:ok]'>
+            <groupfilter function='union' user:ui-domain='database' user:ui-enumeration='inclusive' user:ui-marker='enumerate'>
+              <groupfilter function='member' level='[none:Condicion_Pago:ok]' member='%null%' />
+              <groupfilter function='member' level='[none:Condicion_Pago:ok]' member='1' />
+              <groupfilter function='member' level='[none:Condicion_Pago:ok]' member='2' />
+              <groupfilter function='member' level='[none:Condicion_Pago:ok]' member='3' />
+              <groupfilter function='member' level='[none:Condicion_Pago:ok]' member='4' />
+              <groupfilter function='member' level='[none:Condicion_Pago:ok]' member='5' />
+              <groupfilter function='member' level='[none:Condicion_Pago:ok]' member='6' />
+              <groupfilter function='member' level='[none:Condicion_Pago:ok]' member='7' />
+              <groupfilter function='member' level='[none:Condicion_Pago:ok]' member='8' />
+              <groupfilter function='member' level='[none:Condicion_Pago:ok]' member='9' />
+              <groupfilter function='member' level='[none:Condicion_Pago:ok]' member='10' />
+              <groupfilter function='member' level='[none:Condicion_Pago:ok]' member='11' />
+              <groupfilter function='member' level='[none:Condicion_Pago:ok]' member='12' />
+              <groupfilter function='member' level='[none:Condicion_Pago:ok]' member='13' />
+              <groupfilter function='member' level='[none:Condicion_Pago:ok]' member='14' />
+              <groupfilter function='member' level='[none:Condicion_Pago:ok]' member='15' />
+              <groupfilter function='member' level='[none:Condicion_Pago:ok]' member='16' />
+              <groupfilter function='member' level='[none:Condicion_Pago:ok]' member='17' />
+              <groupfilter function='member' level='[none:Condicion_Pago:ok]' member='18' />
+              <groupfilter function='member' level='[none:Condicion_Pago:ok]' member='19' />
+              <groupfilter function='member' level='[none:Condicion_Pago:ok]' member='20' />
+              <groupfilter function='member' level='[none:Condicion_Pago:ok]' member='21' />
+              <groupfilter function='member' level='[none:Condicion_Pago:ok]' member='22' />
+              <groupfilter function='member' level='[none:Condicion_Pago:ok]' member='23' />
+              <groupfilter function='member' level='[none:Condicion_Pago:ok]' member='24' />
+              <groupfilter function='member' level='[none:Condicion_Pago:ok]' member='25' />
+              <groupfilter function='member' level='[none:Condicion_Pago:ok]' member='26' />
+              <groupfilter function='member' level='[none:Condicion_Pago:ok]' member='27' />
+              <groupfilter function='member' level='[none:Condicion_Pago:ok]' member='28' />
+              <groupfilter function='member' level='[none:Condicion_Pago:ok]' member='29' />
+              <groupfilter function='member' level='[none:Condicion_Pago:ok]' member='30' />
+              <groupfilter function='member' level='[none:Condicion_Pago:ok]' member='31' />
+              <groupfilter function='member' level='[none:Condicion_Pago:ok]' member='32' />
+              <groupfilter function='member' level='[none:Condicion_Pago:ok]' member='33' />
+              <groupfilter function='member' level='[none:Condicion_Pago:ok]' member='34' />
+              <groupfilter function='member' level='[none:Condicion_Pago:ok]' member='35' />
+              <groupfilter function='member' level='[none:Condicion_Pago:ok]' member='36' />
+              <groupfilter function='member' level='[none:Condicion_Pago:ok]' member='37' />
+              <groupfilter function='member' level='[none:Condicion_Pago:ok]' member='39' />
+              <groupfilter function='member' level='[none:Condicion_Pago:ok]' member='40' />
+              <groupfilter function='member' level='[none:Condicion_Pago:ok]' member='41' />
+              <groupfilter function='member' level='[none:Condicion_Pago:ok]' member='45' />
+              <groupfilter function='member' level='[none:Condicion_Pago:ok]' member='48' />
+              <groupfilter function='member' level='[none:Condicion_Pago:ok]' member='55' />
+              <groupfilter function='member' level='[none:Condicion_Pago:ok]' member='60' />
+              <groupfilter function='member' level='[none:Condicion_Pago:ok]' member='90' />
+              <groupfilter function='member' level='[none:Condicion_Pago:ok]' member='354' />
+              <groupfilter function='member' level='[none:Condicion_Pago:ok]' member='361' />
+              <groupfilter function='member' level='[none:Condicion_Pago:ok]' member='362' />
+              <groupfilter function='member' level='[none:Condicion_Pago:ok]' member='1258' />
+              <groupfilter function='member' level='[none:Condicion_Pago:ok]' member='2491' />
+            </groupfilter>
+          </filter>
+          <slices>
+            <column>[federated.0sdv2jb0uh4ow512hhuwo0bx77p4].[none:Condicion_Pago:ok]</column>
+          </slices>
+          <aggregation value='true' />
+        </view>
+        <style />
+        <panes>
+          <pane selection-relaxation-option='selection-relaxation-allow'>
+            <view>
+              <breakdown value='on' />
+            </view>
+            <mark class='Automatic' />
+            <encodings>
+              <size column='[federated.0sdv2jb0uh4ow512hhuwo0bx77p4].[sum:Total_D:qk]' />
+              <color column='[federated.0sdv2jb0uh4ow512hhuwo0bx77p4].[sum:Total_D:qk]' />
+              <text column='[federated.0sdv2jb0uh4ow512hhuwo0bx77p4].[none:Condicion_Pago:ok]' />
+            </encodings>
+            <style>
+              <style-rule element='mark'>
+                <format attr='mark-labels-show' value='true' />
+                <format attr='mark-labels-cull' value='true' />
+                <format attr='mark-labels-line-first' value='true' />
+                <format attr='mark-labels-line-last' value='true' />
+                <format attr='mark-labels-range-min' value='true' />
+                <format attr='mark-labels-range-max' value='true' />
+                <format attr='mark-labels-mode' value='all' />
+                <format attr='mark-labels-range-scope' value='pane' />
+                <format attr='mark-labels-range-field' value='' />
+              </style-rule>
+            </style>
+          </pane>
+        </panes>
+        <rows />
+        <cols />
+      </table>
+      <simple-id uuid='{53891A26-857D-4F51-BA2C-5C05C31DFFC7}' />
+    </worksheet>
+    <worksheet name='Ventas por vendedor'>
+      <table>
+        <view>
+          <datasources>
+            <datasource caption='fact_salida+' name='federated.0sdv2jb0uh4ow512hhuwo0bx77p4' />
+          </datasources>
+          <datasource-dependencies datasource='federated.0sdv2jb0uh4ow512hhuwo0bx77p4'>
+            <column caption='Articulo Grupo' datatype='string' name='[Articulo_Grupo]' role='dimension' type='nominal' />
+            <column datatype='integer' name='[Cantidad]' role='measure' type='quantitative' />
+            <column datatype='string' name='[Nombre]' role='dimension' type='nominal' />
+            <column caption='Total D' datatype='integer' name='[Total_D]' role='measure' type='quantitative' />
+            <column-instance column='[Articulo_Grupo]' derivation='None' name='[none:Articulo_Grupo:nk]' pivot='key' type='nominal' />
+            <column-instance column='[Nombre]' derivation='None' name='[none:Nombre:nk]' pivot='key' type='nominal' />
+            <column-instance column='[Cantidad]' derivation='Sum' name='[sum:Cantidad:qk]' pivot='key' type='quantitative' />
+            <column-instance column='[Total_D]' derivation='Sum' name='[sum:Total_D:qk]' pivot='key' type='quantitative' />
+          </datasource-dependencies>
+          <filter class='categorical' column='[federated.0sdv2jb0uh4ow512hhuwo0bx77p4].[none:Articulo_Grupo:nk]'>
+            <groupfilter function='union' user:ui-domain='database' user:ui-enumeration='inclusive' user:ui-marker='enumerate'>
+              <groupfilter function='member' level='[none:Articulo_Grupo:nk]' member='&quot;ACCESORIOS&quot;' />
+              <groupfilter function='member' level='[none:Articulo_Grupo:nk]' member='&quot;BMW&quot;' />
+              <groupfilter function='member' level='[none:Articulo_Grupo:nk]' member='&quot;BRAZOS DE DEFENSA&quot;' />
+              <groupfilter function='member' level='[none:Articulo_Grupo:nk]' member='&quot;CHEVROLET&quot;' />
+              <groupfilter function='member' level='[none:Articulo_Grupo:nk]' member='&quot;DEFENSAS DELANTERAS&quot;' />
+              <groupfilter function='member' level='[none:Articulo_Grupo:nk]' member='&quot;DODGE&quot;' />
+              <groupfilter function='member' level='[none:Articulo_Grupo:nk]' member='&quot;FORD&quot;' />
+              <groupfilter function='member' level='[none:Articulo_Grupo:nk]' member='&quot;HONDA&quot;' />
+              <groupfilter function='member' level='[none:Articulo_Grupo:nk]' member='&quot;ISUZU&quot;' />
+              <groupfilter function='member' level='[none:Articulo_Grupo:nk]' member='&quot;MALIBU (TODOS) AUT 3 LIN&quot;' />
+              <groupfilter function='member' level='[none:Articulo_Grupo:nk]' member='&quot;MARQUIS 79-84 AUT 3 LIN&quot;' />
+              <groupfilter function='member' level='[none:Articulo_Grupo:nk]' member='&quot;MAZDA&quot;' />
+              <groupfilter function='member' level='[none:Articulo_Grupo:nk]' member='&quot;MERCEDES&quot;' />
+              <groupfilter function='member' level='[none:Articulo_Grupo:nk]' member='&quot;MITSUBISHI&quot;' />
+              <groupfilter function='member' level='[none:Articulo_Grupo:nk]' member='&quot;NISSAN&quot;' />
+              <groupfilter function='member' level='[none:Articulo_Grupo:nk]' member='&quot;NO PROPORCIONADO&quot;' />
+              <groupfilter function='member' level='[none:Articulo_Grupo:nk]' member='&quot;PEUGEOT&quot;' />
+              <groupfilter function='member' level='[none:Articulo_Grupo:nk]' member='&quot;RADIADORES&quot;' />
+              <groupfilter function='member' level='[none:Articulo_Grupo:nk]' member='&quot;RENAULT&quot;' />
+              <groupfilter function='member' level='[none:Articulo_Grupo:nk]' member='&quot;SEAT&quot;' />
+              <groupfilter function='member' level='[none:Articulo_Grupo:nk]' member='&quot;SOPORTE PARRILLA&quot;' />
+              <groupfilter function='member' level='[none:Articulo_Grupo:nk]' member='&quot;TOYOTA&quot;' />
+              <groupfilter function='member' level='[none:Articulo_Grupo:nk]' member='&quot;VOLSKWAGEN&quot;' />
+              <groupfilter function='member' level='[none:Articulo_Grupo:nk]' member='&quot;ZUNIVERSAL&quot;' />
+            </groupfilter>
+          </filter>
+          <filter class='categorical' column='[federated.0sdv2jb0uh4ow512hhuwo0bx77p4].[none:Nombre:nk]'>
+            <groupfilter function='union' user:ui-domain='database' user:ui-enumeration='inclusive' user:ui-marker='enumerate'>
+              <groupfilter function='member' level='[none:Nombre:nk]' member='%null%' />
+              <groupfilter function='member' level='[none:Nombre:nk]' member='&quot;CARLOS&quot;' />
+              <groupfilter function='member' level='[none:Nombre:nk]' member='&quot;ERNESTO&quot;' />
+              <groupfilter function='member' level='[none:Nombre:nk]' member='&quot;ESTEBAN&quot;' />
+              <groupfilter function='member' level='[none:Nombre:nk]' member='&quot;FERNANDO&quot;' />
+              <groupfilter function='member' level='[none:Nombre:nk]' member='&quot;FRANCISCO&quot;' />
+              <groupfilter function='member' level='[none:Nombre:nk]' member='&quot;GABRIELA&quot;' />
+              <groupfilter function='member' level='[none:Nombre:nk]' member='&quot;IVÁN&quot;' />
+              <groupfilter function='member' level='[none:Nombre:nk]' member='&quot;JULIÁN&quot;' />
+              <groupfilter function='member' level='[none:Nombre:nk]' member='&quot;LUIS ENRIQUE&quot;' />
+              <groupfilter function='member' level='[none:Nombre:nk]' member='&quot;MIGUEL&quot;' />
+              <groupfilter function='member' level='[none:Nombre:nk]' member='&quot;NO PROPORCIONADO&quot;' />
+              <groupfilter function='member' level='[none:Nombre:nk]' member='&quot;RICARDO&quot;' />
+            </groupfilter>
+          </filter>
+          <shelf-sorts>
+            <shelf-sort-v2 dimension-to-sort='[federated.0sdv2jb0uh4ow512hhuwo0bx77p4].[none:Nombre:nk]' direction='DESC' is-on-innermost-dimension='true' measure-to-sort-by='[federated.0sdv2jb0uh4ow512hhuwo0bx77p4].[sum:Cantidad:qk]' shelf='columns' />
+          </shelf-sorts>
+          <slices>
+            <column>[federated.0sdv2jb0uh4ow512hhuwo0bx77p4].[none:Nombre:nk]</column>
+            <column>[federated.0sdv2jb0uh4ow512hhuwo0bx77p4].[none:Articulo_Grupo:nk]</column>
+          </slices>
+          <aggregation value='true' />
+        </view>
+        <style />
+        <panes>
+          <pane selection-relaxation-option='selection-relaxation-allow'>
+            <view>
+              <breakdown value='auto' />
+            </view>
+            <mark class='Automatic' />
+            <encodings>
+              <text column='[federated.0sdv2jb0uh4ow512hhuwo0bx77p4].[sum:Total_D:qk]' />
+            </encodings>
+            <style>
+              <style-rule element='mark'>
+                <format attr='mark-labels-show' value='true' />
+                <format attr='mark-labels-cull' value='true' />
+                <format attr='mark-color' value='#f9a655' />
+              </style-rule>
+            </style>
+          </pane>
+        </panes>
+        <rows>[federated.0sdv2jb0uh4ow512hhuwo0bx77p4].[sum:Cantidad:qk]</rows>
+        <cols>[federated.0sdv2jb0uh4ow512hhuwo0bx77p4].[none:Nombre:nk]</cols>
+      </table>
+      <simple-id uuid='{4164167B-09E9-4380-A1BD-A70A2B07F179}' />
+    </worksheet>
+  </worksheets>
+  <dashboards>
+    <dashboard enable-sort-zone-taborder='true' name='Dashboard 1'>
+      <style />
+      <size maxheight='860' maxwidth='1550' sizing-mode='range' />
+      <datasources>
+        <datasource caption='fact_salida+' name='federated.0sdv2jb0uh4ow512hhuwo0bx77p4' />
+      </datasources>
+      <datasource-dependencies datasource='federated.0sdv2jb0uh4ow512hhuwo0bx77p4'>
+        <column caption='ClienteID (dim cliente.csv)' datatype='integer' name='[ClienteID (dim_cliente.csv)]' role='dimension' type='ordinal' />
+        <column-instance column='[ClienteID (dim_cliente.csv)]' derivation='None' name='[none:ClienteID (dim_cliente.csv):ok]' pivot='key' type='ordinal' />
+      </datasource-dependencies>
+      <zones>
+        <zone h='33256' id='8' name='Ventas por vendedor' w='33290' x='1677' y='25465' />
+        <zone h='33256' id='9' name='Costo promedio por marca' w='33290' x='42258' y='25349' />
+        <zone h='33256' id='10' name='Ventas por cliente' w='19613' x='452' y='64767' />
+        <zone h='25349' id='11' name='Ventas por cliente' pane-specification-id='0' param='[federated.0sdv2jb0uh4ow512hhuwo0bx77p4].[none:ClienteID (dim_cliente.csv):ok]' show-title='false' type-v2='color' w='9032' x='10452' y='67209' />
+        <zone h='33256' id='12' name='Comportamiento de cliente por año' w='33290' x='22903' y='63953' />
+        <zone h='25349' id='13' name='Comportamiento de cliente por año' pane-specification-id='0' param='[federated.0sdv2jb0uh4ow512hhuwo0bx77p4].[none:ClienteID:ok]' type-v2='color' w='9032' x='56452' y='69070' />
+        <zone h='33256' id='14' name='Ventas por condición de pago' w='33290' x='65355' y='64302' />
+        <zone h='8837' id='15' name='Ventas por condición de pago' pane-specification-id='0' param='[federated.0sdv2jb0uh4ow512hhuwo0bx77p4].[sum:Total_D:qk]' type-v2='color' w='9032' x='84387' y='60349' />
+        <zone h='8488' id='16' name='KPIs' show-title='false' w='79290' x='968' y='16744' />
+        <zone h='3488' id='17' type-v2='text' w='11935' x='34903' y='11395'>
+          <formatted-text>
+            <run fontsize='15'>Tablero de Entrada</run>
+          </formatted-text>
+        </zone>
+        <zone h='11628' id='18' mode='typeinlist' name='Ventas por cliente' param='[federated.0sdv2jb0uh4ow512hhuwo0bx77p4].[none:ClienteID (dim_cliente.csv):ok]' type-v2='filter' values='database' w='10323' x='20710' y='64767' />
+      </zones>
+      <devicelayouts>
+        <devicelayout auto-generated='true' name='Phone'>
+          <size maxheight='700' minheight='700' sizing-mode='vscroll' />
+          <zones>
+            <zone h='100000' id='2' type-v2='layout-basic' w='100000' x='0' y='0'>
+              <zone h='84000' id='1' param='vert' type-v2='layout-flow' w='84000' x='8000' y='8000' />
+              <zone-style>
+                <format attr='border-color' value='#000000' />
+                <format attr='border-style' value='none' />
+                <format attr='border-width' value='0' />
+                <format attr='margin' value='8' />
+              </zone-style>
+            </zone>
+          </zones>
+        </devicelayout>
+      </devicelayouts>
+      <simple-id uuid='{DF65FD02-33E8-49A4-B49E-5818C5CAFDA6}' />
+    </dashboard>
+  </dashboards>
+  <windows source-height='30'>
+    <window class='worksheet' name='Sheet 1'>
+      <cards>
+        <edge name='left'>
+          <strip size='160'>
+            <card type='pages' />
+            <card type='filters' />
+            <card type='marks' />
+          </strip>
+        </edge>
+        <edge name='top'>
+          <strip size='2147483647'>
+            <card type='columns' />
+          </strip>
+          <strip size='2147483647'>
+            <card type='rows' />
+          </strip>
+          <strip size='31'>
+            <card type='title' />
+          </strip>
+        </edge>
+      </cards>
+      <simple-id uuid='{D57547C5-0991-479F-AEC9-C526760674B6}' />
+    </window>
+    <window class='worksheet' name='KPIs'>
+      <cards>
+        <edge name='left'>
+          <strip size='160'>
+            <card type='pages' />
+            <card type='filters' />
+            <card type='marks' />
+            <card type='measures' />
+          </strip>
+        </edge>
+        <edge name='top'>
+          <strip size='2147483647'>
+            <card type='columns' />
+          </strip>
+          <strip size='2147483647'>
+            <card type='rows' />
+          </strip>
+          <strip size='31'>
+            <card type='title' />
+          </strip>
+        </edge>
+      </cards>
+      <simple-id uuid='{768EF98D-3578-4121-9E4B-C5260E5ACA86}' />
+    </window>
+    <window class='worksheet' name='Ventas por vendedor'>
+      <cards>
+        <edge name='left'>
+          <strip size='160'>
+            <card type='pages' />
+            <card type='filters' />
+            <card type='marks' />
+          </strip>
+        </edge>
+        <edge name='top'>
+          <strip size='2147483647'>
+            <card type='columns' />
+          </strip>
+          <strip size='2147483647'>
+            <card type='rows' />
+          </strip>
+          <strip size='31'>
+            <card type='title' />
+          </strip>
+        </edge>
+      </cards>
+      <simple-id uuid='{06AF9F25-2DA3-4DD7-A537-E21007ECE64E}' />
+    </window>
+    <window class='worksheet' name='Costo promedio por marca'>
+      <cards>
+        <edge name='left'>
+          <strip size='160'>
+            <card type='pages' />
+            <card type='filters' />
+            <card type='marks' />
+          </strip>
+        </edge>
+        <edge name='top'>
+          <strip size='2147483647'>
+            <card type='columns' />
+          </strip>
+          <strip size='2147483647'>
+            <card type='rows' />
+          </strip>
+          <strip size='31'>
+            <card type='title' />
+          </strip>
+        </edge>
+      </cards>
+      <simple-id uuid='{F6973DC7-575D-4DDC-B71F-20C397476355}' />
+    </window>
+    <window class='worksheet' name='Ventas por cliente'>
+      <cards>
+        <edge name='left'>
+          <strip size='160'>
+            <card type='pages' />
+            <card type='filters' />
+            <card type='marks' />
+          </strip>
+        </edge>
+        <edge name='top'>
+          <strip size='2147483647'>
+            <card type='columns' />
+          </strip>
+          <strip size='2147483647'>
+            <card type='rows' />
+          </strip>
+          <strip size='31'>
+            <card type='title' />
+          </strip>
+        </edge>
+        <edge name='right'>
+          <strip size='160'>
+            <card pane-specification-id='0' param='[federated.0sdv2jb0uh4ow512hhuwo0bx77p4].[none:ClienteID (dim_cliente.csv):ok]' type='color' />
+            <card pane-specification-id='0' param='[federated.0sdv2jb0uh4ow512hhuwo0bx77p4].[sum:Total_D:qk]' type='size' />
+          </strip>
+        </edge>
+      </cards>
+      <simple-id uuid='{74522E89-4035-42C2-85DF-E28B73733444}' />
+    </window>
+    <window class='worksheet' name='Comportamiento de cliente por año'>
+      <cards>
+        <edge name='left'>
+          <strip size='160'>
+            <card type='pages' />
+            <card type='filters' />
+            <card type='marks' />
+          </strip>
+        </edge>
+        <edge name='top'>
+          <strip size='2147483647'>
+            <card type='columns' />
+          </strip>
+          <strip size='2147483647'>
+            <card type='rows' />
+          </strip>
+          <strip size='31'>
+            <card type='title' />
+          </strip>
+        </edge>
+        <edge name='right'>
+          <strip size='160'>
+            <card pane-specification-id='0' param='[federated.0sdv2jb0uh4ow512hhuwo0bx77p4].[none:ClienteID:ok]' type='color' />
+          </strip>
+        </edge>
+      </cards>
+      <simple-id uuid='{63217542-56E7-484D-AF48-756707C663C8}' />
+    </window>
+    <window class='worksheet' name='Ventas por condición de pago'>
+      <cards>
+        <edge name='left'>
+          <strip size='160'>
+            <card type='pages' />
+            <card type='filters' />
+            <card type='marks' />
+          </strip>
+        </edge>
+        <edge name='top'>
+          <strip size='2147483647'>
+            <card type='columns' />
+          </strip>
+          <strip size='2147483647'>
+            <card type='rows' />
+          </strip>
+          <strip size='31'>
+            <card type='title' />
+          </strip>
+        </edge>
+        <edge name='right'>
+          <strip size='160'>
+            <card pane-specification-id='0' param='[federated.0sdv2jb0uh4ow512hhuwo0bx77p4].[sum:Total_D:qk]' type='color' />
+          </strip>
+        </edge>
+      </cards>
+      <simple-id uuid='{33ECFEBD-6628-4D39-97FD-6E72EA2B0070}' />
+    </window>
+    <window class='dashboard' maximized='true' name='Dashboard 1'>
+      <viewpoints>
+        <viewpoint name='Comportamiento de cliente por año'>
+          <zoom type='entire-view' />
+        </viewpoint>
+        <viewpoint name='Costo promedio por marca'>
+          <zoom type='entire-view' />
+        </viewpoint>
+        <viewpoint name='KPIs' />
+        <viewpoint name='Ventas por cliente' />
+        <viewpoint name='Ventas por condición de pago' />
+        <viewpoint name='Ventas por vendedor'>
+          <zoom type='entire-view' />
+        </viewpoint>
+      </viewpoints>
+      <active id='10' />
+      <simple-id uuid='{BEA2B978-7775-4B2C-93FF-39C547C0EB9E}' />
+    </window>
+  </windows>
+</workbook>
