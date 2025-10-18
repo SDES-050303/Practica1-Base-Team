@@ -5,6 +5,9 @@
 7 Dimension medio de embarque ✅​
 
 -- Tableau
+cubos actualizados ✅​
+mdx actualizado ✅​
+csv para tableros actualizados ✅​
 5 Titulo en dashboard
 6 Filtros visibles en dashboard
 8 Robustecer los análisis
